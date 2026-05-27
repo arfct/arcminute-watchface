@@ -1,7 +1,7 @@
 {
   "name": "Chronology",
   "author": "Artifact",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "keywords": [
     "pebble-watchface"
   ],
@@ -15,7 +15,7 @@
     "install-phone": "pebble build && pebble install --cloudpebble"
   },
   "pebble": {
-    "displayName": "Chronology 2.0",
+    "displayName": "Chronology",
     "uuid": "6ed35b3b-813b-402c-b3ed-c7d0146f70ec",
     "sdkVersion": "3",
     "enableMultiJS": true,

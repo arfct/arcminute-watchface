@@ -261,17 +261,15 @@ static void my_hand_draw(Layer *layer, GContext *ctx)
   GPoint end_point = gpoint_from_polar(face_frame, GOvalScaleModeFitCircle, DEG_TO_TRIGANGLE(angle));
 
   int32_t perp_angle = DEG_TO_TRIGANGLE(angle);
-  int32_t perp_thickness = (int32_t)(
+  int32_t perp_thickness =
 #if PBL_DISPLAY_WIDTH == 260
-      5
+      4;
 #else
-      3
+      3;
 #endif
-      * s_scale);
-  if (perp_thickness < 1)
-    perp_thickness = 1;
 
   GPoint offset = {
+    
       .x = (int16_t)(perp_thickness * cos_lookup(perp_angle) / TRIG_MAX_RATIO),
       .y = (int16_t)(perp_thickness * sin_lookup(perp_angle) / TRIG_MAX_RATIO)};
 

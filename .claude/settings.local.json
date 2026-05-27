@@ -12,7 +12,10 @@
       "Bash(find:*)",
       "Bash(cp:*)",
       "Bash(pebble install:*)",
-      "Bash(pebble logs:*)"
+      "Bash(pebble logs:*)",
+      "Bash(grep -r \"ANTHROPIC_API_KEY\" ~/.claude/ ~/.zshrc ~/.zshenv ~/.bash_profile ~/.bashrc ~/.profile 2>/dev/null | grep -v \"Binary\" | head -30)",
+      "Bash(cat ~/.zshrc | grep -i \"anthropic\\\\|api_key\" 2>/dev/null; cat ~/.zshenv | grep -i \"anthropic\\\\|api_key\" 2>/dev/null; cat ~/.bash_profile | grep -i \"anthropic\\\\|api_key\" 2>/dev/null)",
+      "Bash(rm ~/.claude/anthropic_key.sh)"
     ],
     "deny": []
   }
