@@ -15,8 +15,18 @@
       "Bash(pebble logs:*)",
       "Bash(grep -r \"ANTHROPIC_API_KEY\" ~/.claude/ ~/.zshrc ~/.zshenv ~/.bash_profile ~/.bashrc ~/.profile 2>/dev/null | grep -v \"Binary\" | head -30)",
       "Bash(cat ~/.zshrc | grep -i \"anthropic\\\\|api_key\" 2>/dev/null; cat ~/.zshenv | grep -i \"anthropic\\\\|api_key\" 2>/dev/null; cat ~/.bash_profile | grep -i \"anthropic\\\\|api_key\" 2>/dev/null)",
-      "Bash(rm ~/.claude/anthropic_key.sh)"
+      "Bash(rm ~/.claude/anthropic_key.sh)",
+      "Bash(mkdir -p /Users/nj/Library/CloudStorage/Dropbox/Projects/chronology/resources/fonts && cp \"/Users/nj/Library/Fonts/DieGrotesk-A-Bold.ttf\" /Users/nj/Library/CloudStorage/Dropbox/Projects/chronology/resources/fonts/ && ls /Users/nj/Library/CloudStorage/Dropbox/Projects/chronology/resources/fonts/)",
+      "Bash(grep -n \"Glyph too large\\\\|256\\\\|WILDCARD\" \"/Users/nj/Library/Application Support/Pebble SDK/SDKs/current/sdk-core/pebble/common/tools/font/fontgen.py\" | head -20)",
+      "Read(//Users/nj/Library/Application Support/Pebble SDK/SDKs/4.9.169/sdk-core/pebble/common/tools/font/**)",
+      "Bash(sed -n '60,90p' \"/Users/nj/Library/Application Support/Pebble SDK/SDKs/current/sdk-core/pebble/common/waftools/resources/resource_map/resource_generator_font.py\")",
+      "Read(//Users/nj/Library/Application Support/Pebble SDK/SDKs/4.9.169/sdk-core/pebble/common/waftools/resources/resource_map/**)",
+      "Bash(grep -rn \"MAX_FONT_GLYPH_SIZE\\\\|max_glyph_size\" \"/Users/nj/Library/Application Support/Pebble SDK/SDKs/current/sdk-core/pebble/\" 2>/dev/null | grep -v \".pyc\" | head -20)",
+      "Read(//Users/nj/Library/Application Support/Pebble SDK/SDKs/4.9.169/sdk-core/pebble/**)"
     ],
-    "deny": []
+    "deny": [],
+    "additionalDirectories": [
+      "/Users/nj/Library/Fonts"
+    ]
   }
 }

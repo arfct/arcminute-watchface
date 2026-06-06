@@ -34,9 +34,11 @@
       "configurable"
     ],
     "messageKeys": [
-      "BACKGROUND_COLOR",
-      "FACE_COLOR",
-      "HAND_COLOR"
+      "BG_HEX",
+      "FACE_HEX",
+      "HAND_HEX",
+      "FACE_CLEAR",
+      "DIAL_STYLE"
     ],
     "resources": {
       "media": [
@@ -45,6 +47,20 @@
           "type": "png",
           "name": "APP_ICON",
           "file": "images/app_icon.png"
+        },
+        {
+          "type": "font",
+          "name": "FONT_HELVETICA_95",
+          "file": "fonts/Helvetica-Digits.ttf",
+          "characterRegex": "[0-9]",
+          "targetPlatforms": ["emery", "gabbro"]
+        },
+        {
+          "type": "font",
+          "name": "FONT_HELVETICA_67",
+          "file": "fonts/Helvetica-Digits.ttf",
+          "characterRegex": "[0-9]",
+          "targetPlatforms": ["aplite", "basalt", "chalk", "diorite"]
         }
       ]
     }

@@ -85,57 +85,31 @@ static TextLayer *s_battery_layer;
 static bool debug = false;
 static float s_scale = 1.0f;
 static int16_t s_orbit_inset = 150;
-static int s_background_color_index = 0;
-static int s_face_color_index = 0;
-static int s_hand_color_index = 0;
+static GColor s_background_color;
+static GColor s_face_color;
+static GColor s_hand_color;
+static bool s_face_clear = true;
+static int s_dial_style = 0;
+static GFont s_large_numeral_font;
 
 static GColor background_color() {
-#if defined(PBL_COLOR)
-  switch (s_background_color_index) {
-    case 1: return GColorWhite;
-    case 2: return GColorRed;
-    case 3: return GColorOrange;
-    case 4: return GColorYellow;
-    case 5: return GColorGreen;
-    case 6: return GColorBlue;
-    case 7: return GColorPurple;
-    case 8: return GColorShockingPink;
-    case 9: return GColorLightGray;
-    default: return GColorBlack;
-  }
-#else
-  return s_background_color_index == 1 ? GColorWhite : GColorBlack;
-#endif
-}
-
-static bool bg_is_light() {
-  return s_background_color_index == 1 || s_background_color_index == 4;
+  return s_background_color;
 }
 
 static GColor face_color() {
+  return s_face_clear ? s_background_color : s_face_color;
+}
+
+static bool color_is_light(GColor c) {
 #if defined(PBL_COLOR)
-  switch (s_face_color_index) {
-    case 1: return GColorBlack;
-    case 2: return GColorWhite;
-    case 3: return GColorRed;
-    case 4: return GColorOrange;
-    case 5: return GColorYellow;
-    case 6: return GColorGreen;
-    case 7: return GColorBlue;
-    case 8: return GColorPurple;
-    case 9: return GColorShockingPink;
-    case 10: return GColorLightGray;
-    default: return background_color();
-  }
+  return ((int)c.r + (int)c.g + (int)c.b) >= 5;
 #else
-  if (s_face_color_index == 0) return background_color();
-  return s_face_color_index == 2 ? GColorWhite : GColorBlack;
+  return gcolor_equal(c, GColorWhite);
 #endif
 }
 
 static bool face_is_light() {
-  if (s_face_color_index == 0) return bg_is_light();
-  return s_face_color_index == 2 || s_face_color_index == 5;
+  return color_is_light(face_color());
 }
 
 static GColor face_text_color() {
@@ -148,18 +122,9 @@ static GColor face_minor_tick_color() {
 
 static GColor hand_color() {
 #if defined(PBL_COLOR)
-  switch (s_hand_color_index) {
-    case 1: return GColorOrange;
-    case 2: return GColorYellow;
-    case 3: return GColorGreen;
-    case 4: return GColorBlue;
-    case 5: return GColorPurple;
-    case 6: return GColorShockingPink;
-    case 7: return face_is_light() ? GColorDarkGray : GColorLightGray;
-    default: return GColorRed;
-  }
+  return s_hand_color;
 #else
-  return face_is_light() ? GColorDarkGray : GColorLightGray;
+  return face_is_light() ? GColorBlack : GColorWhite;
 #endif
 }
 // static int font_size_index = 1; // 0=large, 1=medium, 2=small, 3=xsmall (commented out)
@@ -292,20 +257,27 @@ static void my_face_draw(Layer *layer, GContext *ctx)
   GRect bounds = layer_get_bounds(layer);
   const int16_t half_h = bounds.size.h / 2;
   const int16_t circle_radius = (int16_t)(90 * s_scale);
-  const int16_t number_inset = (int16_t)(60 * s_scale);
-  const int16_t hour_inset = (int16_t)(30 * s_scale);
-  const int16_t half_mark_len = (int16_t)(16 * s_scale);
-  const int16_t quarter_mark_len = (int16_t)(5 * s_scale);
+  const bool large_numerals = s_dial_style == 1;
+  const int16_t number_inset = (int16_t)((large_numerals ? 116 : 60) * s_scale);
+  const int16_t hour_inset = (int16_t)((large_numerals ? 60 : 30) * s_scale);
+  const int16_t half_mark_len = (int16_t)((large_numerals ? 32 : 16) * s_scale);
+  const int16_t quarter_mark_len = (int16_t)((large_numerals ? 10 : 5) * s_scale);
   const int16_t text_rect_half =
 #if PBL_DISPLAY_WIDTH == 260
-      (int16_t)(36);
+      (int16_t)(large_numerals ? 56 : 36);
 #else
-      (int16_t)(24 * s_scale);
+      (int16_t)((large_numerals ? 40 : 24) * s_scale);
 #endif
-  const int16_t ascender = (int16_t)(8 * s_scale);
+  const int16_t ascender = large_numerals
+#if PBL_DISPLAY_WIDTH >= 200
+      ? 24
+#else
+      ? 17
+#endif
+      : (int16_t)(8 * s_scale);
 
   // Fill the face disk (omitted when face is transparent), 4px beyond the marker ring
-  if (s_face_color_index != 0) {
+  if (!s_face_clear) {
     graphics_context_set_fill_color(ctx, face_color());
     graphics_fill_circle(ctx, GPoint(half_h, half_h), bounds.size.w / 2 + 8);
   }
@@ -325,13 +297,15 @@ static void my_face_draw(Layer *layer, GContext *ctx)
     GPoint text_point = gpoint_from_polar(grect_crop(bounds, number_inset), GOvalScaleModeFitCircle, angle);
     GRect text_rect = GRect(text_point.x - text_rect_half, text_point.y - text_rect_half, text_rect_half * 2, text_rect_half * 2);
 
-    GFont number_font = fonts_get_system_font(
+    GFont number_font = large_numerals
+        ? s_large_numeral_font
+        : fonts_get_system_font(
 #if PBL_DISPLAY_WIDTH == 260
-        FONT_KEY_BITHAM_42_LIGHT
+              FONT_KEY_BITHAM_42_LIGHT
 #else
-        FONT_KEY_BITHAM_34_MEDIUM_NUMBERS
+              FONT_KEY_BITHAM_34_MEDIUM_NUMBERS
 #endif
-    );
+          );
     GSize size = graphics_text_layout_get_content_size(buf,
                                                        number_font,
                                                        text_rect, GTextOverflowModeFill, GTextAlignmentCenter);
@@ -351,9 +325,9 @@ static void my_face_draw(Layer *layer, GContext *ctx)
 
     graphics_context_set_stroke_color(ctx, face_text_color());
 #if PBL_DISPLAY_WIDTH == 260
-    graphics_context_set_stroke_width(ctx, 3);
+    graphics_context_set_stroke_width(ctx, large_numerals ? 6 : 3);
 #else
-    graphics_context_set_stroke_width(ctx, 2);
+    graphics_context_set_stroke_width(ctx, large_numerals ? 4 : 2);
 #endif
     graphics_draw_line(ctx,
                        gpoint_from_polar(grect_crop(bounds, hour_inset), GOvalScaleModeFitCircle, angle),
@@ -373,7 +347,7 @@ static void my_face_draw(Layer *layer, GContext *ctx)
       angle += DEG_TO_TRIGANGLE(2.5);
 
       graphics_context_set_stroke_color(ctx, line_color);
-      graphics_context_set_stroke_width(ctx, 2);
+      graphics_context_set_stroke_width(ctx, large_numerals ? 4 : 2);
       graphics_draw_line(ctx,
                          gpoint_from_polar(grect_crop(bounds, line_length), GOvalScaleModeFitCircle, angle),
                          gpoint_from_polar(bounds, GOvalScaleModeFitCircle, angle));
@@ -417,25 +391,42 @@ static void main_window_load(Window *window)
 
 static void inbox_received_callback(DictionaryIterator *iterator, void *context)
 {
-  Tuple *bg_tuple = dict_find(iterator, MESSAGE_KEY_BACKGROUND_COLOR);
+  Tuple *bg_tuple = dict_find(iterator, MESSAGE_KEY_BG_HEX);
   if (bg_tuple)
   {
-    s_background_color_index = bg_tuple->value->int32;
-    persist_write_int(4, s_background_color_index);
+    int32_t hex = bg_tuple->value->int32;
+    s_background_color = GColorFromHEX(hex);
+    persist_write_int(5, hex);
   }
 
-  Tuple *face_color_tuple = dict_find(iterator, MESSAGE_KEY_FACE_COLOR);
-  if (face_color_tuple)
+  Tuple *face_hex_tuple = dict_find(iterator, MESSAGE_KEY_FACE_HEX);
+  if (face_hex_tuple)
   {
-    s_face_color_index = face_color_tuple->value->int32;
-    persist_write_int(3, s_face_color_index);
+    int32_t hex = face_hex_tuple->value->int32;
+    s_face_color = GColorFromHEX(hex);
+    persist_write_int(6, hex);
   }
 
-  Tuple *hand_color_tuple = dict_find(iterator, MESSAGE_KEY_HAND_COLOR);
-  if (hand_color_tuple)
+  Tuple *hand_hex_tuple = dict_find(iterator, MESSAGE_KEY_HAND_HEX);
+  if (hand_hex_tuple)
   {
-    s_hand_color_index = hand_color_tuple->value->int32;
-    persist_write_int(2, s_hand_color_index);
+    int32_t hex = hand_hex_tuple->value->int32;
+    s_hand_color = GColorFromHEX(hex);
+    persist_write_int(7, hex);
+  }
+
+  Tuple *dial_style_tuple = dict_find(iterator, MESSAGE_KEY_DIAL_STYLE);
+  if (dial_style_tuple)
+  {
+    s_dial_style = dial_style_tuple->value->int32;
+    persist_write_int(9, s_dial_style);
+  }
+
+  Tuple *face_clear_tuple = dict_find(iterator, MESSAGE_KEY_FACE_CLEAR);
+  if (face_clear_tuple)
+  {
+    s_face_clear = face_clear_tuple->value->int32 != 0;
+    persist_write_bool(8, s_face_clear);
   }
 
   window_set_background_color(s_main_window, background_color());
@@ -480,16 +471,19 @@ static void main_window_unload(Window *window)
 
 static void init()
 {
-  s_hand_color_index = persist_exists(2) ? persist_read_int(2) : 0;
-  s_face_color_index = persist_exists(3) ? persist_read_int(3) : 0;
-  if (persist_exists(4)) {
-    s_background_color_index = persist_read_int(4);
-  } else if (persist_exists(0)) {
-    // Migrate from old Light mode toggle: dark (inverted) → Black, light → White
-    s_background_color_index = persist_read_bool(0) ? 0 : 1;
-  } else {
-    s_background_color_index = 0;
-  }
+  s_background_color = GColorFromHEX(persist_exists(5) ? persist_read_int(5) : 0x000000);
+  s_face_color = GColorFromHEX(persist_exists(6) ? persist_read_int(6) : 0x000000);
+  s_hand_color = GColorFromHEX(persist_exists(7) ? persist_read_int(7) : 0xFF0000);
+  s_face_clear = persist_exists(8) ? persist_read_bool(8) : true;
+  s_dial_style = persist_exists(9) ? persist_read_int(9) : 0;
+
+  s_large_numeral_font = fonts_load_custom_font(resource_get_handle(
+#if PBL_DISPLAY_WIDTH >= 200
+      RESOURCE_ID_FONT_HELVETICA_95
+#else
+      RESOURCE_ID_FONT_HELVETICA_67
+#endif
+      ));
   // font_size_index = persist_exists(1) ? persist_read_int(1) : 1; // default to medium (commented out)
 
   // Create main Window element and assign to pointer
@@ -523,7 +517,7 @@ static void init()
 
 static void deinit()
 {
-  // Destroy Window
+  fonts_unload_custom_font(s_large_numeral_font);
   window_destroy(s_main_window);
 }
 

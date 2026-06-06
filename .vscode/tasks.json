@@ -24,7 +24,7 @@
     {
       "label": "install-phone",
       "type": "shell",
-      "command": "pebble build && pebble install --phone 10.0.3.173",
+      "command": "pebble build && pebble install --phone",
       "group": "build",
       "presentation": {
         "reveal": "always",

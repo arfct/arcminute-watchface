@@ -12,56 +12,41 @@ module.exports = [
       },
       {
         "type": "select",
-        "messageKey": "BACKGROUND_COLOR",
+        "messageKey": "DIAL_STYLE",
+        "label": "Dial style",
+        "defaultValue": 0,
+        "options": [
+          { "label": "Classic", "value": 0 },
+          { "label": "Large numerals", "value": 1 }
+        ]
+      },
+      {
+        "type": "color",
+        "messageKey": "BG_HEX",
         "label": "Background color",
-        "defaultValue": 0,
-        "options": [
-          { "label": "Black", "value": 0 },
-          { "label": "White", "value": 1 },
-          { "label": "Red", "value": 2 },
-          { "label": "Orange", "value": 3 },
-          { "label": "Yellow", "value": 4 },
-          { "label": "Green", "value": 5 },
-          { "label": "Blue", "value": 6 },
-          { "label": "Purple", "value": 7 },
-          { "label": "Pink", "value": 8 },
-          { "label": "Gray", "value": 9 }
-        ]
+        "defaultValue": "0x000000",
+        "sunlight": true
       },
       {
-        "type": "select",
-        "messageKey": "FACE_COLOR",
+        "type": "toggle",
+        "messageKey": "FACE_CLEAR",
+        "label": "Transparent face",
+        "description": "When on, the face uses the background color.",
+        "defaultValue": true
+      },
+      {
+        "type": "color",
+        "messageKey": "FACE_HEX",
         "label": "Face color",
-        "defaultValue": 0,
-        "options": [
-          { "label": "Transparent", "value": 0 },
-          { "label": "Black", "value": 1 },
-          { "label": "White", "value": 2 },
-          { "label": "Red", "value": 3 },
-          { "label": "Orange", "value": 4 },
-          { "label": "Yellow", "value": 5 },
-          { "label": "Green", "value": 6 },
-          { "label": "Blue", "value": 7 },
-          { "label": "Purple", "value": 8 },
-          { "label": "Pink", "value": 9 },
-          { "label": "Gray", "value": 10 }
-        ]
+        "defaultValue": "0x000000",
+        "sunlight": true
       },
       {
-        "type": "select",
-        "messageKey": "HAND_COLOR",
+        "type": "color",
+        "messageKey": "HAND_HEX",
         "label": "Hand color",
-        "defaultValue": 0,
-        "options": [
-          { "label": "Red", "value": 0 },
-          { "label": "Orange", "value": 1 },
-          { "label": "Yellow", "value": 2 },
-          { "label": "Green", "value": 3 },
-          { "label": "Blue", "value": 4 },
-          { "label": "Purple", "value": 5 },
-          { "label": "Pink", "value": 6 },
-          { "label": "Gray", "value": 7 }
-        ]
+        "defaultValue": "0xFF0000",
+        "sunlight": true
       }
     ]
   },

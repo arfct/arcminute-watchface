@@ -16,14 +16,20 @@ Pebble.addEventListener('webviewclosed', function(e) {
   var settings = clay.getSettings(e.response, false);
   var dict = {};
 
-  if (settings.BACKGROUND_COLOR !== undefined) {
-    dict.BACKGROUND_COLOR = parseInt(valueOf(settings.BACKGROUND_COLOR), 10);
+  if (settings.BG_HEX !== undefined) {
+    dict.BG_HEX = valueOf(settings.BG_HEX);
   }
-  if (settings.FACE_COLOR !== undefined) {
-    dict.FACE_COLOR = parseInt(valueOf(settings.FACE_COLOR), 10);
+  if (settings.FACE_HEX !== undefined) {
+    dict.FACE_HEX = valueOf(settings.FACE_HEX);
   }
-  if (settings.HAND_COLOR !== undefined) {
-    dict.HAND_COLOR = parseInt(valueOf(settings.HAND_COLOR), 10);
+  if (settings.HAND_HEX !== undefined) {
+    dict.HAND_HEX = valueOf(settings.HAND_HEX);
+  }
+  if (settings.DIAL_STYLE !== undefined) {
+    dict.DIAL_STYLE = parseInt(valueOf(settings.DIAL_STYLE), 10);
+  }
+  if (settings.FACE_CLEAR !== undefined) {
+    dict.FACE_CLEAR = valueOf(settings.FACE_CLEAR) ? 1 : 0;
   }
 
   Pebble.sendAppMessage(dict);
