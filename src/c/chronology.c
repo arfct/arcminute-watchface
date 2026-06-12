@@ -273,12 +273,30 @@ static void my_face_draw(Layer *layer, GContext *ctx)
   graphics_context_set_stroke_width(ctx, 2);
   graphics_context_set_text_color(ctx, face_text_color());
 
+  // In 24h mode each tick shows the absolute hour (1-24) nearest the current
+  // time, so the visible arc reads 13-24 in the afternoon and combos across
+  // midnight (...23, 24, 1, 2...) as the dial rolls over.
+  const bool h24 = clock_is_24h_style();
+  time_t face_now = time(NULL);
+  struct tm *face_tm = localtime(&face_now);
+  const float cur_hour = face_tm->tm_hour + face_tm->tm_min / 60.0f;
+
   for (int i = 0; i < 12; i++)
   {
     int angle = DEG_TO_TRIGANGLE(i * 30);
 
+    int label;
+    if (h24) {
+      float laps = (cur_hour - i) / 12.0f;
+      int nearest = i + 12 * (int)(laps + (laps >= 0 ? 0.5f : -0.5f));
+      nearest = ((nearest % 24) + 24) % 24;
+      label = nearest == 0 ? 24 : nearest;
+    } else {
+      label = i == 0 ? 12 : i;
+    }
+
     static char buf[] = "000";
-    snprintf(buf, sizeof(buf), "%01d", i == 0 ? 12 : i);
+    snprintf(buf, sizeof(buf), "%d", label);
     GFont number_font = large_numerals
         ? s_large_numeral_font
         : fonts_get_system_font(
