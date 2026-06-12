@@ -293,7 +293,17 @@ static void my_face_draw(Layer *layer, GContext *ctx)
     int angle = DEG_TO_TRIGANGLE(i * 30);
 
     static char buf[] = "000";
-    snprintf(buf, sizeof(buf), "%01d", i == 0 ? 12 : i);
+    int label = i == 0 ? 12 : i;
+    if (clock_is_24h_style())
+    {
+      // Show 0-23: label each slot with the hour it currently represents so
+      // the slot under the hand reads the true 24h value (noon 12, midnight 0).
+      time_t now = time(NULL);
+      int cur_hour = localtime(&now)->tm_hour;
+      int offset = ((i - cur_hour % 12 + 18) % 12) - 6;  // ring distance from hand
+      label = ((cur_hour + offset) % 24 + 24) % 24;
+    }
+    snprintf(buf, sizeof(buf), "%01d", label);
     GPoint text_point = gpoint_from_polar(grect_crop(bounds, number_inset), GOvalScaleModeFitCircle, angle);
     GRect text_rect = GRect(text_point.x - text_rect_half, text_point.y - text_rect_half, text_rect_half * 2, text_rect_half * 2);
 
