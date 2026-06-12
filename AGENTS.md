@@ -32,13 +32,29 @@ rm ~/Library/Application\ Support/Pebble\ SDK/4.9.169/<platform>/qemu_spi_flash.
 
 Settings are sent from the phone JS layer to the watch via `Pebble.sendAppMessage`. Persisted on the watch at these keys:
 
-| Key | Persist key | Description |
-|-----|-------------|-------------|
-| `BG_HEX` | 5 | Background color |
-| `FACE_HEX` | 6 | Face color |
-| `HAND_HEX` | 7 | Hand color |
-| `FACE_CLEAR` | 8 | Transparent face toggle |
-| `DIAL_STYLE` | 9 | 0 = classic, 1 = large numerals |
+| Key | Message key | Persist key | Description |
+|-----|-------------|-------------|-------------|
+| `BG_HEX` | 10000 | 5 | Background color |
+| `FACE_HEX` | 10001 | 6 | Face color |
+| `HAND_HEX` | 10002 | 7 | Hand color |
+| `FACE_CLEAR` | 10003 | 8 | Transparent face toggle |
+| `DIAL_STYLE` | 10004 | 9 | 0 = classic, 1 = large numerals |
+
+To send a setting to a running emulator:
+```
+pebble send-app-message --emulator <platform> --int <message_key>=<value>
+```
+
+Send each key as its own message. Passing multiple `--int` flags in a single
+`send-app-message` call only delivers one of them (the others are silently
+dropped). To change several settings, issue one command per key.
+
+Example — enable large numerals on all emulators:
+```
+for platform in aplite basalt chalk diorite emery gabbro; do
+  pebble send-app-message --emulator $platform --int 10004=1
+done
+```
 
 To force a default setting for a build (e.g. screenshots), temporarily change the fallback value in `src/c/chronology.c` where persist keys are read on init, then revert after.
 

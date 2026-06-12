@@ -84,6 +84,8 @@ static Layer *s_hand_layer;
 static TextLayer *s_battery_layer;
 static bool debug = false;
 static float s_scale = 1.0f;
+static float s_mark_scale = 1.0f;
+static float s_stroke_scale = 1.0f;
 static int16_t s_orbit_inset = 150;
 static GColor s_background_color;
 static GColor s_face_color;
@@ -94,6 +96,12 @@ static GFont s_large_numeral_font;
 
 static GColor background_color() {
   return s_background_color;
+}
+
+// Scale a gabbro-reference stroke/dot width down for smaller screens, never below 1px.
+static uint8_t scaled_stroke(int16_t gabbro_px) {
+  int16_t w = (int16_t)(gabbro_px * s_stroke_scale + 0.5f);
+  return w < 1 ? 1 : (uint8_t)w;
 }
 
 static GColor face_color() {
@@ -220,54 +228,31 @@ static void my_hand_draw(Layer *layer, GContext *ctx)
   if (debug)
     angle = 12 * tick_time->tm_sec;
 
-  graphics_context_set_fill_color(ctx, hand_color());
-
   GPoint center = GPoint(face_frame.origin.x + face_frame.size.w / 2, face_frame.origin.y + face_frame.size.h / 2);
   GPoint end_point = gpoint_from_polar(face_frame, GOvalScaleModeFitCircle, DEG_TO_TRIGANGLE(angle));
 
-  int32_t perp_angle = DEG_TO_TRIGANGLE(angle);
-  int32_t perp_thickness =
+  uint8_t stroke_width =
 #if PBL_DISPLAY_WIDTH == 260
-      4;
+      9;
+#elif PBL_DISPLAY_WIDTH == 200
+      6;
 #else
-      3;
+      5;
 #endif
 
-  GPoint offset = {
-    
-      .x = (int16_t)(perp_thickness * cos_lookup(perp_angle) / TRIG_MAX_RATIO),
-      .y = (int16_t)(perp_thickness * sin_lookup(perp_angle) / TRIG_MAX_RATIO)};
-
-  GPoint hand_points[4] = {
-      {center.x - offset.x, center.y - offset.y},
-      {center.x + offset.x, center.y + offset.y},
-      {end_point.x + offset.x, end_point.y + offset.y},
-      {end_point.x - offset.x, end_point.y - offset.y}};
-
-  GPath *hand_path = gpath_create(&(GPathInfo){
-      .num_points = 4,
-      .points = hand_points});
-
-  gpath_draw_filled(ctx, hand_path);
-  gpath_destroy(hand_path);
+  graphics_context_set_stroke_color(ctx, hand_color());
+  graphics_context_set_stroke_width(ctx, stroke_width);
+  graphics_draw_line(ctx, center, end_point);
 }
 
 static void my_face_draw(Layer *layer, GContext *ctx)
 {
   GRect bounds = layer_get_bounds(layer);
   const int16_t half_h = bounds.size.h / 2;
-  const int16_t circle_radius = (int16_t)(90 * s_scale);
   const bool large_numerals = s_dial_style == 1;
-  const int16_t number_inset = (int16_t)((large_numerals ? 116 : 60) * s_scale);
-  const int16_t hour_inset = (int16_t)((large_numerals ? 60 : 30) * s_scale);
-  const int16_t half_mark_len = (int16_t)((large_numerals ? 32 : 16) * s_scale);
-  const int16_t quarter_mark_len = (int16_t)((large_numerals ? 10 : 5) * s_scale);
-  const int16_t text_rect_half =
-#if PBL_DISPLAY_WIDTH == 260
-      (int16_t)(large_numerals ? 56 : 36);
-#else
-      (int16_t)((large_numerals ? 40 : 24) * s_scale);
-#endif
+  const int16_t hour_inset = large_numerals
+      ? (int16_t)(40 * s_mark_scale)
+      : (int16_t)(20 * s_scale);
   const int16_t ascender = large_numerals
 #if PBL_DISPLAY_WIDTH >= 200
       ? 24
@@ -276,6 +261,8 @@ static void my_face_draw(Layer *layer, GContext *ctx)
 #endif
       : (int16_t)(8 * s_scale);
 
+  graphics_context_set_antialiased(ctx, false);
+
   // Fill the face disk (omitted when face is transparent), 4px beyond the marker ring
   if (!s_face_clear) {
     graphics_context_set_fill_color(ctx, face_color());
@@ -283,8 +270,6 @@ static void my_face_draw(Layer *layer, GContext *ctx)
   }
 
   graphics_context_set_stroke_color(ctx, face_text_color());
-  graphics_draw_circle(ctx, GPoint(half_h, half_h), circle_radius);
-
   graphics_context_set_stroke_width(ctx, 2);
   graphics_context_set_text_color(ctx, face_text_color());
 
@@ -294,9 +279,6 @@ static void my_face_draw(Layer *layer, GContext *ctx)
 
     static char buf[] = "000";
     snprintf(buf, sizeof(buf), "%01d", i == 0 ? 12 : i);
-    GPoint text_point = gpoint_from_polar(grect_crop(bounds, number_inset), GOvalScaleModeFitCircle, angle);
-    GRect text_rect = GRect(text_point.x - text_rect_half, text_point.y - text_rect_half, text_rect_half * 2, text_rect_half * 2);
-
     GFont number_font = large_numerals
         ? s_large_numeral_font
         : fonts_get_system_font(
@@ -306,28 +288,57 @@ static void my_face_draw(Layer *layer, GContext *ctx)
               FONT_KEY_BITHAM_34_MEDIUM_NUMBERS
 #endif
           );
-    GSize size = graphics_text_layout_get_content_size(buf,
-                                                       number_font,
-                                                       text_rect, GTextOverflowModeFill, GTextAlignmentCenter);
+    GRect meas_rect = GRect(0, 0, bounds.size.w, bounds.size.h);
+    GSize size = graphics_text_layout_get_content_size(buf, number_font, meas_rect,
+                                                       GTextOverflowModeFill, GTextAlignmentCenter);
 
-    text_rect.size = size;
-    text_rect.size.h -= ascender;
-    text_rect.origin = GPoint(text_point.x - size.w / 2, text_point.y - size.h / 2);
+    // Font metric dead-space above the visual digit area
+    const int16_t box_top_offset = large_numerals ? (size.h * 27 / 100) : ascender;
+    const int16_t box_h = size.h - box_top_offset;
 
-    graphics_draw_text(ctx, buf,
-                       number_font,
+    // Radial unit vector (outward from center, toward tick)
+    int32_t rdx = sin_lookup(angle);
+    int32_t rdy = -cos_lookup(angle);
+    int32_t abs_rdx = rdx < 0 ? -rdx : rdx;
+    int32_t abs_rdy = rdy < 0 ? -rdy : rdy;
+
+    // Distance from box center to nearest box edge along the radial direction
+    int32_t hw = size.w / 2;
+    int32_t hh = box_h / 2;
+    int32_t t_x = abs_rdx > 0 ? (hw * TRIG_MAX_RATIO / abs_rdx) : INT16_MAX;
+    int32_t t_y = abs_rdy > 0 ? (hh * TRIG_MAX_RATIO / abs_rdy) : INT16_MAX;
+    int32_t d_edge = t_x < t_y ? t_x : t_y;
+
+    const int16_t gap = hour_inset / 2;
+    GPoint tick_inner = gpoint_from_polar(grect_crop(bounds, hour_inset), GOvalScaleModeFitCircle, angle);
+    GPoint box_center = GPoint(
+        tick_inner.x - (int16_t)((gap + d_edge) * rdx / TRIG_MAX_RATIO),
+        tick_inner.y - (int16_t)((gap + d_edge) * rdy / TRIG_MAX_RATIO));
+
+    GRect text_rect = GRect(
+        box_center.x - size.w / 2,
+        box_center.y - box_h / 2 - box_top_offset,
+        size.w, size.h);
+
+    graphics_draw_text(ctx, buf, number_font,
 #if PBL_DISPLAY_WIDTH == 260
                        text_rect,
 #else
-                       grect_inset(text_rect, GEdgeInsets4(-8, 0, 0, 0)),
+                       large_numerals ? text_rect : grect_inset(text_rect, GEdgeInsets4(-8, 0, 0, 0)),
 #endif
                        GTextOverflowModeFill, GTextAlignmentCenter, NULL);
 
+#ifdef DEBUG_BOXES
+    graphics_context_set_stroke_width(ctx, 1);
+    graphics_draw_rect(ctx, GRect(box_center.x - size.w / 2, box_center.y - box_h / 2, size.w, box_h));
+#endif
+
     graphics_context_set_stroke_color(ctx, face_text_color());
+    graphics_context_set_stroke_width(ctx, large_numerals ? scaled_stroke(6)
 #if PBL_DISPLAY_WIDTH == 260
-    graphics_context_set_stroke_width(ctx, large_numerals ? 6 : 3);
+                                                          : 3);
 #else
-    graphics_context_set_stroke_width(ctx, large_numerals ? 4 : 2);
+                                                          : 2);
 #endif
     graphics_draw_line(ctx,
                        gpoint_from_polar(grect_crop(bounds, hour_inset), GOvalScaleModeFitCircle, angle),
@@ -338,19 +349,18 @@ static void my_face_draw(Layer *layer, GContext *ctx)
       int16_t line_length;
       GColor line_color = face_minor_tick_color();
 
-      if (j % 6 == 0)
-        line_length = half_mark_len;
-      else if (j % 3 == 0)
-        line_length = quarter_mark_len;
-      else
-        line_length = 0;
       angle += DEG_TO_TRIGANGLE(2.5);
-
       graphics_context_set_stroke_color(ctx, line_color);
-      graphics_context_set_stroke_width(ctx, large_numerals ? 4 : 2);
-      graphics_draw_line(ctx,
-                         gpoint_from_polar(grect_crop(bounds, line_length), GOvalScaleModeFitCircle, angle),
-                         gpoint_from_polar(bounds, GOvalScaleModeFitCircle, angle));
+      if (j % 3 == 0) {
+        graphics_context_set_stroke_width(ctx, large_numerals ? scaled_stroke(4) : 2);
+        graphics_draw_line(ctx,
+                           gpoint_from_polar(grect_crop(bounds, hour_inset / 2), GOvalScaleModeFitCircle, angle),
+                           gpoint_from_polar(bounds, GOvalScaleModeFitCircle, angle));
+      } else {
+        graphics_context_set_fill_color(ctx, line_color);
+        GPoint dot = gpoint_from_polar(bounds, GOvalScaleModeFitCircle, angle);
+        graphics_fill_circle(ctx, dot, large_numerals ? scaled_stroke(3) : 2);
+      }
     }
   }
 }
@@ -362,7 +372,10 @@ static void main_window_load(Window *window)
 
   int16_t screen_size = bounds.size.w < bounds.size.h ? bounds.size.w : bounds.size.h;
   s_scale = 180.0f / (float)screen_size;
-  s_orbit_inset = (int16_t)(150.0f * (float)screen_size / 180.0f);
+  // Marks and stroke widths scale proportionally with the screen; gabbro (260px) is the reference platform.
+  s_mark_scale = 180.0f * (float)screen_size / (260.0f * 260.0f);
+  s_stroke_scale = (float)screen_size / 260.0f;
+  s_orbit_inset = (int16_t)(PBL_IF_ROUND_ELSE(130.0f, 150.0f) * (float)screen_size / 180.0f);
 
   s_face_layer = layer_create(GRect(0, 0, bounds.size.h * 3, bounds.size.h * 3));
   layer_set_update_proc(s_face_layer, my_face_draw);
