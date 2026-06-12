@@ -515,7 +515,7 @@ static void init()
   update_time();
 
   // Register with TickTimerService
-  tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
+  tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
   battery_state_service_subscribe(battery_handler);
 
   // Register callbacks for AppMessage
