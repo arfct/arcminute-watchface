@@ -14,7 +14,7 @@ module.exports = [
         "type": "select",
         "messageKey": "DIAL_STYLE",
         "label": "Dial style",
-        "defaultValue": 0,
+        "defaultValue": 1,
         "options": [
           { "label": "Classic", "value": 0 },
           { "label": "Large numerals", "value": 1 }

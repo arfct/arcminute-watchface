@@ -364,15 +364,16 @@ static void my_face_draw(Layer *layer, GContext *ctx)
 
     for (int j = 1; j < 12; j++)
     {
-      int16_t line_length;
       GColor line_color = face_minor_tick_color();
 
       angle += DEG_TO_TRIGANGLE(2.5);
       graphics_context_set_stroke_color(ctx, line_color);
       if (j % 3 == 0) {
+        const bool half_hour = j == 6;
+        const int16_t tick_inset = half_hour ? hour_inset : hour_inset / 2;
         graphics_context_set_stroke_width(ctx, large_numerals ? scaled_stroke(4) : 2);
         graphics_draw_line(ctx,
-                           gpoint_from_polar(grect_crop(bounds, hour_inset / 2), GOvalScaleModeFitCircle, angle),
+                           gpoint_from_polar(grect_crop(bounds, tick_inset), GOvalScaleModeFitCircle, angle),
                            gpoint_from_polar(bounds, GOvalScaleModeFitCircle, angle));
       } else {
         graphics_context_set_fill_color(ctx, line_color);
@@ -506,7 +507,7 @@ static void init()
   s_face_color = GColorFromHEX(persist_exists(6) ? persist_read_int(6) : 0x000000);
   s_hand_color = GColorFromHEX(persist_exists(7) ? persist_read_int(7) : 0xFF0000);
   s_face_clear = persist_exists(8) ? persist_read_bool(8) : true;
-  s_dial_style = persist_exists(9) ? persist_read_int(9) : 0;
+  s_dial_style = persist_exists(9) ? persist_read_int(9) : 1;
 
   s_large_numeral_font = fonts_load_custom_font(resource_get_handle(
 #if PBL_DISPLAY_WIDTH >= 200
