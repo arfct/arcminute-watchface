@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Chronology</string>
+
+    <string name="setting_dial_style">Dial style</string>
+    <string name="setting_dial_style_desc">Numeral size on the dial</string>
+    <string name="style_classic">Classic</string>
+    <string name="style_large">Large numerals</string>
+
+    <string name="setting_bg_color">Background color</string>
+    <string name="setting_bg_color_desc">Color behind the dial</string>
+
+    <string name="setting_face_clear">Transparent face</string>
+    <string name="setting_face_clear_desc">When on, the face uses the background color</string>
+
+    <string name="setting_face_color">Face color</string>
+    <string name="setting_face_color_desc">Dial disk color when the face is not transparent</string>
+
+    <string name="setting_hand_color">Hand color</string>
+    <string name="setting_hand_color_desc">Color of the hour hand</string>
+
+    <string name="color_black">Black</string>
+    <string name="color_white">White</string>
+    <string name="color_gray">Gray</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_green">Green</string>
+    <string name="color_red">Red</string>
+    <string name="color_yellow">Yellow</string>
+</resources>
