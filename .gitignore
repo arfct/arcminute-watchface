@@ -50,7 +50,15 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-/build
+# Pebble build output
+/pebble/build
 .lock-waf_darwin_build
 .DS_Store
-/node_modules
+/pebble/node_modules
+
+# Wear OS (Android) build output
+/wear/.gradle
+/wear/build
+/wear/app/build
+/wear/local.properties
+/wear/.kotlin
