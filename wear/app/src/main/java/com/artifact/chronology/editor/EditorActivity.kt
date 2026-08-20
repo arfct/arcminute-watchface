@@ -25,7 +25,13 @@ class EditorActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
-            session = EditorSession.createOnWatchEditorSession(this@EditorActivity)
+            try {
+                session = EditorSession.createOnWatchEditorSession(this@EditorActivity)
+            } catch (e: Exception) {
+                // Launched without the EditorRequest extras the system supplies
+                finish()
+                return@launch
+            }
             buildUi()
         }
     }

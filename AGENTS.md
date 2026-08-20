@@ -89,6 +89,21 @@ adb shell am broadcast -a com.google.android.wearable.app.DEBUG_SURFACE --es ope
 
 Screenshot: `adb exec-out screencap -p > shot.png`
 
+### Emulator
+
+A Wear OS 4 (API 33) AVD named `chronology_wear` works for development:
+```
+~/Library/Android/sdk/emulator/emulator -avd chronology_wear -no-window -no-audio &
+```
+To open the on-watch editor: long-press the watchface (`adb shell input swipe 192 192 192 192 1500`), tap the pencil.
+
+**Wear OS 5+ caveat:** devices that *launch* with Wear OS 5 (including the
+API 34+ wear emulator images) reject androidx/legacy watch faces as
+"Unsupported legacy watch face" — only the declarative Watch Face Format is
+accepted for new installs there. Watches that *upgraded* to Wear OS 5 still
+run this app, as do Wear OS 3/4 devices. A WFF rewrite would be needed for
+new-device installs and Play Store distribution.
+
 ### Code structure
 
 - `wear/app/src/main/java/com/artifact/chronology/DialMath.kt` — pure geometry (hour angle, orbit center, 24h labels); unit tested
