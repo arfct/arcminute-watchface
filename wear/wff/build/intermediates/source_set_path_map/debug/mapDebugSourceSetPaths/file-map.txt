@@ -1,0 +1,7 @@
+com.artifact.chronology.wff-pngs-0 /Users/nj/Code/chronology-watchface/wear/wff/build/generated/res/pngs/debug
+com.artifact.chronology.wff-resValues-1 /Users/nj/Code/chronology-watchface/wear/wff/build/generated/res/resValues/debug
+com.artifact.chronology.wff-packageDebugResources-2 /Users/nj/Code/chronology-watchface/wear/wff/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.artifact.chronology.wff-packageDebugResources-3 /Users/nj/Code/chronology-watchface/wear/wff/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.artifact.chronology.wff-debug-4 /Users/nj/Code/chronology-watchface/wear/wff/build/intermediates/merged_res/debug/mergeDebugResources
+com.artifact.chronology.wff-debug-5 /Users/nj/Code/chronology-watchface/wear/wff/src/debug/res
+com.artifact.chronology.wff-main-6 /Users/nj/Code/chronology-watchface/wear/wff/src/main/res

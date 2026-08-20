@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.artifact.chronology.wff-debug-4:/font_helvetica_digits.ttf.flat",
+        "source": "com.artifact.chronology.wff-main-6:/font/helvetica_digits.ttf"
+    },
+    {
+        "merged": "com.artifact.chronology.wff-debug-4:/raw_watchface.xml.flat",
+        "source": "com.artifact.chronology.wff-main-6:/raw/watchface.xml"
+    },
+    {
+        "merged": "com.artifact.chronology.wff-debug-4:/drawable-nodpi_preview.png.flat",
+        "source": "com.artifact.chronology.wff-main-6:/drawable-nodpi/preview.png"
+    },
+    {
+        "merged": "com.artifact.chronology.wff-debug-4:/xml_watch_face_info.xml.flat",
+        "source": "com.artifact.chronology.wff-main-6:/xml/watch_face_info.xml"
+    }
+]

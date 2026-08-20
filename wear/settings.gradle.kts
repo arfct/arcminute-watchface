@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "chronology-wear"
 include(":app")
+include(":wff")

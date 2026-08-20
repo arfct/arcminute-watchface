@@ -1,0 +1,5 @@
+com.artifact.chronology.wff:xml/watch_face_info = 0x7f050000
+com.artifact.chronology.wff:string/watch_face_name = 0x7f040000
+com.artifact.chronology.wff:raw/watchface = 0x7f030000
+com.artifact.chronology.wff:font/helvetica_digits = 0x7f020000
+com.artifact.chronology.wff:drawable/preview = 0x7f010000
