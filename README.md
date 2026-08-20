@@ -7,6 +7,8 @@ cropped to the current location on the clock's perimeter.
 Two implementations:
 
 - [`pebble/`](pebble/) — the original Pebble watchface (C, Clay config)
-- [`wear/`](wear/) — Wear OS port (Kotlin, androidx.wear.watchface)
+- [`wear/`](wear/) — Wear OS port, two flavors:
+  - `wear/app/` — Kotlin (androidx.wear.watchface), for Wear OS 3/4 and upgraded-to-5 watches
+  - `wear/wff/` — declarative Watch Face Format, for watches that ship with Wear OS 5+ and Play Store distribution
 
 See [AGENTS.md](AGENTS.md) for build and emulator instructions for both.

@@ -467,175 +467,79 @@
             <Expression name="h24_large">[IS_24_HOUR_MODE]</Expression>
           </Expressions>
           <Compare expression="h24_large">
-          <PartText x="572" y="24" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((0 + 12 * floor(([HOUR_0_23_MINUTE] - 0) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((0 + 12 * floor(([HOUR_0_23_MINUTE] - 0) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="572" y="24" width="207" height="214" name="num24_large_0">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((0 + 12 * floor(([HOUR_0_23_MINUTE] - 0) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((0 + 12 * floor(([HOUR_0_23_MINUTE] - 0) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="839" y="105" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((1 + 12 * floor(([HOUR_0_23_MINUTE] - 1) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((1 + 12 * floor(([HOUR_0_23_MINUTE] - 1) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="839" y="105" width="207" height="214" name="num24_large_1">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((1 + 12 * floor(([HOUR_0_23_MINUTE] - 1) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((1 + 12 * floor(([HOUR_0_23_MINUTE] - 1) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="1002" y="319" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((2 + 12 * floor(([HOUR_0_23_MINUTE] - 2) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((2 + 12 * floor(([HOUR_0_23_MINUTE] - 2) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="1002" y="319" width="207" height="214" name="num24_large_2">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((2 + 12 * floor(([HOUR_0_23_MINUTE] - 2) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((2 + 12 * floor(([HOUR_0_23_MINUTE] - 2) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="1083" y="568" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((3 + 12 * floor(([HOUR_0_23_MINUTE] - 3) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((3 + 12 * floor(([HOUR_0_23_MINUTE] - 3) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="1083" y="568" width="207" height="214" name="num24_large_3">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((3 + 12 * floor(([HOUR_0_23_MINUTE] - 3) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((3 + 12 * floor(([HOUR_0_23_MINUTE] - 3) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="1002" y="817" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((4 + 12 * floor(([HOUR_0_23_MINUTE] - 4) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((4 + 12 * floor(([HOUR_0_23_MINUTE] - 4) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="1002" y="817" width="207" height="214" name="num24_large_4">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((4 + 12 * floor(([HOUR_0_23_MINUTE] - 4) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((4 + 12 * floor(([HOUR_0_23_MINUTE] - 4) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="839" y="1031" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((5 + 12 * floor(([HOUR_0_23_MINUTE] - 5) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((5 + 12 * floor(([HOUR_0_23_MINUTE] - 5) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="839" y="1031" width="207" height="214" name="num24_large_5">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((5 + 12 * floor(([HOUR_0_23_MINUTE] - 5) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((5 + 12 * floor(([HOUR_0_23_MINUTE] - 5) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="572" y="1112" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((6 + 12 * floor(([HOUR_0_23_MINUTE] - 6) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((6 + 12 * floor(([HOUR_0_23_MINUTE] - 6) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="572" y="1112" width="207" height="214" name="num24_large_6">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((6 + 12 * floor(([HOUR_0_23_MINUTE] - 6) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((6 + 12 * floor(([HOUR_0_23_MINUTE] - 6) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="304" y="1031" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((7 + 12 * floor(([HOUR_0_23_MINUTE] - 7) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((7 + 12 * floor(([HOUR_0_23_MINUTE] - 7) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="304" y="1031" width="207" height="214" name="num24_large_7">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((7 + 12 * floor(([HOUR_0_23_MINUTE] - 7) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((7 + 12 * floor(([HOUR_0_23_MINUTE] - 7) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="141" y="817" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((8 + 12 * floor(([HOUR_0_23_MINUTE] - 8) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((8 + 12 * floor(([HOUR_0_23_MINUTE] - 8) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="141" y="817" width="207" height="214" name="num24_large_8">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((8 + 12 * floor(([HOUR_0_23_MINUTE] - 8) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((8 + 12 * floor(([HOUR_0_23_MINUTE] - 8) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="60" y="568" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((9 + 12 * floor(([HOUR_0_23_MINUTE] - 9) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((9 + 12 * floor(([HOUR_0_23_MINUTE] - 9) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="60" y="568" width="207" height="214" name="num24_large_9">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((9 + 12 * floor(([HOUR_0_23_MINUTE] - 9) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((9 + 12 * floor(([HOUR_0_23_MINUTE] - 9) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="141" y="319" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((10 + 12 * floor(([HOUR_0_23_MINUTE] - 10) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((10 + 12 * floor(([HOUR_0_23_MINUTE] - 10) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="141" y="319" width="207" height="214" name="num24_large_10">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((10 + 12 * floor(([HOUR_0_23_MINUTE] - 10) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((10 + 12 * floor(([HOUR_0_23_MINUTE] - 10) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="304" y="105" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((11 + 12 * floor(([HOUR_0_23_MINUTE] - 11) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((11 + 12 * floor(([HOUR_0_23_MINUTE] - 11) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="304" y="105" width="207" height="214" name="num24_large_11">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((11 + 12 * floor(([HOUR_0_23_MINUTE] - 11) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((11 + 12 * floor(([HOUR_0_23_MINUTE] - 11) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
           </Compare>
           <Default>
-          <PartText x="572" y="24" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                12
-              </Font>
-            </Text>
+          <PartText x="572" y="24" width="207" height="214" name="num12_large_0">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">12</Font></Text>
           </PartText>
-          <PartText x="839" y="105" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                1
-              </Font>
-            </Text>
+          <PartText x="839" y="105" width="207" height="214" name="num12_large_1">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">1</Font></Text>
           </PartText>
-          <PartText x="1048" y="293" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                2
-              </Font>
-            </Text>
+          <PartText x="1048" y="293" width="207" height="214" name="num12_large_2">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">2</Font></Text>
           </PartText>
-          <PartText x="1129" y="568" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                3
-              </Font>
-            </Text>
+          <PartText x="1129" y="568" width="207" height="214" name="num12_large_3">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">3</Font></Text>
           </PartText>
-          <PartText x="1048" y="843" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                4
-              </Font>
-            </Text>
+          <PartText x="1048" y="843" width="207" height="214" name="num12_large_4">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">4</Font></Text>
           </PartText>
-          <PartText x="839" y="1031" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                5
-              </Font>
-            </Text>
+          <PartText x="839" y="1031" width="207" height="214" name="num12_large_5">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">5</Font></Text>
           </PartText>
-          <PartText x="572" y="1112" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                6
-              </Font>
-            </Text>
+          <PartText x="572" y="1112" width="207" height="214" name="num12_large_6">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">6</Font></Text>
           </PartText>
-          <PartText x="304" y="1031" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                7
-              </Font>
-            </Text>
+          <PartText x="304" y="1031" width="207" height="214" name="num12_large_7">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">7</Font></Text>
           </PartText>
-          <PartText x="95" y="843" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                8
-              </Font>
-            </Text>
+          <PartText x="95" y="843" width="207" height="214" name="num12_large_8">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">8</Font></Text>
           </PartText>
-          <PartText x="14" y="568" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                9
-              </Font>
-            </Text>
+          <PartText x="14" y="568" width="207" height="214" name="num12_large_9">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">9</Font></Text>
           </PartText>
-          <PartText x="141" y="319" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                10
-              </Font>
-            </Text>
+          <PartText x="141" y="319" width="207" height="214" name="num12_large_10">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">10</Font></Text>
           </PartText>
-          <PartText x="304" y="105" width="207" height="214">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">
-                11
-              </Font>
-            </Text>
+          <PartText x="304" y="105" width="207" height="214" name="num12_large_11">
+            <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.themeColor.1]">11</Font></Text>
           </PartText>
           </Default>
         </Condition>
@@ -1084,175 +988,79 @@
             <Expression name="h24_classic">[IS_24_HOUR_MODE]</Expression>
           </Expressions>
           <Compare expression="h24_classic">
-          <PartText x="623" y="15" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((0 + 12 * floor(([HOUR_0_23_MINUTE] - 0) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((0 + 12 * floor(([HOUR_0_23_MINUTE] - 0) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="623" y="15" width="105" height="94" name="num24_classic_0">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((0 + 12 * floor(([HOUR_0_23_MINUTE] - 0) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((0 + 12 * floor(([HOUR_0_23_MINUTE] - 0) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="927" y="100" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((1 + 12 * floor(([HOUR_0_23_MINUTE] - 1) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((1 + 12 * floor(([HOUR_0_23_MINUTE] - 1) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="927" y="100" width="105" height="94" name="num24_classic_1">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((1 + 12 * floor(([HOUR_0_23_MINUTE] - 1) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((1 + 12 * floor(([HOUR_0_23_MINUTE] - 1) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="1136" y="331" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((2 + 12 * floor(([HOUR_0_23_MINUTE] - 2) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((2 + 12 * floor(([HOUR_0_23_MINUTE] - 2) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="1136" y="331" width="105" height="94" name="num24_classic_2">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((2 + 12 * floor(([HOUR_0_23_MINUTE] - 2) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((2 + 12 * floor(([HOUR_0_23_MINUTE] - 2) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="1221" y="628" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((3 + 12 * floor(([HOUR_0_23_MINUTE] - 3) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((3 + 12 * floor(([HOUR_0_23_MINUTE] - 3) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="1221" y="628" width="105" height="94" name="num24_classic_3">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((3 + 12 * floor(([HOUR_0_23_MINUTE] - 3) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((3 + 12 * floor(([HOUR_0_23_MINUTE] - 3) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="1136" y="924" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((4 + 12 * floor(([HOUR_0_23_MINUTE] - 4) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((4 + 12 * floor(([HOUR_0_23_MINUTE] - 4) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="1136" y="924" width="105" height="94" name="num24_classic_4">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((4 + 12 * floor(([HOUR_0_23_MINUTE] - 4) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((4 + 12 * floor(([HOUR_0_23_MINUTE] - 4) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="927" y="1155" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((5 + 12 * floor(([HOUR_0_23_MINUTE] - 5) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((5 + 12 * floor(([HOUR_0_23_MINUTE] - 5) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="927" y="1155" width="105" height="94" name="num24_classic_5">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((5 + 12 * floor(([HOUR_0_23_MINUTE] - 5) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((5 + 12 * floor(([HOUR_0_23_MINUTE] - 5) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="623" y="1241" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((6 + 12 * floor(([HOUR_0_23_MINUTE] - 6) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((6 + 12 * floor(([HOUR_0_23_MINUTE] - 6) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="623" y="1241" width="105" height="94" name="num24_classic_6">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((6 + 12 * floor(([HOUR_0_23_MINUTE] - 6) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((6 + 12 * floor(([HOUR_0_23_MINUTE] - 6) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="318" y="1155" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((7 + 12 * floor(([HOUR_0_23_MINUTE] - 7) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((7 + 12 * floor(([HOUR_0_23_MINUTE] - 7) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="318" y="1155" width="105" height="94" name="num24_classic_7">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((7 + 12 * floor(([HOUR_0_23_MINUTE] - 7) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((7 + 12 * floor(([HOUR_0_23_MINUTE] - 7) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="109" y="924" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((8 + 12 * floor(([HOUR_0_23_MINUTE] - 8) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((8 + 12 * floor(([HOUR_0_23_MINUTE] - 8) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="109" y="924" width="105" height="94" name="num24_classic_8">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((8 + 12 * floor(([HOUR_0_23_MINUTE] - 8) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((8 + 12 * floor(([HOUR_0_23_MINUTE] - 8) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="24" y="628" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((9 + 12 * floor(([HOUR_0_23_MINUTE] - 9) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((9 + 12 * floor(([HOUR_0_23_MINUTE] - 9) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="24" y="628" width="105" height="94" name="num24_classic_9">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((9 + 12 * floor(([HOUR_0_23_MINUTE] - 9) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((9 + 12 * floor(([HOUR_0_23_MINUTE] - 9) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="109" y="331" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((10 + 12 * floor(([HOUR_0_23_MINUTE] - 10) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((10 + 12 * floor(([HOUR_0_23_MINUTE] - 10) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="109" y="331" width="105" height="94" name="num24_classic_10">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((10 + 12 * floor(([HOUR_0_23_MINUTE] - 10) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((10 + 12 * floor(([HOUR_0_23_MINUTE] - 10) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
-          <PartText x="318" y="100" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                <Template>%d<Parameter expression="(((11 + 12 * floor(([HOUR_0_23_MINUTE] - 11) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((11 + 12 * floor(([HOUR_0_23_MINUTE] - 11) / 12 + 0.5)) + 24) % 24)" /></Template>
-              </Font>
-            </Text>
+          <PartText x="318" y="100" width="105" height="94" name="num24_classic_11">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]"><Template>%d<Parameter expression="(((11 + 12 * floor(([HOUR_0_23_MINUTE] - 11) / 12 + 0.5)) + 24) % 24) == 0 ? 24 : (((11 + 12 * floor(([HOUR_0_23_MINUTE] - 11) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
           </Compare>
           <Default>
-          <PartText x="623" y="15" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                12
-              </Font>
-            </Text>
+          <PartText x="623" y="15" width="105" height="94" name="num12_classic_0">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">12</Font></Text>
           </PartText>
-          <PartText x="927" y="100" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                1
-              </Font>
-            </Text>
+          <PartText x="927" y="100" width="105" height="94" name="num12_classic_1">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">1</Font></Text>
           </PartText>
-          <PartText x="1156" y="320" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                2
-              </Font>
-            </Text>
+          <PartText x="1156" y="320" width="105" height="94" name="num12_classic_2">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">2</Font></Text>
           </PartText>
-          <PartText x="1242" y="628" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                3
-              </Font>
-            </Text>
+          <PartText x="1242" y="628" width="105" height="94" name="num12_classic_3">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">3</Font></Text>
           </PartText>
-          <PartText x="1156" y="936" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                4
-              </Font>
-            </Text>
+          <PartText x="1156" y="936" width="105" height="94" name="num12_classic_4">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">4</Font></Text>
           </PartText>
-          <PartText x="927" y="1155" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                5
-              </Font>
-            </Text>
+          <PartText x="927" y="1155" width="105" height="94" name="num12_classic_5">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">5</Font></Text>
           </PartText>
-          <PartText x="623" y="1241" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                6
-              </Font>
-            </Text>
+          <PartText x="623" y="1241" width="105" height="94" name="num12_classic_6">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">6</Font></Text>
           </PartText>
-          <PartText x="318" y="1155" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                7
-              </Font>
-            </Text>
+          <PartText x="318" y="1155" width="105" height="94" name="num12_classic_7">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">7</Font></Text>
           </PartText>
-          <PartText x="89" y="936" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                8
-              </Font>
-            </Text>
+          <PartText x="89" y="936" width="105" height="94" name="num12_classic_8">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">8</Font></Text>
           </PartText>
-          <PartText x="4" y="628" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                9
-              </Font>
-            </Text>
+          <PartText x="4" y="628" width="105" height="94" name="num12_classic_9">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">9</Font></Text>
           </PartText>
-          <PartText x="109" y="331" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                10
-              </Font>
-            </Text>
+          <PartText x="109" y="331" width="105" height="94" name="num12_classic_10">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">10</Font></Text>
           </PartText>
-          <PartText x="318" y="100" width="105" height="94">
-            <Text align="CENTER">
-              <Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">
-                11
-              </Font>
-            </Text>
+          <PartText x="318" y="100" width="105" height="94" name="num12_classic_11">
+            <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.themeColor.1]">11</Font></Text>
           </PartText>
           </Default>
         </Condition>

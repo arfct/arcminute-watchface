@@ -132,16 +132,17 @@ def numeral_center(s, i, two_digits):
     return ix - (gap + d_edge) * ux, iy - (gap + d_edge) * uy
 
 
-def part_text(s, cx, cy, content):
+def part_text(s, name, cx, cy, content):
     w = 2 * s["half_w2"] + 24
     h = s["font_size"] * 1.3
+    # The runtime renders Font text content verbatim: leading whitespace or a
+    # newline becomes an empty first line and the digits get clipped away, so
+    # the Font element must stay on ONE line with no padding around content.
     return (
-        f'          <PartText x="{cx - w / 2:.0f}" y="{cy - h / 2:.0f}" width="{w:.0f}" height="{h:.0f}">\n'
-        f'            <Text align="CENTER">\n'
-        f'              <Font family="helvetica_digits" size="{s["font_size"]:.0f}" color="{TEXT_COLOR}">\n'
-        f'{content}\n'
-        f'              </Font>\n'
-        f'            </Text>\n'
+        f'          <PartText x="{cx - w / 2:.0f}" y="{cy - h / 2:.0f}" width="{w:.0f}" height="{h:.0f}" name="{name}">\n'
+        f'            <Text align="CENTER">'
+        f'<Font family="helvetica_digits" size="{s["font_size"]:.0f}" color="{TEXT_COLOR}">{content}</Font>'
+        f'</Text>\n'
         f'          </PartText>'
     )
 
@@ -154,11 +155,11 @@ def numerals(s, out, tag):
     for i in range(12):
         cx, cy = numeral_center(s, i, two_digits=True)
         expr = label24_expression(i)
-        h24.append(part_text(s, cx, cy,
-                             f'                <Template>%d<Parameter expression="{expr}" /></Template>'))
+        h24.append(part_text(s, f'num24_{tag}_{i}', cx, cy,
+                             f'<Template>%d<Parameter expression="{expr}" /></Template>'))
         label = 12 if i == 0 else i
         cx, cy = numeral_center(s, i, two_digits=label >= 10)
-        h12.append(part_text(s, cx, cy, f'                {label}'))
+        h12.append(part_text(s, f'num12_{tag}_{i}', cx, cy, str(label)))
     out.append('        <Condition>')
     out.append('          <Expressions>')
     out.append(f'            <Expression name="h24_{tag}">[IS_24_HOUR_MODE]</Expression>')
