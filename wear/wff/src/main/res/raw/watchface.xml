@@ -9,25 +9,25 @@
       <ListOption id="classic" displayName="dial_classic_label" />
     </ListConfiguration>
     <ColorConfiguration id="themeColor" displayName="theme_label" screenReaderText="theme_label" defaultValue="black">
-      <ColorOption id="black" displayName="color_black_label" colors="#000000 #FFFFFF #AAAAAA" />
-      <ColorOption id="white" displayName="color_white_label" colors="#FFFFFF #000000 #555555" />
-      <ColorOption id="red" displayName="color_red_label" colors="#EF4444 #FFFFFF #AAAAAA" />
-      <ColorOption id="orange" displayName="color_orange_label" colors="#F97316 #FFFFFF #AAAAAA" />
-      <ColorOption id="amber" displayName="color_amber_label" colors="#F59E0B #000000 #555555" />
-      <ColorOption id="yellow" displayName="color_yellow_label" colors="#EAB308 #000000 #555555" />
-      <ColorOption id="lime" displayName="color_lime_label" colors="#84CC16 #000000 #555555" />
-      <ColorOption id="green" displayName="color_green_label" colors="#22C55E #000000 #555555" />
-      <ColorOption id="emerald" displayName="color_emerald_label" colors="#10B981 #000000 #555555" />
-      <ColorOption id="teal" displayName="color_teal_label" colors="#14B8A6 #000000 #555555" />
-      <ColorOption id="cyan" displayName="color_cyan_label" colors="#06B6D4 #000000 #555555" />
-      <ColorOption id="sky" displayName="color_sky_label" colors="#0EA5E9 #FFFFFF #AAAAAA" />
-      <ColorOption id="blue" displayName="color_blue_label" colors="#3B82F6 #FFFFFF #AAAAAA" />
-      <ColorOption id="indigo" displayName="color_indigo_label" colors="#6366F1 #FFFFFF #AAAAAA" />
-      <ColorOption id="violet" displayName="color_violet_label" colors="#8B5CF6 #FFFFFF #AAAAAA" />
-      <ColorOption id="purple" displayName="color_purple_label" colors="#A855F7 #FFFFFF #AAAAAA" />
-      <ColorOption id="fuchsia" displayName="color_fuchsia_label" colors="#D946EF #FFFFFF #AAAAAA" />
-      <ColorOption id="pink" displayName="color_pink_label" colors="#EC4899 #FFFFFF #AAAAAA" />
-      <ColorOption id="rose" displayName="color_rose_label" colors="#F43F5E #FFFFFF #AAAAAA" />
+      <ColorOption id="black" displayName="color_black_label" colors="#000000 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="white" displayName="color_white_label" colors="#FFFFFF #000000 #AA000000" />
+      <ColorOption id="red" displayName="color_red_label" colors="#EF4444 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="orange" displayName="color_orange_label" colors="#F97316 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="amber" displayName="color_amber_label" colors="#F59E0B #000000 #AA000000" />
+      <ColorOption id="yellow" displayName="color_yellow_label" colors="#EAB308 #000000 #AA000000" />
+      <ColorOption id="lime" displayName="color_lime_label" colors="#84CC16 #000000 #AA000000" />
+      <ColorOption id="green" displayName="color_green_label" colors="#22C55E #000000 #AA000000" />
+      <ColorOption id="emerald" displayName="color_emerald_label" colors="#10B981 #000000 #AA000000" />
+      <ColorOption id="teal" displayName="color_teal_label" colors="#14B8A6 #000000 #AA000000" />
+      <ColorOption id="cyan" displayName="color_cyan_label" colors="#06B6D4 #000000 #AA000000" />
+      <ColorOption id="sky" displayName="color_sky_label" colors="#0EA5E9 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="blue" displayName="color_blue_label" colors="#3B82F6 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="indigo" displayName="color_indigo_label" colors="#6366F1 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="violet" displayName="color_violet_label" colors="#8B5CF6 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="purple" displayName="color_purple_label" colors="#A855F7 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="fuchsia" displayName="color_fuchsia_label" colors="#D946EF #FFFFFF #AAFFFFFF" />
+      <ColorOption id="pink" displayName="color_pink_label" colors="#EC4899 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="rose" displayName="color_rose_label" colors="#F43F5E #FFFFFF #AAFFFFFF" />
     </ColorConfiguration>
     <ColorConfiguration id="handColor" displayName="hand_color_label" screenReaderText="hand_color_label" defaultValue="red">
       <ColorOption id="red" displayName="color_red_label" colors="#EF4444" />

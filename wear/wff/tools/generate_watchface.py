@@ -90,10 +90,15 @@ def luminance(hex_color):
 
 
 def theme_colors(bg_hex):
-    """bg -> (text, minor) so numerals stay readable on any background."""
+    """bg -> (text, minor) so numerals stay readable on any background.
+
+    Minor marks are the text color at 67% alpha (0xAA) rather than a solid
+    gray, so they tint with the background. Over pure black/white this blends
+    to the same #AAAAAA / #555555 the solid grays used to be.
+    """
     if luminance(bg_hex) >= 140:
-        return "#000000", "#555555"
-    return "#FFFFFF", "#AAAAAA"
+        return "#000000", "#AA000000"
+    return "#FFFFFF", "#AAFFFFFF"
 
 
 def user_configurations():

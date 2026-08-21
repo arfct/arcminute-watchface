@@ -93,7 +93,9 @@ class ChronologyRenderer(
         val faceColor = if (style.faceClear) style.bgColor else style.faceColor
         val faceIsLight = colorIsLight(faceColor)
         val faceTextColor = if (faceIsLight) Color.BLACK else Color.WHITE
-        val minorTickColor = if (faceIsLight) 0xFF555555.toInt() else 0xFFAAAAAA.toInt()
+        // Text color at 67% alpha rather than a solid gray, so minor marks
+        // tint with the background (matches the WFF flavor)
+        val minorTickColor = (faceTextColor and 0x00FFFFFF) or (0xAA shl 24)
 
         // Dial style constants (gabbro reference pixels)
         val large = style.largeNumerals
