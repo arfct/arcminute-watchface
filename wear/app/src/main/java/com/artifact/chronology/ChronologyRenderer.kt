@@ -100,7 +100,8 @@ class ChronologyRenderer(
         val hourInset = (if (large) 27.7f else 13.8f) * scale
         val hourTickStroke = strokeWidth(if (large) 6f else 3f, scale)
         val minorTickStroke = strokeWidth(if (large) 4f else 2f, scale)
-        val dotRadius = strokeWidth(if (large) 3f else 2f, scale)
+        // Dots match the minor tick width and end at the same outer radius
+        val dotRadius = minorTickStroke / 2f
         // Pebble uses 9; thinned per user preference (kept in sync with the WFF flavor)
         val handStroke = strokeWidth(7f, scale)
         textPaint.textSize = (if (large) 95f else 42f) * scale
@@ -122,12 +123,14 @@ class ChronologyRenderer(
             val ux = DialMath.unitX(tickAngle)
             val uy = DialMath.unitY(tickAngle)
 
-            // Hour tick from (R - hourInset) to R
+            // Hour tick from (R - hourInset) to R; round caps extend half the
+            // stroke past the endpoint, so pull the outer end in to land on R
             strokePaint.color = faceTextColor
             strokePaint.strokeWidth = hourTickStroke
+            val hourOuter = dialRadius - hourTickStroke / 2f
             canvas.drawLine(
                 dx + (dialRadius - hourInset) * ux, dy + (dialRadius - hourInset) * uy,
-                dx + dialRadius * ux, dy + dialRadius * uy,
+                dx + hourOuter * ux, dy + hourOuter * uy,
                 strokePaint
             )
 
@@ -162,14 +165,16 @@ class ChronologyRenderer(
                     val tickInset = if (j == 6) hourInset else hourInset / 2f
                     strokePaint.color = minorTickColor
                     strokePaint.strokeWidth = minorTickStroke
+                    val minorOuter = dialRadius - minorTickStroke / 2f
                     canvas.drawLine(
                         dx + (dialRadius - tickInset) * mx, dy + (dialRadius - tickInset) * my,
-                        dx + dialRadius * mx, dy + dialRadius * my,
+                        dx + minorOuter * mx, dy + minorOuter * my,
                         strokePaint
                     )
                 } else {
                     fillPaint.color = minorTickColor
-                    canvas.drawCircle(dx + dialRadius * mx, dy + dialRadius * my, dotRadius, fillPaint)
+                    val dotCenter = dialRadius - dotRadius
+                    canvas.drawCircle(dx + dotCenter * mx, dy + dotCenter * my, dotRadius, fillPaint)
                 }
             }
         }

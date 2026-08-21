@@ -39,7 +39,6 @@ STYLES = {
         hour_inset=27.7 * SCALE,     # 47.9
         hour_stroke=6 * SCALE,       # 10.4
         minor_stroke=4 * SCALE,      # 6.9
-        dot_r=3 * SCALE,             # 5.2
         # Tight glyph half-dimensions for Helvetica digits at this size:
         # cap height ~0.72em, digit advance ~0.556em
         half_h=0.36 * 95 * SCALE,    # 59
@@ -51,7 +50,6 @@ STYLES = {
         hour_inset=13.8 * SCALE,     # 23.9
         hour_stroke=3 * SCALE,       # 5.2
         minor_stroke=2 * SCALE,      # 3.5
-        dot_r=2 * SCALE,             # 3.5
         half_h=0.36 * 42 * SCALE,
         half_w1=0.278 * 42 * SCALE,
         half_w2=0.556 * 42 * SCALE,
@@ -86,8 +84,10 @@ def label24_expression(i):
 
 
 def hour_tick(s, angle_deg, out):
+    # Round caps extend half the stroke past the endpoint; pull the outer
+    # endpoint in so every mark's outermost pixel lands exactly on DIAL_R.
     x1, y1 = polar(DIAL_R - s["hour_inset"], angle_deg)
-    x2, y2 = polar(DIAL_R, angle_deg)
+    x2, y2 = polar(DIAL_R - s["hour_stroke"] / 2, angle_deg)
     out.append(
         f'        <Line startX="{x1:.1f}" startY="{y1:.1f}" endX="{x2:.1f}" endY="{y2:.1f}">\n'
         f'          <Stroke color="{TEXT_COLOR}" thickness="{s["hour_stroke"]:.1f}" cap="ROUND" />\n'
@@ -101,15 +101,16 @@ def minor_marks(s, base_angle, out):
         if j % 3 == 0:
             inset = s["hour_inset"] if j == 6 else s["hour_inset"] / 2
             x1, y1 = polar(DIAL_R - inset, a)
-            x2, y2 = polar(DIAL_R, a)
+            x2, y2 = polar(DIAL_R - s["minor_stroke"] / 2, a)
             out.append(
                 f'        <Line startX="{x1:.1f}" startY="{y1:.1f}" endX="{x2:.1f}" endY="{y2:.1f}">\n'
                 f'          <Stroke color="{MINOR_COLOR}" thickness="{s["minor_stroke"]:.1f}" cap="ROUND" />\n'
                 f'        </Line>'
             )
         else:
-            px, py = polar(DIAL_R, a)
-            r = s["dot_r"]
+            # Dots match the minor tick width and end at the same outer radius
+            r = s["minor_stroke"] / 2
+            px, py = polar(DIAL_R - r, a)
             out.append(
                 f'        <Ellipse x="{px - r:.1f}" y="{py - r:.1f}" width="{2 * r:.1f}" height="{2 * r:.1f}">\n'
                 f'          <Fill color="{MINOR_COLOR}" />\n'
