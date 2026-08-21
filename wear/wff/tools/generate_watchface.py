@@ -90,7 +90,7 @@ def hour_tick(s, angle_deg, out):
     x2, y2 = polar(DIAL_R, angle_deg)
     out.append(
         f'        <Line startX="{x1:.1f}" startY="{y1:.1f}" endX="{x2:.1f}" endY="{y2:.1f}">\n'
-        f'          <Stroke color="{TEXT_COLOR}" thickness="{s["hour_stroke"]:.1f}" />\n'
+        f'          <Stroke color="{TEXT_COLOR}" thickness="{s["hour_stroke"]:.1f}" cap="ROUND" />\n'
         f'        </Line>'
     )
 
@@ -104,7 +104,7 @@ def minor_marks(s, base_angle, out):
             x2, y2 = polar(DIAL_R, a)
             out.append(
                 f'        <Line startX="{x1:.1f}" startY="{y1:.1f}" endX="{x2:.1f}" endY="{y2:.1f}">\n'
-                f'          <Stroke color="{MINOR_COLOR}" thickness="{s["minor_stroke"]:.1f}" />\n'
+                f'          <Stroke color="{MINOR_COLOR}" thickness="{s["minor_stroke"]:.1f}" cap="ROUND" />\n'
                 f'        </Line>'
             )
         else:
