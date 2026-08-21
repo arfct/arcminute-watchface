@@ -1072,7 +1072,7 @@
       <Transform target="y" value="(-450.0 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
       <Transform target="angle" value="(30 * [HOUR_0_11_MINUTE])" />
       <PartDraw x="0" y="0" width="1350" height="1350">
-        <Line startX="675.0" startY="675.0" endX="675.0" endY="0.0">
+        <Line startX="675.0" startY="675.0" endX="675.0" endY="6.1">
           <Stroke color="[CONFIGURATION.handColor.0]" thickness="12.1" cap="ROUND" />
         </Line>
       </PartDraw>

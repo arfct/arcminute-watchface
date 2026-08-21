@@ -180,13 +180,15 @@ class ChronologyRenderer(
             }
         }
 
-        // Hand: dial center to the current-hour point on the rim (my_hand_draw)
+        // Hand: dial center to the current-hour point on the rim (my_hand_draw);
+        // round cap pulled in so the tip ends on the same radius as the marks
         strokePaint.color = style.handColor
         strokePaint.strokeWidth = handStroke
+        val handOuter = dialRadius - handStroke / 2f
         canvas.drawLine(
             dx, dy,
-            dx + dialRadius * DialMath.unitX(angle),
-            dy + dialRadius * DialMath.unitY(angle),
+            dx + handOuter * DialMath.unitX(angle),
+            dy + handOuter * DialMath.unitY(angle),
             strokePaint
         )
     }
