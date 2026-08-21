@@ -68,7 +68,7 @@ TAILWIND = [
     ("amber", "Amber", "#F59E0B"),
     ("yellow", "Yellow", "#EAB308"),
     ("lime", "Lime", "#84CC16"),
-    ("olive", "Olive", "#808000"),
+    ("olive", "Olive", "#708238"),
     ("green", "Green", "#22C55E"),
     ("emerald", "Emerald", "#10B981"),
     ("teal", "Teal", "#14B8A6"),

@@ -16,7 +16,7 @@
       <ColorOption id="amber" displayName="color_amber_label" colors="#F59E0B #000000 #AA000000" />
       <ColorOption id="yellow" displayName="color_yellow_label" colors="#EAB308 #000000 #AA000000" />
       <ColorOption id="lime" displayName="color_lime_label" colors="#84CC16 #000000 #AA000000" />
-      <ColorOption id="olive" displayName="color_olive_label" colors="#808000 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="olive" displayName="color_olive_label" colors="#708238 #FFFFFF #AAFFFFFF" />
       <ColorOption id="green" displayName="color_green_label" colors="#22C55E #000000 #AA000000" />
       <ColorOption id="emerald" displayName="color_emerald_label" colors="#10B981 #000000 #AA000000" />
       <ColorOption id="teal" displayName="color_teal_label" colors="#14B8A6 #000000 #AA000000" />
@@ -36,7 +36,7 @@
       <ColorOption id="amber" displayName="color_amber_label" colors="#F59E0B" />
       <ColorOption id="yellow" displayName="color_yellow_label" colors="#EAB308" />
       <ColorOption id="lime" displayName="color_lime_label" colors="#84CC16" />
-      <ColorOption id="olive" displayName="color_olive_label" colors="#808000" />
+      <ColorOption id="olive" displayName="color_olive_label" colors="#708238" />
       <ColorOption id="green" displayName="color_green_label" colors="#22C55E" />
       <ColorOption id="emerald" displayName="color_emerald_label" colors="#10B981" />
       <ColorOption id="teal" displayName="color_teal_label" colors="#14B8A6" />
