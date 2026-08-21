@@ -12,7 +12,7 @@ Everything the Console forms ask, decided once. Fill from here.
 | Free or paid | Free |
 | Category | Personalization |
 | Tags | Watch faces |
-| Contact email | nicholas@artifact.com |
+| Contact email | support@artifact.com |
 | Privacy policy | https://arfct.github.io/chronology-watchface/privacy.html |
 
 ## Declarations

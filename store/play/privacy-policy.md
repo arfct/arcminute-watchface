@@ -12,4 +12,4 @@ The face reads the current time and your watch's 12/24-hour setting from
 the system in order to draw itself. That information never leaves the
 watch.
 
-Questions: nicholas@artifact.com
+Questions: support@artifact.com
