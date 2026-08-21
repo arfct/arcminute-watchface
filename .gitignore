@@ -59,7 +59,6 @@ dkms.conf
 # Wear OS (Android) build output
 /wear/.gradle
 /wear/build
-/wear/app/build
 /wear/wff/build
 /wear/local.properties
 /wear/.kotlin
