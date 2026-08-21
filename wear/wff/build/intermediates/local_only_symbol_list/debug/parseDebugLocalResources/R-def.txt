@@ -12,6 +12,7 @@ string color_fuchsia_label
 string color_green_label
 string color_indigo_label
 string color_lime_label
+string color_olive_label
 string color_orange_label
 string color_pink_label
 string color_purple_label

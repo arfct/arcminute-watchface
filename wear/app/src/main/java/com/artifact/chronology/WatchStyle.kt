@@ -24,6 +24,7 @@ data class WatchStyle(
             "amber" to 0xFFF59E0B.toInt(),
             "yellow" to 0xFFEAB308.toInt(),
             "lime" to 0xFF84CC16.toInt(),
+            "olive" to 0xFF808000.toInt(),
             "green" to 0xFF22C55E.toInt(),
             "emerald" to 0xFF10B981.toInt(),
             "teal" to 0xFF14B8A6.toInt(),
