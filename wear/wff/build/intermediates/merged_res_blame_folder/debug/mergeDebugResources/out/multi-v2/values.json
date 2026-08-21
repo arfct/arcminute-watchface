@@ -4,6 +4,43 @@
             "outputFile": "com.artifact.chronology.wff-mergeDebugResources-2:/values/values.xml",
             "map": [
                 {
+                    "source": "/Users/nj/Code/chronology-watchface/wear/wff/src/main/res/values/config_strings.xml",
+                    "from": {
+                        "startLines": "12,8,20,18,16,24,15,21,14,11,25,23,10,26,19,17,22,9,13,5,4,3,7,6",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "612,406,1024,926,820,1236,768,1074,718,558,1292,1182,510,1342,976,876,1128,458,664,244,184,128,350,299",
+                        "endColumns": "51,51,49,49,55,55,51,53,49,53,49,53,47,49,47,49,53,51,53,54,59,55,55,50",
+                        "endOffsets": "659,453,1069,971,871,1287,815,1123,763,607,1337,1231,553,1387,1019,921,1177,505,713,294,239,179,401,345"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,107,159,209,259,315,371,423,477,527,581,631,685,733,783,831,881,935,987,1041,1096,1156,1212,1268",
+                        "endColumns": "51,51,49,49,55,55,51,53,49,53,49,53,47,49,47,49,53,51,53,54,59,55,55,50",
+                        "endOffsets": "102,154,204,254,310,366,418,472,522,576,626,680,728,778,826,876,930,982,1036,1091,1151,1207,1263,1314"
+                    }
+                },
+                {
+                    "source": "/Users/nj/Code/chronology-watchface/wear/wff/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "-1",
+                        "startColumns": "-1",
+                        "startOffsets": "-1"
+                    },
+                    "to": {
+                        "startLines": "26",
+                        "startColumns": "4",
+                        "startOffsets": "1319",
+                        "endColumns": "54",
+                        "endOffsets": "1369"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/nj/.gradle/daemon/8.13/com.artifact.chronology.wff-mergeDebugResources-2:/values/values.xml",
+            "map": [
+                {
                     "source": "/Users/nj/Code/chronology-watchface/wear/wff/src/main/res/values/strings.xml",
                     "from": {
                         "startLines": "2",

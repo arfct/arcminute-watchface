@@ -13,17 +13,37 @@ data class WatchStyle(
     val largeNumerals: Boolean = true
 ) {
     companion object {
-        const val COLOR_RED = 0xFFFF0000.toInt()
+        // Tailwind red-500
+        const val COLOR_RED = 0xFFEF4444.toInt()
 
-        private val COLORS = mapOf(
-            "black" to Color.BLACK,
-            "white" to Color.WHITE,
-            "gray" to 0xFFAAAAAA.toInt(),
-            "blue" to 0xFF0000FF.toInt(),
-            "green" to 0xFF00AA00.toInt(),
+        // Tailwind CSS 500-series palette (kept in sync with the WFF flavor's
+        // generate_watchface.py)
+        val TAILWIND: List<Pair<String, Int>> = listOf(
             "red" to COLOR_RED,
-            "yellow" to 0xFFFFFF00.toInt()
+            "orange" to 0xFFF97316.toInt(),
+            "amber" to 0xFFF59E0B.toInt(),
+            "yellow" to 0xFFEAB308.toInt(),
+            "lime" to 0xFF84CC16.toInt(),
+            "green" to 0xFF22C55E.toInt(),
+            "emerald" to 0xFF10B981.toInt(),
+            "teal" to 0xFF14B8A6.toInt(),
+            "cyan" to 0xFF06B6D4.toInt(),
+            "sky" to 0xFF0EA5E9.toInt(),
+            "blue" to 0xFF3B82F6.toInt(),
+            "indigo" to 0xFF6366F1.toInt(),
+            "violet" to 0xFF8B5CF6.toInt(),
+            "purple" to 0xFFA855F7.toInt(),
+            "fuchsia" to 0xFFD946EF.toInt(),
+            "pink" to 0xFFEC4899.toInt(),
+            "rose" to 0xFFF43F5E.toInt()
         )
+
+        private val COLORS: Map<String, Int> = buildMap {
+            put("black", Color.BLACK)
+            put("white", Color.WHITE)
+            put("gray", 0xFFAAAAAA.toInt())
+            putAll(TAILWIND)
+        }
 
         fun fromUserStyle(userStyle: UserStyle): WatchStyle {
             var style = WatchStyle()

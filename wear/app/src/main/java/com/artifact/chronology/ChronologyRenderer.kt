@@ -205,7 +205,8 @@ class ChronologyRenderer(
     private fun strokeWidth(gabbroPx: Float, scale: Float): Float =
         (gabbroPx * scale).coerceAtLeast(1f)
 
-    // Pebble color_is_light: 2-bit channel sum >= 5 of 9 -> 8-bit sum >= 425
+    // Weighted luminance, matching the WFF flavor's theme_colors() so both
+    // pick the same text color on saturated backgrounds (e.g. yellow -> black)
     private fun colorIsLight(color: Int): Boolean =
-        Color.red(color) + Color.green(color) + Color.blue(color) >= 425
+        0.2126f * Color.red(color) + 0.7152f * Color.green(color) + 0.0722f * Color.blue(color) >= 140f
 }

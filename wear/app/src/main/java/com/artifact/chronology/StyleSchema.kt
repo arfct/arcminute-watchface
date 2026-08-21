@@ -29,6 +29,16 @@ object StyleSchema {
         )
     }
 
+    // Tailwind 500-series options; ids match WatchStyle.TAILWIND keys
+    @Suppress("DEPRECATION")
+    private fun tailwindOptions(): List<ListUserStyleSetting.ListOption> =
+        WatchStyle.TAILWIND.map { (id, _) ->
+            val name = id.replaceFirstChar { it.uppercase() }
+            ListUserStyleSetting.ListOption(
+                UserStyleSetting.Option.Id(id), name, name, icon = null
+            )
+        }
+
     @Suppress("DEPRECATION")
     fun create(context: Context): UserStyleSchema {
         val layers = listOf(WatchFaceLayer.BASE)
@@ -52,10 +62,8 @@ object StyleSchema {
             icon = null,
             options = listOf(
                 colorOption(context, "black", R.string.color_black),
-                colorOption(context, "white", R.string.color_white),
-                colorOption(context, "blue", R.string.color_blue),
-                colorOption(context, "green", R.string.color_green)
-            ),
+                colorOption(context, "white", R.string.color_white)
+            ) + tailwindOptions(),
             layers
         )
 
@@ -86,12 +94,9 @@ object StyleSchema {
             context.getString(R.string.setting_hand_color),
             context.getString(R.string.setting_hand_color_desc),
             icon = null,
-            options = listOf(
-                colorOption(context, "red", R.string.color_red),
+            options = tailwindOptions() + listOf(
                 colorOption(context, "white", R.string.color_white),
-                colorOption(context, "black", R.string.color_black),
-                colorOption(context, "yellow", R.string.color_yellow),
-                colorOption(context, "blue", R.string.color_blue)
+                colorOption(context, "black", R.string.color_black)
             ),
             layers
         )
