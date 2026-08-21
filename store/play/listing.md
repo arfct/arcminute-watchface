@@ -30,8 +30,7 @@ Chronology started life on the Pebble smartwatch in 2015. This is the same face,
 
 ## Privacy policy
 
-Hosted copy of `store/play/privacy-policy.md` — needs a public URL before
-submission (see checklist).
+https://arfct.github.io/chronology-watchface/privacy.html
 
 ## Wear OS screenshots
 
