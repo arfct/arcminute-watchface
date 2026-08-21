@@ -146,6 +146,29 @@ Gotchas learned the hard way:
 Verified on the API 34 (Wear OS 5) emulator: both dial styles, 12h/24h
 labels, theme colors, and the system style editor.
 
+### Play Store release
+
+Store assets and listing copy live in `store/play/` (validated with the
+play-store-assets skill's `validate.py`). Release builds are signed with
+the upload key in `wear/upload-keystore.jks` + `wear/keystore.properties`
+(both gitignored — back them up outside the repo; Play App Signing can
+reset a lost upload key).
+
+```
+./gradlew :wff:bundleRelease        # AAB for Play (wff/build/outputs/bundle/release/)
+```
+
+Notes:
+- A WFF package with minSdk >= 33 must contain NO dex files; release uses
+  `isMinifyEnabled = true` so R8 strips the empty generated classes.
+  bundleRelease fails with "cannot have dex files" if this regresses.
+- Pre-check the Play watch face memory gate with google/watchface's
+  `memory-footprint.jar --watch-face <aab> --schema-version 1`.
+- The `chronology_wear` AVD is configured at 1080x1080 (native) for
+  store-quality screenshots. Screenshots must be flattened to RGB —
+  `screencap -p` emits RGBA and Play rejects alpha.
+- Bump `versionCode` in `wear/wff/build.gradle.kts` for every upload.
+
 ### Code structure
 
 - `wear/app/src/main/java/com/artifact/chronology/DialMath.kt` — pure geometry (hour angle, orbit center, 24h labels); unit tested

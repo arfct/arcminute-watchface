@@ -60,5 +60,10 @@ dkms.conf
 /wear/.gradle
 /wear/build
 /wear/app/build
+/wear/wff/build
 /wear/local.properties
 /wear/.kotlin
+
+# Release signing (never commit - repo is public)
+/wear/upload-keystore.jks
+/wear/keystore.properties
