@@ -38,7 +38,7 @@ STYLES = {
         font_size=95 * SCALE,        # 164.4
         hour_inset=27.7 * SCALE,     # 47.9
         hour_stroke=6 * SCALE,       # 10.4
-        minor_stroke=4 * SCALE,      # 6.9
+        minor_stroke=6 * SCALE,      # 10.4 - matches hour_stroke per user preference
         # Tight glyph half-dimensions for Helvetica digits at this size:
         # cap height ~0.72em, digit advance ~0.556em
         half_h=0.36 * 95 * SCALE,    # 59
@@ -49,7 +49,7 @@ STYLES = {
         font_size=42 * SCALE,        # 72.7
         hour_inset=13.8 * SCALE,     # 23.9
         hour_stroke=3 * SCALE,       # 5.2
-        minor_stroke=2 * SCALE,      # 3.5
+        minor_stroke=3 * SCALE,      # 5.2 - matches hour_stroke per user preference
         half_h=0.36 * 42 * SCALE,
         half_w1=0.278 * 42 * SCALE,
         half_w2=0.556 * 42 * SCALE,

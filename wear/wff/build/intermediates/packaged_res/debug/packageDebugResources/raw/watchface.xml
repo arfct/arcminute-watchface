@@ -32,433 +32,433 @@
         <Line startX="675.0" startY="47.9" endX="675.0" endY="5.2">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="700.8" y="0.6" width="6.9" height="6.9">
+        <Ellipse x="699.0" y="0.6" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="730.1" y="2.6" width="6.9" height="6.9">
+        <Ellipse x="728.2" y="2.5" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="760.0" startY="29.5" endX="762.7" endY="9.2">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="760.0" startY="29.5" endX="762.4" endY="10.9">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="788.1" y="10.2" width="6.9" height="6.9">
+        <Ellipse x="786.1" y="10.2" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="816.9" y="15.9" width="6.9" height="6.9">
+        <Ellipse x="814.8" y="15.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="837.3" startY="69.3" endX="848.8" endY="26.3">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="837.3" startY="69.3" endX="848.4" endY="28.0">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="873.5" y="31.1" width="6.9" height="6.9">
+        <Ellipse x="871.2" y="31.0" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="901.2" y="40.5" width="6.9" height="6.9">
+        <Ellipse x="898.9" y="40.4" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="924.1" startY="73.5" endX="932.0" endY="54.6">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="924.1" startY="73.5" endX="931.3" endY="56.2">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="955.3" y="62.9" width="6.9" height="6.9">
+        <Ellipse x="952.9" y="62.8" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="981.6" y="75.9" width="6.9" height="6.9">
+        <Ellipse x="979.1" y="75.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="988.5" startY="132.0" endX="1009.9" endY="94.9">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1032.4" y="105.2" width="6.9" height="6.9">
+        <Ellipse x="1029.7" y="104.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1056.7" y="121.4" width="6.9" height="6.9">
+        <Ellipse x="1054.0" y="121.1" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1071.3" startY="158.5" endX="1083.8" endY="142.2">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="1071.3" startY="158.5" endX="1082.8" endY="143.6">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1103.2" y="157.1" width="6.9" height="6.9">
+        <Ellipse x="1100.4" y="156.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1125.2" y="176.4" width="6.9" height="6.9">
+        <Ellipse x="1122.3" y="176.0" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1118.4" startY="231.6" endX="1149.8" endY="200.2">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="1118.4" startY="231.6" endX="1148.6" endY="201.4">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1166.6" y="217.9" width="6.9" height="6.9">
+        <Ellipse x="1163.6" y="217.3" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1186.0" y="239.9" width="6.9" height="6.9">
+        <Ellipse x="1182.9" y="239.3" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1191.5" startY="278.7" endX="1207.8" endY="266.2">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="1191.5" startY="278.7" endX="1206.4" endY="267.2">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1221.6" y="286.4" width="6.9" height="6.9">
+        <Ellipse x="1218.5" y="285.6" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1237.9" y="310.7" width="6.9" height="6.9">
+        <Ellipse x="1234.7" y="309.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="1218.0" startY="361.5" endX="1255.1" endY="340.1">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1267.2" y="361.5" width="6.9" height="6.9">
+        <Ellipse x="1263.9" y="360.5" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1280.2" y="387.7" width="6.9" height="6.9">
+        <Ellipse x="1276.9" y="386.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1276.5" startY="425.9" endX="1295.4" endY="418.0">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="1276.5" startY="425.9" endX="1293.8" endY="418.7">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1302.6" y="441.9" width="6.9" height="6.9">
+        <Ellipse x="1299.2" y="440.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1312.0" y="469.6" width="6.9" height="6.9">
+        <Ellipse x="1308.6" y="468.4" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1280.7" startY="512.7" endX="1323.7" endY="501.2">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="1280.7" startY="512.7" endX="1322.0" endY="501.6">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1327.2" y="526.2" width="6.9" height="6.9">
+        <Ellipse x="1323.7" y="524.8" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1332.9" y="554.9" width="6.9" height="6.9">
+        <Ellipse x="1329.4" y="553.5" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1320.5" startY="590.0" endX="1340.8" endY="587.3">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="1320.5" startY="590.0" endX="1339.1" endY="587.6">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1340.5" y="613.0" width="6.9" height="6.9">
+        <Ellipse x="1337.1" y="611.4" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1342.4" y="642.2" width="6.9" height="6.9">
+        <Ellipse x="1339.0" y="640.6" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="1302.1" startY="675.0" endX="1344.8" endY="675.0">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1342.4" y="700.8" width="6.9" height="6.9">
+        <Ellipse x="1339.0" y="699.0" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1340.5" y="730.1" width="6.9" height="6.9">
+        <Ellipse x="1337.1" y="728.2" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1320.5" startY="760.0" endX="1340.8" endY="762.7">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="1320.5" startY="760.0" endX="1339.1" endY="762.4">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1332.9" y="788.1" width="6.9" height="6.9">
+        <Ellipse x="1329.4" y="786.1" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1327.2" y="816.9" width="6.9" height="6.9">
+        <Ellipse x="1323.7" y="814.8" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1280.7" startY="837.3" endX="1323.7" endY="848.8">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="1280.7" startY="837.3" endX="1322.0" endY="848.4">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1312.0" y="873.5" width="6.9" height="6.9">
+        <Ellipse x="1308.6" y="871.2" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1302.6" y="901.2" width="6.9" height="6.9">
+        <Ellipse x="1299.2" y="898.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1276.5" startY="924.1" endX="1295.4" endY="932.0">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="1276.5" startY="924.1" endX="1293.8" endY="931.3">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1280.2" y="955.3" width="6.9" height="6.9">
+        <Ellipse x="1276.9" y="952.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1267.2" y="981.6" width="6.9" height="6.9">
+        <Ellipse x="1263.9" y="979.1" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="1218.0" startY="988.5" endX="1255.1" endY="1009.9">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1237.9" y="1032.4" width="6.9" height="6.9">
+        <Ellipse x="1234.7" y="1029.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1221.6" y="1056.7" width="6.9" height="6.9">
+        <Ellipse x="1218.5" y="1054.0" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1191.5" startY="1071.3" endX="1207.8" endY="1083.8">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="1191.5" startY="1071.3" endX="1206.4" endY="1082.8">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1186.0" y="1103.2" width="6.9" height="6.9">
+        <Ellipse x="1182.9" y="1100.4" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1166.6" y="1125.2" width="6.9" height="6.9">
+        <Ellipse x="1163.6" y="1122.3" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1118.4" startY="1118.4" endX="1149.8" endY="1149.8">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="1118.4" startY="1118.4" endX="1148.6" endY="1148.6">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1125.2" y="1166.6" width="6.9" height="6.9">
+        <Ellipse x="1122.3" y="1163.6" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1103.2" y="1186.0" width="6.9" height="6.9">
+        <Ellipse x="1100.4" y="1182.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1071.3" startY="1191.5" endX="1083.8" endY="1207.8">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="1071.3" startY="1191.5" endX="1082.8" endY="1206.4">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="1056.7" y="1221.6" width="6.9" height="6.9">
+        <Ellipse x="1054.0" y="1218.5" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1032.4" y="1237.9" width="6.9" height="6.9">
+        <Ellipse x="1029.7" y="1234.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="988.5" startY="1218.0" endX="1009.9" endY="1255.1">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="981.6" y="1267.2" width="6.9" height="6.9">
+        <Ellipse x="979.1" y="1263.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="955.3" y="1280.2" width="6.9" height="6.9">
+        <Ellipse x="952.9" y="1276.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="924.1" startY="1276.5" endX="932.0" endY="1295.4">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="924.1" startY="1276.5" endX="931.3" endY="1293.8">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="901.2" y="1302.6" width="6.9" height="6.9">
+        <Ellipse x="898.9" y="1299.2" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="873.5" y="1312.0" width="6.9" height="6.9">
+        <Ellipse x="871.2" y="1308.6" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="837.3" startY="1280.7" endX="848.8" endY="1323.7">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="837.3" startY="1280.7" endX="848.4" endY="1322.0">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="816.9" y="1327.2" width="6.9" height="6.9">
+        <Ellipse x="814.8" y="1323.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="788.1" y="1332.9" width="6.9" height="6.9">
+        <Ellipse x="786.1" y="1329.4" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="760.0" startY="1320.5" endX="762.7" endY="1340.8">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="760.0" startY="1320.5" endX="762.4" endY="1339.1">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="730.1" y="1340.5" width="6.9" height="6.9">
+        <Ellipse x="728.2" y="1337.1" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="700.8" y="1342.4" width="6.9" height="6.9">
+        <Ellipse x="699.0" y="1339.0" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="675.0" startY="1302.1" endX="675.0" endY="1344.8">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="642.2" y="1342.4" width="6.9" height="6.9">
+        <Ellipse x="640.6" y="1339.0" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="613.0" y="1340.5" width="6.9" height="6.9">
+        <Ellipse x="611.4" y="1337.1" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="590.0" startY="1320.5" endX="587.3" endY="1340.8">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="590.0" startY="1320.5" endX="587.6" endY="1339.1">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="554.9" y="1332.9" width="6.9" height="6.9">
+        <Ellipse x="553.5" y="1329.4" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="526.2" y="1327.2" width="6.9" height="6.9">
+        <Ellipse x="524.8" y="1323.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="512.7" startY="1280.7" endX="501.2" endY="1323.7">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="512.7" startY="1280.7" endX="501.6" endY="1322.0">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="469.6" y="1312.0" width="6.9" height="6.9">
+        <Ellipse x="468.4" y="1308.6" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="441.9" y="1302.6" width="6.9" height="6.9">
+        <Ellipse x="440.7" y="1299.2" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="425.9" startY="1276.5" endX="418.0" endY="1295.4">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="425.9" startY="1276.5" endX="418.7" endY="1293.8">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="387.7" y="1280.2" width="6.9" height="6.9">
+        <Ellipse x="386.7" y="1276.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="361.5" y="1267.2" width="6.9" height="6.9">
+        <Ellipse x="360.5" y="1263.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="361.5" startY="1218.0" endX="340.1" endY="1255.1">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="310.7" y="1237.9" width="6.9" height="6.9">
+        <Ellipse x="309.9" y="1234.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="286.4" y="1221.6" width="6.9" height="6.9">
+        <Ellipse x="285.6" y="1218.5" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="278.7" startY="1191.5" endX="266.2" endY="1207.8">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="278.7" startY="1191.5" endX="267.2" endY="1206.4">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="239.9" y="1186.0" width="6.9" height="6.9">
+        <Ellipse x="239.3" y="1182.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="217.9" y="1166.6" width="6.9" height="6.9">
+        <Ellipse x="217.3" y="1163.6" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="231.6" startY="1118.4" endX="200.2" endY="1149.8">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="231.6" startY="1118.4" endX="201.4" endY="1148.6">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="176.4" y="1125.2" width="6.9" height="6.9">
+        <Ellipse x="176.0" y="1122.3" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="157.1" y="1103.2" width="6.9" height="6.9">
+        <Ellipse x="156.7" y="1100.4" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="158.5" startY="1071.3" endX="142.2" endY="1083.8">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="158.5" startY="1071.3" endX="143.6" endY="1082.8">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="121.4" y="1056.7" width="6.9" height="6.9">
+        <Ellipse x="121.1" y="1054.0" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="105.2" y="1032.4" width="6.9" height="6.9">
+        <Ellipse x="104.9" y="1029.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="132.0" startY="988.5" endX="94.9" endY="1009.9">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="75.9" y="981.6" width="6.9" height="6.9">
+        <Ellipse x="75.7" y="979.1" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="62.9" y="955.3" width="6.9" height="6.9">
+        <Ellipse x="62.8" y="952.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="73.5" startY="924.1" endX="54.6" endY="932.0">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="73.5" startY="924.1" endX="56.2" endY="931.3">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="40.5" y="901.2" width="6.9" height="6.9">
+        <Ellipse x="40.4" y="898.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="31.1" y="873.5" width="6.9" height="6.9">
+        <Ellipse x="31.0" y="871.2" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="69.3" startY="837.3" endX="26.3" endY="848.8">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="69.3" startY="837.3" endX="28.0" endY="848.4">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="15.9" y="816.9" width="6.9" height="6.9">
+        <Ellipse x="15.9" y="814.8" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="10.2" y="788.1" width="6.9" height="6.9">
+        <Ellipse x="10.2" y="786.1" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="29.5" startY="760.0" endX="9.2" endY="762.7">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="29.5" startY="760.0" endX="10.9" endY="762.4">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="2.6" y="730.1" width="6.9" height="6.9">
+        <Ellipse x="2.5" y="728.2" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="0.6" y="700.8" width="6.9" height="6.9">
+        <Ellipse x="0.6" y="699.0" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="47.9" startY="675.0" endX="5.2" endY="675.0">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="0.6" y="642.2" width="6.9" height="6.9">
+        <Ellipse x="0.6" y="640.6" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="2.6" y="613.0" width="6.9" height="6.9">
+        <Ellipse x="2.5" y="611.4" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="29.5" startY="590.0" endX="9.2" endY="587.3">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="29.5" startY="590.0" endX="10.9" endY="587.6">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="10.2" y="554.9" width="6.9" height="6.9">
+        <Ellipse x="10.2" y="553.5" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="15.9" y="526.2" width="6.9" height="6.9">
+        <Ellipse x="15.9" y="524.8" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="69.3" startY="512.7" endX="26.3" endY="501.2">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="69.3" startY="512.7" endX="28.0" endY="501.6">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="31.1" y="469.6" width="6.9" height="6.9">
+        <Ellipse x="31.0" y="468.4" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="40.5" y="441.9" width="6.9" height="6.9">
+        <Ellipse x="40.4" y="440.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="73.5" startY="425.9" endX="54.6" endY="418.0">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="73.5" startY="425.9" endX="56.2" endY="418.7">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="62.9" y="387.7" width="6.9" height="6.9">
+        <Ellipse x="62.8" y="386.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="75.9" y="361.5" width="6.9" height="6.9">
+        <Ellipse x="75.7" y="360.5" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="132.0" startY="361.5" endX="94.9" endY="340.1">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="105.2" y="310.7" width="6.9" height="6.9">
+        <Ellipse x="104.9" y="309.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="121.4" y="286.4" width="6.9" height="6.9">
+        <Ellipse x="121.1" y="285.6" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="158.5" startY="278.7" endX="142.2" endY="266.2">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="158.5" startY="278.7" endX="143.6" endY="267.2">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="157.1" y="239.9" width="6.9" height="6.9">
+        <Ellipse x="156.7" y="239.3" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="176.4" y="217.9" width="6.9" height="6.9">
+        <Ellipse x="176.0" y="217.3" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="231.6" startY="231.6" endX="200.2" endY="200.2">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="231.6" startY="231.6" endX="201.4" endY="201.4">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="217.9" y="176.4" width="6.9" height="6.9">
+        <Ellipse x="217.3" y="176.0" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="239.9" y="157.1" width="6.9" height="6.9">
+        <Ellipse x="239.3" y="156.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="278.7" startY="158.5" endX="266.2" endY="142.2">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="278.7" startY="158.5" endX="267.2" endY="143.6">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="286.4" y="121.4" width="6.9" height="6.9">
+        <Ellipse x="285.6" y="121.1" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="310.7" y="105.2" width="6.9" height="6.9">
+        <Ellipse x="309.9" y="104.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="361.5" startY="132.0" endX="340.1" endY="94.9">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="361.5" y="75.9" width="6.9" height="6.9">
+        <Ellipse x="360.5" y="75.7" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="387.7" y="62.9" width="6.9" height="6.9">
+        <Ellipse x="386.7" y="62.8" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="425.9" startY="73.5" endX="418.0" endY="54.6">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="425.9" startY="73.5" endX="418.7" endY="56.2">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="441.9" y="40.5" width="6.9" height="6.9">
+        <Ellipse x="440.7" y="40.4" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="469.6" y="31.1" width="6.9" height="6.9">
+        <Ellipse x="468.4" y="31.0" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="512.7" startY="69.3" endX="501.2" endY="26.3">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="512.7" startY="69.3" endX="501.6" endY="28.0">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="526.2" y="15.9" width="6.9" height="6.9">
+        <Ellipse x="524.8" y="15.9" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="554.9" y="10.2" width="6.9" height="6.9">
+        <Ellipse x="553.5" y="10.2" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="590.0" startY="29.5" endX="587.3" endY="9.2">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="6.9" cap="ROUND" />
+        <Line startX="590.0" startY="29.5" endX="587.6" endY="10.9">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="10.4" cap="ROUND" />
         </Line>
-        <Ellipse x="613.0" y="2.6" width="6.9" height="6.9">
+        <Ellipse x="611.4" y="2.5" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="642.2" y="0.6" width="6.9" height="6.9">
+        <Ellipse x="640.6" y="0.6" width="10.4" height="10.4">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         </PartDraw>
@@ -553,433 +553,433 @@
         <Line startX="675.0" startY="23.9" endX="675.0" endY="2.6">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="702.6" y="0.6" width="3.5" height="3.5">
+        <Ellipse x="701.7" y="0.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="731.9" y="2.6" width="3.5" height="3.5">
+        <Ellipse x="731.0" y="2.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="761.5" startY="17.6" endX="762.9" endY="7.5">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="761.5" startY="17.6" endX="762.8" endY="8.3">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="790.2" y="10.2" width="3.5" height="3.5">
+        <Ellipse x="789.2" y="10.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="819.0" y="16.0" width="3.5" height="3.5">
+        <Ellipse x="817.9" y="15.9" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="843.5" startY="46.1" endX="849.3" endY="24.7">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="843.5" startY="46.1" endX="849.0" endY="25.5">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="875.7" y="31.2" width="3.5" height="3.5">
+        <Ellipse x="874.6" y="31.1" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="903.5" y="40.6" width="3.5" height="3.5">
+        <Ellipse x="902.4" y="40.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="928.7" startY="62.4" endX="932.6" endY="53.0">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="928.7" startY="62.4" endX="932.3" endY="53.8">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="957.8" y="63.1" width="3.5" height="3.5">
+        <Ellipse x="956.6" y="63.0" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="984.2" y="76.1" width="3.5" height="3.5">
+        <Ellipse x="982.9" y="76.0" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="1000.6" startY="111.1" endX="1011.2" endY="92.7">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1035.0" y="105.4" width="3.5" height="3.5">
+        <Ellipse x="1033.7" y="105.3" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1059.4" y="121.8" width="3.5" height="3.5">
+        <Ellipse x="1058.1" y="121.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1078.6" startY="149.0" endX="1084.9" endY="140.9">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="1078.6" startY="149.0" endX="1084.3" endY="141.5">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1106.0" y="157.5" width="3.5" height="3.5">
+        <Ellipse x="1104.6" y="157.3" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1128.1" y="176.9" width="3.5" height="3.5">
+        <Ellipse x="1126.7" y="176.7" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1135.4" startY="214.6" endX="1151.1" endY="198.9">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="1135.4" startY="214.6" endX="1150.5" endY="199.5">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1169.7" y="218.4" width="3.5" height="3.5">
+        <Ellipse x="1168.2" y="218.1" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1189.0" y="240.5" width="3.5" height="3.5">
+        <Ellipse x="1187.5" y="240.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1201.0" startY="271.4" endX="1209.1" endY="265.1">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="1201.0" startY="271.4" endX="1208.5" endY="265.7">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1224.8" y="287.1" width="3.5" height="3.5">
+        <Ellipse x="1223.2" y="286.7" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1241.1" y="311.5" width="3.5" height="3.5">
+        <Ellipse x="1239.5" y="311.1" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="1238.9" startY="349.4" endX="1257.3" endY="338.8">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1270.5" y="362.4" width="3.5" height="3.5">
+        <Ellipse x="1268.8" y="361.9" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1283.5" y="388.7" width="3.5" height="3.5">
+        <Ellipse x="1281.8" y="388.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1287.6" startY="421.3" endX="1297.0" endY="417.4">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="1287.6" startY="421.3" endX="1296.2" endY="417.7">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1305.9" y="443.0" width="3.5" height="3.5">
+        <Ellipse x="1304.3" y="442.4" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1315.4" y="470.8" width="3.5" height="3.5">
+        <Ellipse x="1313.7" y="470.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1303.9" startY="506.5" endX="1325.3" endY="500.7">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="1303.9" startY="506.5" endX="1324.5" endY="501.0">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1330.6" y="527.5" width="3.5" height="3.5">
+        <Ellipse x="1328.9" y="526.9" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1336.3" y="556.4" width="3.5" height="3.5">
+        <Ellipse x="1334.6" y="555.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1332.4" startY="588.5" endX="1342.5" endY="587.1">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="1332.4" startY="588.5" endX="1341.7" endY="587.2">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1344.0" y="614.6" width="3.5" height="3.5">
+        <Ellipse x="1342.2" y="613.8" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1345.9" y="643.9" width="3.5" height="3.5">
+        <Ellipse x="1344.2" y="643.1" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="1326.1" startY="675.0" endX="1347.4" endY="675.0">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1345.9" y="702.6" width="3.5" height="3.5">
+        <Ellipse x="1344.2" y="701.7" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1344.0" y="731.9" width="3.5" height="3.5">
+        <Ellipse x="1342.2" y="731.0" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1332.4" startY="761.5" endX="1342.5" endY="762.9">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="1332.4" startY="761.5" endX="1341.7" endY="762.8">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1336.3" y="790.2" width="3.5" height="3.5">
+        <Ellipse x="1334.6" y="789.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1330.6" y="819.0" width="3.5" height="3.5">
+        <Ellipse x="1328.9" y="817.9" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1303.9" startY="843.5" endX="1325.3" endY="849.3">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="1303.9" startY="843.5" endX="1324.5" endY="849.0">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1315.4" y="875.7" width="3.5" height="3.5">
+        <Ellipse x="1313.7" y="874.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1305.9" y="903.5" width="3.5" height="3.5">
+        <Ellipse x="1304.3" y="902.4" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1287.6" startY="928.7" endX="1297.0" endY="932.6">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="1287.6" startY="928.7" endX="1296.2" endY="932.3">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1283.5" y="957.8" width="3.5" height="3.5">
+        <Ellipse x="1281.8" y="956.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1270.5" y="984.2" width="3.5" height="3.5">
+        <Ellipse x="1268.8" y="982.9" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="1238.9" startY="1000.6" endX="1257.3" endY="1011.2">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1241.1" y="1035.0" width="3.5" height="3.5">
+        <Ellipse x="1239.5" y="1033.7" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1224.8" y="1059.4" width="3.5" height="3.5">
+        <Ellipse x="1223.2" y="1058.1" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1201.0" startY="1078.6" endX="1209.1" endY="1084.9">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="1201.0" startY="1078.6" endX="1208.5" endY="1084.3">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1189.0" y="1106.0" width="3.5" height="3.5">
+        <Ellipse x="1187.5" y="1104.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1169.7" y="1128.1" width="3.5" height="3.5">
+        <Ellipse x="1168.2" y="1126.7" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1135.4" startY="1135.4" endX="1151.1" endY="1151.1">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="1135.4" startY="1135.4" endX="1150.5" endY="1150.5">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1128.1" y="1169.7" width="3.5" height="3.5">
+        <Ellipse x="1126.7" y="1168.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1106.0" y="1189.0" width="3.5" height="3.5">
+        <Ellipse x="1104.6" y="1187.5" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="1078.6" startY="1201.0" endX="1084.9" endY="1209.1">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="1078.6" startY="1201.0" endX="1084.3" endY="1208.5">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="1059.4" y="1224.8" width="3.5" height="3.5">
+        <Ellipse x="1058.1" y="1223.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="1035.0" y="1241.1" width="3.5" height="3.5">
+        <Ellipse x="1033.7" y="1239.5" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="1000.6" startY="1238.9" endX="1011.2" endY="1257.3">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="984.2" y="1270.5" width="3.5" height="3.5">
+        <Ellipse x="982.9" y="1268.8" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="957.8" y="1283.5" width="3.5" height="3.5">
+        <Ellipse x="956.6" y="1281.8" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="928.7" startY="1287.6" endX="932.6" endY="1297.0">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="928.7" startY="1287.6" endX="932.3" endY="1296.2">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="903.5" y="1305.9" width="3.5" height="3.5">
+        <Ellipse x="902.4" y="1304.3" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="875.7" y="1315.4" width="3.5" height="3.5">
+        <Ellipse x="874.6" y="1313.7" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="843.5" startY="1303.9" endX="849.3" endY="1325.3">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="843.5" startY="1303.9" endX="849.0" endY="1324.5">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="819.0" y="1330.6" width="3.5" height="3.5">
+        <Ellipse x="817.9" y="1328.9" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="790.2" y="1336.3" width="3.5" height="3.5">
+        <Ellipse x="789.2" y="1334.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="761.5" startY="1332.4" endX="762.9" endY="1342.5">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="761.5" startY="1332.4" endX="762.8" endY="1341.7">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="731.9" y="1344.0" width="3.5" height="3.5">
+        <Ellipse x="731.0" y="1342.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="702.6" y="1345.9" width="3.5" height="3.5">
+        <Ellipse x="701.7" y="1344.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="675.0" startY="1326.1" endX="675.0" endY="1347.4">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="643.9" y="1345.9" width="3.5" height="3.5">
+        <Ellipse x="643.1" y="1344.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="614.6" y="1344.0" width="3.5" height="3.5">
+        <Ellipse x="613.8" y="1342.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="588.5" startY="1332.4" endX="587.1" endY="1342.5">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="588.5" startY="1332.4" endX="587.2" endY="1341.7">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="556.4" y="1336.3" width="3.5" height="3.5">
+        <Ellipse x="555.6" y="1334.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="527.5" y="1330.6" width="3.5" height="3.5">
+        <Ellipse x="526.9" y="1328.9" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="506.5" startY="1303.9" endX="500.7" endY="1325.3">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="506.5" startY="1303.9" endX="501.0" endY="1324.5">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="470.8" y="1315.4" width="3.5" height="3.5">
+        <Ellipse x="470.2" y="1313.7" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="443.0" y="1305.9" width="3.5" height="3.5">
+        <Ellipse x="442.4" y="1304.3" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="421.3" startY="1287.6" endX="417.4" endY="1297.0">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="421.3" startY="1287.6" endX="417.7" endY="1296.2">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="388.7" y="1283.5" width="3.5" height="3.5">
+        <Ellipse x="388.2" y="1281.8" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="362.4" y="1270.5" width="3.5" height="3.5">
+        <Ellipse x="361.9" y="1268.8" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="349.4" startY="1238.9" endX="338.8" endY="1257.3">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="311.5" y="1241.1" width="3.5" height="3.5">
+        <Ellipse x="311.1" y="1239.5" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="287.1" y="1224.8" width="3.5" height="3.5">
+        <Ellipse x="286.7" y="1223.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="271.4" startY="1201.0" endX="265.1" endY="1209.1">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="271.4" startY="1201.0" endX="265.7" endY="1208.5">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="240.5" y="1189.0" width="3.5" height="3.5">
+        <Ellipse x="240.2" y="1187.5" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="218.4" y="1169.7" width="3.5" height="3.5">
+        <Ellipse x="218.1" y="1168.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="214.6" startY="1135.4" endX="198.9" endY="1151.1">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="214.6" startY="1135.4" endX="199.5" endY="1150.5">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="176.9" y="1128.1" width="3.5" height="3.5">
+        <Ellipse x="176.7" y="1126.7" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="157.5" y="1106.0" width="3.5" height="3.5">
+        <Ellipse x="157.3" y="1104.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="149.0" startY="1078.6" endX="140.9" endY="1084.9">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="149.0" startY="1078.6" endX="141.5" endY="1084.3">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="121.8" y="1059.4" width="3.5" height="3.5">
+        <Ellipse x="121.6" y="1058.1" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="105.4" y="1035.0" width="3.5" height="3.5">
+        <Ellipse x="105.3" y="1033.7" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="111.1" startY="1000.6" endX="92.7" endY="1011.2">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="76.1" y="984.2" width="3.5" height="3.5">
+        <Ellipse x="76.0" y="982.9" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="63.1" y="957.8" width="3.5" height="3.5">
+        <Ellipse x="63.0" y="956.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="62.4" startY="928.7" endX="53.0" endY="932.6">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="62.4" startY="928.7" endX="53.8" endY="932.3">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="40.6" y="903.5" width="3.5" height="3.5">
+        <Ellipse x="40.6" y="902.4" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="31.2" y="875.7" width="3.5" height="3.5">
+        <Ellipse x="31.1" y="874.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="46.1" startY="843.5" endX="24.7" endY="849.3">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="46.1" startY="843.5" endX="25.5" endY="849.0">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="16.0" y="819.0" width="3.5" height="3.5">
+        <Ellipse x="15.9" y="817.9" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="10.2" y="790.2" width="3.5" height="3.5">
+        <Ellipse x="10.2" y="789.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="17.6" startY="761.5" endX="7.5" endY="762.9">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="17.6" startY="761.5" endX="8.3" endY="762.8">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="2.6" y="731.9" width="3.5" height="3.5">
+        <Ellipse x="2.6" y="731.0" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="0.6" y="702.6" width="3.5" height="3.5">
+        <Ellipse x="0.6" y="701.7" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="23.9" startY="675.0" endX="2.6" endY="675.0">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="0.6" y="643.9" width="3.5" height="3.5">
+        <Ellipse x="0.6" y="643.1" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="2.6" y="614.6" width="3.5" height="3.5">
+        <Ellipse x="2.6" y="613.8" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="17.6" startY="588.5" endX="7.5" endY="587.1">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="17.6" startY="588.5" endX="8.3" endY="587.2">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="10.2" y="556.4" width="3.5" height="3.5">
+        <Ellipse x="10.2" y="555.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="16.0" y="527.5" width="3.5" height="3.5">
+        <Ellipse x="15.9" y="526.9" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="46.1" startY="506.5" endX="24.7" endY="500.7">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="46.1" startY="506.5" endX="25.5" endY="501.0">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="31.2" y="470.8" width="3.5" height="3.5">
+        <Ellipse x="31.1" y="470.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="40.6" y="443.0" width="3.5" height="3.5">
+        <Ellipse x="40.6" y="442.4" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="62.4" startY="421.3" endX="53.0" endY="417.4">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="62.4" startY="421.3" endX="53.8" endY="417.7">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="63.1" y="388.7" width="3.5" height="3.5">
+        <Ellipse x="63.0" y="388.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="76.1" y="362.4" width="3.5" height="3.5">
+        <Ellipse x="76.0" y="361.9" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="111.1" startY="349.4" endX="92.7" endY="338.8">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="105.4" y="311.5" width="3.5" height="3.5">
+        <Ellipse x="105.3" y="311.1" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="121.8" y="287.1" width="3.5" height="3.5">
+        <Ellipse x="121.6" y="286.7" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="149.0" startY="271.4" endX="140.9" endY="265.1">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="149.0" startY="271.4" endX="141.5" endY="265.7">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="157.5" y="240.5" width="3.5" height="3.5">
+        <Ellipse x="157.3" y="240.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="176.9" y="218.4" width="3.5" height="3.5">
+        <Ellipse x="176.7" y="218.1" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="214.6" startY="214.6" endX="198.9" endY="198.9">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="214.6" startY="214.6" endX="199.5" endY="199.5">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="218.4" y="176.9" width="3.5" height="3.5">
+        <Ellipse x="218.1" y="176.7" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="240.5" y="157.5" width="3.5" height="3.5">
+        <Ellipse x="240.2" y="157.3" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="271.4" startY="149.0" endX="265.1" endY="140.9">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="271.4" startY="149.0" endX="265.7" endY="141.5">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="287.1" y="121.8" width="3.5" height="3.5">
+        <Ellipse x="286.7" y="121.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="311.5" y="105.4" width="3.5" height="3.5">
+        <Ellipse x="311.1" y="105.3" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         <Line startX="349.4" startY="111.1" endX="338.8" endY="92.7">
           <Stroke color="[CONFIGURATION.themeColor.1]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="362.4" y="76.1" width="3.5" height="3.5">
+        <Ellipse x="361.9" y="76.0" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="388.7" y="63.1" width="3.5" height="3.5">
+        <Ellipse x="388.2" y="63.0" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="421.3" startY="62.4" endX="417.4" endY="53.0">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="421.3" startY="62.4" endX="417.7" endY="53.8">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="443.0" y="40.6" width="3.5" height="3.5">
+        <Ellipse x="442.4" y="40.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="470.8" y="31.2" width="3.5" height="3.5">
+        <Ellipse x="470.2" y="31.1" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="506.5" startY="46.1" endX="500.7" endY="24.7">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="506.5" startY="46.1" endX="501.0" endY="25.5">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="527.5" y="16.0" width="3.5" height="3.5">
+        <Ellipse x="526.9" y="15.9" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="556.4" y="10.2" width="3.5" height="3.5">
+        <Ellipse x="555.6" y="10.2" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Line startX="588.5" startY="17.6" endX="587.1" endY="7.5">
-          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="3.5" cap="ROUND" />
+        <Line startX="588.5" startY="17.6" endX="587.2" endY="8.3">
+          <Stroke color="[CONFIGURATION.themeColor.2]" thickness="5.2" cap="ROUND" />
         </Line>
-        <Ellipse x="614.6" y="2.6" width="3.5" height="3.5">
+        <Ellipse x="613.8" y="2.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
-        <Ellipse x="643.9" y="0.6" width="3.5" height="3.5">
+        <Ellipse x="643.1" y="0.6" width="5.2" height="5.2">
           <Fill color="[CONFIGURATION.themeColor.2]" />
         </Ellipse>
         </PartDraw>

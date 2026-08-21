@@ -99,7 +99,8 @@ class ChronologyRenderer(
         val large = style.largeNumerals
         val hourInset = (if (large) 27.7f else 13.8f) * scale
         val hourTickStroke = strokeWidth(if (large) 6f else 3f, scale)
-        val minorTickStroke = strokeWidth(if (large) 4f else 2f, scale)
+        // Same thickness as the hour ticks per user preference (Pebble used 4/2)
+        val minorTickStroke = hourTickStroke
         // Dots match the minor tick width and end at the same outer radius
         val dotRadius = minorTickStroke / 2f
         // Pebble uses 9; thinned per user preference (kept in sync with the WFF flavor)
