@@ -101,7 +101,8 @@ class ChronologyRenderer(
         val hourTickStroke = strokeWidth(if (large) 6f else 3f, scale)
         val minorTickStroke = strokeWidth(if (large) 4f else 2f, scale)
         val dotRadius = strokeWidth(if (large) 3f else 2f, scale)
-        val handStroke = strokeWidth(9f, scale)
+        // Pebble uses 9; thinned per user preference (kept in sync with the WFF flavor)
+        val handStroke = strokeWidth(7f, scale)
         textPaint.textSize = (if (large) 95f else 42f) * scale
         textPaint.color = faceTextColor
 

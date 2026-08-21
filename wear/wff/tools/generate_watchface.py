@@ -25,7 +25,7 @@ DIAL_R = 1.5 * CANVAS           # 675
 DIAL_SIZE = 3 * CANVAS          # 1350
 DC = DIAL_SIZE / 2              # dial local center 675
 
-HAND_STROKE = 9 * SCALE         # 15.6
+HAND_STROKE = 7 * SCALE         # 12.1 (Pebble uses 9; thinned per user preference)
 
 # Hour angle in degrees, updated each minute
 ANGLE = "(30 * [HOUR_0_11_MINUTE])"
