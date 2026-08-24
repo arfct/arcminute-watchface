@@ -38,7 +38,8 @@
       "FACE_HEX",
       "HAND_HEX",
       "FACE_CLEAR",
-      "DIAL_STYLE"
+      "DIAL_STYLE",
+      "THICK_HAND"
     ],
     "resources": {
       "media": [

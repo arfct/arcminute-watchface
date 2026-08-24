@@ -90,6 +90,7 @@ static int16_t s_orbit_inset = 150;
 static GColor s_background_color;
 static GColor s_face_color;
 static GColor s_hand_color;
+static bool s_thick_hand = false;
 static bool s_face_clear = true;
 static int s_dial_style = 0;
 static GFont s_large_numeral_font;
@@ -239,6 +240,9 @@ static void my_hand_draw(Layer *layer, GContext *ctx)
 #else
       5;
 #endif
+
+  if (s_thick_hand)
+    stroke_width += 1;
 
   graphics_context_set_stroke_color(ctx, hand_color());
   graphics_context_set_stroke_width(ctx, stroke_width);
@@ -461,6 +465,13 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
     persist_write_bool(8, s_face_clear);
   }
 
+  Tuple *thick_hand_tuple = dict_find(iterator, MESSAGE_KEY_THICK_HAND);
+  if (thick_hand_tuple)
+  {
+    s_thick_hand = thick_hand_tuple->value->int32 != 0;
+    persist_write_bool(10, s_thick_hand);
+  }
+
   window_set_background_color(s_main_window, background_color());
   layer_mark_dirty(s_face_layer);
   layer_mark_dirty(s_hand_layer);
@@ -508,6 +519,7 @@ static void init()
   s_hand_color = GColorFromHEX(persist_exists(7) ? persist_read_int(7) : 0xFF0000);
   s_face_clear = persist_exists(8) ? persist_read_bool(8) : true;
   s_dial_style = persist_exists(9) ? persist_read_int(9) : 1;
+  s_thick_hand = persist_exists(10) ? persist_read_bool(10) : false;
 
   s_large_numeral_font = fonts_load_custom_font(resource_get_handle(
 #if PBL_DISPLAY_WIDTH >= 200

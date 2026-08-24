@@ -47,6 +47,13 @@ module.exports = [
         "label": "Hand color",
         "defaultValue": "0xFF0000",
         "sunlight": true
+      },
+      {
+        "type": "toggle",
+        "messageKey": "THICK_HAND",
+        "label": "Thick hand",
+        "description": "Draws the hand one pixel wider.",
+        "defaultValue": false
       }
     ]
   },

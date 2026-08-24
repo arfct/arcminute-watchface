@@ -31,6 +31,9 @@ Pebble.addEventListener('webviewclosed', function(e) {
   if (settings.FACE_CLEAR !== undefined) {
     dict.FACE_CLEAR = valueOf(settings.FACE_CLEAR) ? 1 : 0;
   }
+  if (settings.THICK_HAND !== undefined) {
+    dict.THICK_HAND = valueOf(settings.THICK_HAND) ? 1 : 0;
+  }
 
   Pebble.sendAppMessage(dict);
 });
