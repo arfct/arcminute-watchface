@@ -22,8 +22,16 @@ CX = CANVAS / 2                 # 225
 ORBIT = 188 * SCALE             # 325.4
 DIST = CX + ORBIT               # dial-center distance from screen center
 DIAL_R = 1.5 * CANVAS           # 675
-DIAL_SIZE = 3 * CANVAS          # 1350
-DC = DIAL_SIZE / 2              # dial local center 675
+# The face disc is filled 8 gabbro px past the marker ring, as in
+# chronology.c's my_face_draw (`bounds.size.w / 2 + 8`), so its edge reads as
+# a rim just outside the ticks rather than slicing through them. The dial
+# group is grown by the same amount at every edge so the disc is not clipped;
+# every interior coordinate is measured from DC, so widening the group and
+# recentering DC shifts the whole dial with it.
+FACE_OVERSHOOT = 8 * SCALE      # 13.8
+FACE_R = DIAL_R + FACE_OVERSHOOT
+DIAL_SIZE = 3 * CANVAS + 2 * FACE_OVERSHOOT
+DC = DIAL_SIZE / 2              # dial local center
 
 HAND_STROKE = 7 * SCALE         # 12.1 (Pebble uses 9; thinned per user preference)
 
@@ -32,6 +40,10 @@ ANGLE = "(30 * [HOUR_0_11_MINUTE])"
 # Dial group top-left corner so the dial center lands at C - DIST*u(angle)
 GROUP_X = f"({CX - DC:.1f} - {DIST:.1f} * sin(rad({ANGLE})))"
 GROUP_Y = f"({CX - DC:.1f} + {DIST:.1f} * cos(rad({ANGLE})))"
+# Dial center in screen coordinates, for elements whose center attribute is
+# transformable (Arc, TextCircular) and so need no oversized wrapper group
+DIAL_CX = f"({CX:.1f} - {DIST:.1f} * sin(rad({ANGLE})))"
+DIAL_CY = f"({CX:.1f} + {DIST:.1f} * cos(rad({ANGLE})))"
 
 STYLES = {
     "large": dict(
@@ -56,10 +68,29 @@ STYLES = {
     ),
 }
 
-TEXT_COLOR = "[CONFIGURATION.themeColor.1]"
-MINOR_COLOR = "[CONFIGURATION.themeColor.2]"
-BG_COLOR = "[CONFIGURATION.themeColor.0]"
+# The face is the single source of color: it fills the dial disc and every
+# mark drawn on it. The background sits behind the disc and defaults to a
+# fully transparent "Match face" option, so the face color shows through and
+# the screen reads as one surface -- pebble's FACE_CLEAR, without needing a
+# toggle. Picking a real background color paints over that, and the disc
+# edge becomes visible. Nothing is color-conditional, so the dial is emitted
+# once (colors accept a single reference or literal, never an expression).
+BG_COLOR = "[CONFIGURATION.backColor.0]"
+FACE_COLOR = "[CONFIGURATION.faceColor.0]"
+FACE_TEXT = "[CONFIGURATION.faceColor.1]"
+FACE_MINOR = "[CONFIGURATION.faceColor.2]"
 HAND_COLOR = "[CONFIGURATION.handColor.0]"
+# "Dark when off": in ambient the face is veiled black and a light copy of the
+# dial fades in over it. A copy is needed because Variant only carries numeric
+# values -- it can swap alpha, never a color -- and marks drawn in a light
+# face's dark text would vanish against the veil.
+AMBIENT_TEXT = "#FFFFFF"
+AMBIENT_MINOR = "#AAFFFFFF"
+AMBIENT_VEIL = "#000000"
+# Complications ride the band just outside the rim, which the face disc
+# overshoots, so they follow the face too.
+TEXT_COLOR = FACE_TEXT
+MINOR_COLOR = FACE_MINOR
 
 # Tailwind CSS 500-series palette
 TAILWIND = [
@@ -102,27 +133,48 @@ def theme_colors(bg_hex):
     return "#FFFFFF", "#AAFFFFFF"
 
 
+# Option labels carry their configuration's name ("Hand: Red"), because the
+# editor shows one option label at a time with no indication of which setting
+# is being turned.
+MATCH_FACE = ("match", "Match face", "#00000000")
+BACK_PALETTE = [MATCH_FACE] + BLACK_WHITE + TAILWIND
+FACE_PALETTE = BLACK_WHITE + TAILWIND
+HAND_PALETTE = TAILWIND + BLACK_WHITE
+PREFIXES = {"back": "Back", "face": "Face", "hand": "Hand"}
+
+
 def user_configurations():
     out = []
     out.append('  <UserConfigurations>')
-    out.append('    <ListConfiguration id="dialStyle" displayName="dial_style_label"'
-               ' screenReaderText="dial_style_label" defaultValue="large">')
-    out.append('      <ListOption id="large" displayName="dial_large_label" />')
-    out.append('      <ListOption id="classic" displayName="dial_classic_label" />')
-    out.append('    </ListConfiguration>')
-    out.append('    <ColorConfiguration id="themeColor" displayName="theme_label"'
-               ' screenReaderText="theme_label" defaultValue="black">')
-    for cid, _, bg in BLACK_WHITE + TAILWIND:
-        text, minor = theme_colors(bg)
-        out.append(f'      <ColorOption id="{cid}" displayName="color_{cid}_label"'
-                   f' colors="{bg} {text} {minor}" />')
+    out.append('    <ColorConfiguration id="backColor" displayName="back_label"'
+               ' screenReaderText="back_label" defaultValue="match">')
+    for cid, _, bg in BACK_PALETTE:
+        out.append(f'      <ColorOption id="{cid}" displayName="back_{cid}_label"'
+                   f' colors="{bg}" />')
     out.append('    </ColorConfiguration>')
-    out.append('    <ColorConfiguration id="handColor" displayName="hand_color_label"'
-               ' screenReaderText="hand_color_label" defaultValue="red">')
-    for cid, _, hex_color in TAILWIND + BLACK_WHITE:
-        out.append(f'      <ColorOption id="{cid}" displayName="color_{cid}_label"'
+    out.append('    <ColorConfiguration id="faceColor" displayName="face_label"'
+               ' screenReaderText="face_label" defaultValue="black">')
+    for cid, _, fill in FACE_PALETTE:
+        text, minor = theme_colors(fill)
+        out.append(f'      <ColorOption id="{cid}" displayName="face_{cid}_label"'
+                   f' colors="{fill} {text} {minor}" />')
+    out.append('    </ColorConfiguration>')
+    out.append('    <ColorConfiguration id="handColor" displayName="hand_label"'
+               ' screenReaderText="hand_label" defaultValue="red">')
+    for cid, _, hex_color in HAND_PALETTE:
+        out.append(f'      <ColorOption id="{cid}" displayName="hand_{cid}_label"'
                    f' colors="{hex_color}" />')
     out.append('    </ColorConfiguration>')
+    # Toggles last: the editor lists configurations in declaration order, and
+    # appends its own complications page after them.
+    out.append('    <BooleanConfiguration id="largeNumerals"'
+               ' displayName="large_numerals_label"'
+               ' screenReaderText="large_numerals_label" defaultValue="TRUE" />')
+    out.append('    <BooleanConfiguration id="hour24" displayName="hour24_label"'
+               ' screenReaderText="hour24_label" defaultValue="FALSE" />')
+    out.append('    <BooleanConfiguration id="darkAmbient"'
+               ' displayName="dark_ambient_label"'
+               ' screenReaderText="dark_ambient_label" defaultValue="FALSE" />')
     out.append('  </UserConfigurations>')
     return "\n".join(out)
 
@@ -131,15 +183,192 @@ def config_strings():
     lines = ['<?xml version="1.0" encoding="utf-8"?>',
              '<!-- GENERATED by tools/generate_watchface.py - do not edit by hand. -->',
              '<resources>',
-             '    <string name="dial_style_label">Dial style</string>',
-             '    <string name="dial_large_label">Large numerals</string>',
-             '    <string name="dial_classic_label">Classic</string>',
-             '    <string name="theme_label">Background</string>',
-             '    <string name="hand_color_label">Hand color</string>']
-    for cid, label, _ in BLACK_WHITE + TAILWIND:
-        lines.append(f'    <string name="color_{cid}_label">{label}</string>')
+             '    <string name="back_label">Background</string>',
+             '    <string name="face_label">Dial face</string>',
+             '    <string name="hand_label">Hand</string>',
+             '    <string name="large_numerals_label">Large numerals</string>',
+             '    <string name="hour24_label">24-hour time</string>',
+             '    <string name="dark_ambient_label">Dark when off</string>']
+    lines.append('    <string name="back_match_label">Back: Match face</string>')
+    for prefix, word in PREFIXES.items():
+        for cid, label, _ in BLACK_WHITE + TAILWIND:
+            lines.append(f'    <string name="{prefix}_{cid}_label">'
+                         f'{word}: {label}</string>')
     lines.append('</resources>')
     return "\n".join(lines) + "\n"
+
+
+# ---- Event complication slot (experimental; no companion provider yet) ----
+# RANGED_VALUE min/max are read as minutes-of-day; on the 12-hour dial one
+# minute is half a degree. The arc sits in the free band between the tick
+# ring (which ends exactly at DIAL_R) and the screen edge.
+ARC_STROKE = 6 * SCALE                              # matches large hour ticks
+EVENT_GAP = 5 * SCALE                               # one tick-gap of separation
+ARC_R = DIAL_R + EVENT_GAP + ARC_STROKE / 2         # arc centerline
+EVENT_FONT = 15 * SCALE
+# TextCircular draws glyphs inset from its circle; measured on the Wear OS 5
+# emulator the glyph bottoms sit ~12 gabbro px inside the circle radius.
+GLYPH_DROP = 12 * SCALE
+# SHORT_TEXT has no arc: baseline one tick-gap off the tick ring.
+TEXT_R_ST = DIAL_R + EVENT_GAP + GLYPH_DROP
+# RANGED_VALUE text clears its arc by the same gap.
+TEXT_R_RV = ARC_R + ARC_STROKE / 2 + EVENT_GAP + GLYPH_DROP
+# When the hour angle points into the lower half (3..9 o'clock) the visible
+# rim is the BOTTOM of the giant dial circle, so tangent-following text
+# renders upside down unless the direction is flipped.
+FLIP = "([HOUR_0_11_MINUTE] &gt;= 3) &amp;&amp; ([HOUR_0_11_MINUTE] &lt; 9)"
+# Image complications sit upright at the same rim spot the short text uses:
+# centered on the current hour direction, one tick-gap outside the ring.
+IMG_SIZE = 20 * SCALE
+IMG_K = DIAL_R + EVENT_GAP + IMG_SIZE / 2 - DIST    # rim offset from screen center
+# RANGED_VALUE renders as a gauge riding with the hand: a quiet track
+# centered on the current hour, filled proportionally. Generic system
+# providers (battery %, weather temperature between today's low/high) all
+# read naturally this way; a calendar companion will need its own contract.
+#
+# The track must not run edge-to-edge: cap the span so its endpoints (round
+# caps included) stay a margin inside the screen circle at every hour. For a
+# point at dial angle phi off the hour direction, the distance from screen
+# center is sqrt(DIST^2 + ARC_R^2 - 2*DIST*ARC_R*cos(phi)); solve for phi at
+# the allowed maximum.
+GAUGE_EDGE_INSET = 5 * SCALE
+_reach = CX - GAUGE_EDGE_INSET - ARC_STROKE / 2
+_EDGE_LIMIT = math.degrees(math.acos(
+    (DIST ** 2 + ARC_R ** 2 - _reach ** 2) / (2 * DIST * ARC_R)))
+# A third of the edge-limited span reads as a meter, not a band.
+GAUGE_HALF = _EDGE_LIMIT / 3
+RV_FRAC = ("([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]"
+           " ? 0 : clamp(([COMPLICATION.RANGED_VALUE_VALUE] -"
+           " [COMPLICATION.RANGED_VALUE_MIN]) / ([COMPLICATION.RANGED_VALUE_MAX]"
+           " - [COMPLICATION.RANGED_VALUE_MIN]), 0, 1))")
+GAUGE_START = f"({ANGLE} - {GAUGE_HALF:.2f})"
+GAUGE_FILL_END = f"({GAUGE_START} + {2 * GAUGE_HALF:.2f} * {RV_FRAC})"
+GAUGE_TRACK_END = f"({ANGLE} + {GAUGE_HALF:.2f})"
+
+
+def event_text_variant(direction, mid_expr, text_r):
+    """Curved [COMPLICATION.TEXT] centered on mid_expr along the dial rim.
+
+    COUNTER_CLOCKWISE traverses its angles the other way, so start/end swap
+    to keep the same visual span.
+    """
+    sign = 1 if direction == "CLOCKWISE" else -1
+    start = f"({mid_expr} - {40 * sign})"
+    end = f"({mid_expr} + {40 * sign})"
+    d = 2 * text_r
+    # Providers are inconsistent about which of TITLE/TEXT carries the label
+    # (Date: TITLE="Fri" TEXT="21"; Battery: TEXT only; agenda-style sources
+    # often TITLE only), so render both. Extra whitespace collapses visually.
+    return (
+        f'        <PartText x="0" y="0" width="{CANVAS}" height="{CANVAS}">\n'
+        f'          <TextCircular centerX="0" centerY="0" width="{d:.1f}" height="{d:.1f}"'
+        f' startAngle="{-40 * sign}" endAngle="{40 * sign}" direction="{direction}" align="CENTER" ellipsis="TRUE">\n'
+        f'            <Transform target="centerX" value="{DIAL_CX}" />\n'
+        f'            <Transform target="centerY" value="{DIAL_CY}" />\n'
+        f'            <Transform target="startAngle" value="{start}" />\n'
+        f'            <Transform target="endAngle" value="{end}" />\n'
+        f'            <Font family="SYNC_TO_DEVICE" size="{EVENT_FONT:.0f}" color="{TEXT_COLOR}">'
+        f'<Template>%s %s<Parameter expression="[COMPLICATION.TITLE]" />'
+        f'<Parameter expression="[COMPLICATION.TEXT]" /></Template></Font>\n'
+        f'          </TextCircular>\n'
+        f'        </PartText>'
+    )
+
+
+def event_text(flip_name, mid_expr, text_r):
+    return "\n".join([
+        '        <Condition>',
+        '          <Expressions>',
+        f'            <Expression name="{flip_name}">{FLIP}</Expression>',
+        '          </Expressions>',
+        f'          <Compare expression="{flip_name}">',
+        event_text_variant("COUNTER_CLOCKWISE", mid_expr, text_r),
+        '          </Compare>',
+        '          <Default>',
+        event_text_variant("CLOCKWISE", mid_expr, text_r),
+        '          </Default>',
+        '        </Condition>',
+    ])
+
+
+def gauge_arc(end_expr, color):
+    d = 2 * ARC_R
+    return (
+        f'          <Arc centerX="0" centerY="0" width="{d:.1f}" height="{d:.1f}"'
+        f' startAngle="{-GAUGE_HALF:.2f}" endAngle="{GAUGE_HALF:.2f}">\n'
+        f'            <Transform target="centerX" value="{DIAL_CX}" />\n'
+        f'            <Transform target="centerY" value="{DIAL_CY}" />\n'
+        f'            <Transform target="startAngle" value="{GAUGE_START}" />\n'
+        f'            <Transform target="endAngle" value="{end_expr}" />\n'
+        f'            <Stroke color="{color}" thickness="{ARC_STROKE:.1f}" cap="ROUND" />\n'
+        f'          </Arc>'
+    )
+
+
+def event_gauge():
+    return "\n".join([
+        f'        <PartDraw x="0" y="0" width="{CANVAS}" height="{CANVAS}">',
+        gauge_arc(GAUGE_TRACK_END, MINOR_COLOR),
+        gauge_arc(GAUGE_FILL_END, HAND_COLOR),
+        '        </PartDraw>',
+    ])
+
+
+def event_image(resource, tint):
+    """Icon centered on the current hour direction, one tick-gap off the
+    ring. Icons stay upright, so no direction flip is needed."""
+    half = IMG_SIZE / 2
+    x = f"({CX:.1f} + {IMG_K:.1f} * sin(rad({ANGLE})) - {half:.1f})"
+    y = f"({CX:.1f} - {IMG_K:.1f} * cos(rad({ANGLE})) - {half:.1f})"
+    tint_attr = f' tintColor="{tint}"' if tint else ""
+    return (
+        f'        <PartImage x="{CX - half:.0f}" y="{CX - IMG_K - half:.0f}"'
+        f' width="{IMG_SIZE:.0f}" height="{IMG_SIZE:.0f}"{tint_attr}>\n'
+        f'          <Transform target="x" value="{x}" />\n'
+        f'          <Transform target="y" value="{y}" />\n'
+        f'          <Image resource="{resource}" />\n'
+        f'        </PartImage>'
+    )
+
+
+def complication_slot():
+    # Content orbits the screen center: a point at radius R from the dial
+    # center lands at R - DIST from the screen center, along the hour
+    # direction. So every complication shape lives in one ring, and a
+    # BoundingArc over that ring gives the editor a tap outline that actually
+    # marks the spot (a full-screen oval outlined nothing useful). The ring
+    # also clips content, so it is padded past the extremes:
+    #   gauge      ARC_R +/- stroke/2  -> 133..144
+    #   short text TEXT_R_ST, glyphs inward by the font size -> 128..154
+    #   gauge text TEXT_R_RV, same     -> 147..173
+    #   icon       IMG_K +/- IMG_SIZE/2 -> 133..168
+    inner = min(ARC_R - ARC_STROKE / 2, TEXT_R_ST - EVENT_FONT) - DIST - 8
+    outer = max(TEXT_R_RV, ARC_R + ARC_STROKE / 2,
+                DIST + IMG_K + IMG_SIZE / 2) - DIST + 8
+    mid = (inner + outer) / 2
+    return "\n".join([
+        f'    <ComplicationSlot slotId="0"'
+        f' supportedTypes="RANGED_VALUE SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE EMPTY"'
+        f' x="0" y="0" width="{CANVAS}" height="{CANVAS}">',
+        f'      <BoundingArc centerX="{CX:.1f}" centerY="{CX:.1f}"'
+        f' width="{2 * mid:.1f}" height="{2 * mid:.1f}"'
+        f' thickness="{outer - inner:.1f}" startAngle="0" endAngle="360"'
+        f' outlinePadding="2" />',
+        '      <Complication type="RANGED_VALUE">',
+        event_gauge(),
+        event_text("evflip_rv", ANGLE, TEXT_R_RV),
+        '      </Complication>',
+        '      <Complication type="SHORT_TEXT">',
+        event_text("evflip_st", ANGLE, TEXT_R_ST),
+        '      </Complication>',
+        '      <Complication type="MONOCHROMATIC_IMAGE">',
+        event_image("[COMPLICATION.MONOCHROMATIC_IMAGE]", TEXT_COLOR),
+        '      </Complication>',
+        '      <Complication type="SMALL_IMAGE">',
+        event_image("[COMPLICATION.SMALL_IMAGE]", None),
+        '      </Complication>',
+        '    </ComplicationSlot>',
+    ])
 
 
 def unit(angle_deg):
@@ -163,19 +392,19 @@ def label24_expression(i):
     return f"{w} == 0 ? 24 : {w}"
 
 
-def hour_tick(s, angle_deg, out):
+def hour_tick(s, angle_deg, out, text_color):
     # Round caps extend half the stroke past the endpoint; pull the outer
     # endpoint in so every mark's outermost pixel lands exactly on DIAL_R.
     x1, y1 = polar(DIAL_R - s["hour_inset"], angle_deg)
     x2, y2 = polar(DIAL_R - s["hour_stroke"] / 2, angle_deg)
     out.append(
         f'        <Line startX="{x1:.1f}" startY="{y1:.1f}" endX="{x2:.1f}" endY="{y2:.1f}">\n'
-        f'          <Stroke color="{TEXT_COLOR}" thickness="{s["hour_stroke"]:.1f}" cap="ROUND" />\n'
+        f'          <Stroke color="{text_color}" thickness="{s["hour_stroke"]:.1f}" cap="ROUND" />\n'
         f'        </Line>'
     )
 
 
-def minor_marks(s, base_angle, out):
+def minor_marks(s, base_angle, out, minor_color):
     for j in range(1, 12):
         a = base_angle + 2.5 * j
         if j % 3 == 0:
@@ -184,7 +413,7 @@ def minor_marks(s, base_angle, out):
             x2, y2 = polar(DIAL_R - s["minor_stroke"] / 2, a)
             out.append(
                 f'        <Line startX="{x1:.1f}" startY="{y1:.1f}" endX="{x2:.1f}" endY="{y2:.1f}">\n'
-                f'          <Stroke color="{MINOR_COLOR}" thickness="{s["minor_stroke"]:.1f}" cap="ROUND" />\n'
+                f'          <Stroke color="{minor_color}" thickness="{s["minor_stroke"]:.1f}" cap="ROUND" />\n'
                 f'        </Line>'
             )
         else:
@@ -193,7 +422,7 @@ def minor_marks(s, base_angle, out):
             px, py = polar(DIAL_R - r, a)
             out.append(
                 f'        <Ellipse x="{px - r:.1f}" y="{py - r:.1f}" width="{2 * r:.1f}" height="{2 * r:.1f}">\n'
-                f'          <Fill color="{MINOR_COLOR}" />\n'
+                f'          <Fill color="{minor_color}" />\n'
                 f'        </Ellipse>'
             )
 
@@ -213,65 +442,148 @@ def numeral_center(s, i, two_digits):
     return ix - (gap + d_edge) * ux, iy - (gap + d_edge) * uy
 
 
-def part_text(s, name, cx, cy, content):
+AMBIENT_FADE = ('alpha="0"',
+                '<Variant mode="AMBIENT" target="alpha" value="255" />')
+
+
+def part_text(s, name, cx, cy, content, text_color, ambient=False):
     w = 2 * s["half_w2"] + 24
     h = s["font_size"] * 1.3
     # The runtime renders Font text content verbatim: leading whitespace or a
     # newline becomes an empty first line and the digits get clipped away, so
     # the Font element must stay on ONE line with no padding around content.
+    fade, variant = AMBIENT_FADE if ambient else ("", "")
+    fade = f' {fade}' if fade else ""
+    variant = f'            {variant}\n' if variant else ""
     return (
-        f'          <PartText x="{cx - w / 2:.0f}" y="{cy - h / 2:.0f}" width="{w:.0f}" height="{h:.0f}" name="{name}">\n'
+        f'          <PartText x="{cx - w / 2:.0f}" y="{cy - h / 2:.0f}" width="{w:.0f}" height="{h:.0f}" name="{name}"{fade}>\n'
+        f'{variant}'
         f'            <Text align="CENTER">'
-        f'<Font family="helvetica_digits" size="{s["font_size"]:.0f}" color="{TEXT_COLOR}">{content}</Font>'
+        f'<Font family="helvetica_digits" size="{s["font_size"]:.0f}" color="{text_color}">{content}</Font>'
         f'</Text>\n'
         f'          </PartText>'
     )
 
 
-def numerals(s, out, tag):
-    """12h numerals statically, 24h numerals via Template, switched on
-    [IS_24_HOUR_MODE]."""
+def numerals(s, out, tag, text_color, ambient=False):
+    """12h numerals statically, 24h numerals via Template, switched on the
+    hour24 toggle."""
     h24 = []
     h12 = []
     for i in range(12):
         cx, cy = numeral_center(s, i, two_digits=True)
         expr = label24_expression(i)
         h24.append(part_text(s, f'num24_{tag}_{i}', cx, cy,
-                             f'<Template>%d<Parameter expression="{expr}" /></Template>'))
+                             f'<Template>%d<Parameter expression="{expr}" /></Template>',
+                             text_color, ambient))
         label = 12 if i == 0 else i
         cx, cy = numeral_center(s, i, two_digits=label >= 10)
-        h12.append(part_text(s, f'num12_{tag}_{i}', cx, cy, str(label)))
-    out.append('        <Condition>')
-    out.append('          <Expressions>')
-    out.append(f'            <Expression name="h24_{tag}">[IS_24_HOUR_MODE]</Expression>')
-    out.append('          </Expressions>')
-    out.append(f'          <Compare expression="h24_{tag}">')
+        h12.append(part_text(s, f'num12_{tag}_{i}', cx, cy, str(label),
+                             text_color, ambient))
+    # A BooleanOption holds exactly one child, so each numeral set is grouped.
+    out.append('        <BooleanConfiguration id="hour24">')
+    out.append('          <BooleanOption id="TRUE">')
+    out.append(f'            <Group x="0" y="0" width="{DIAL_SIZE:.0f}"'
+               f' height="{DIAL_SIZE:.0f}" name="num24_{tag}">')
     out.extend(h24)
-    out.append('          </Compare>')
-    out.append('          <Default>')
+    out.append('            </Group>')
+    out.append('          </BooleanOption>')
+    out.append('          <BooleanOption id="FALSE">')
+    out.append(f'            <Group x="0" y="0" width="{DIAL_SIZE:.0f}"'
+               f' height="{DIAL_SIZE:.0f}" name="num12_{tag}">')
     out.extend(h12)
-    out.append('          </Default>')
-    out.append('        </Condition>')
+    out.append('            </Group>')
+    out.append('          </BooleanOption>')
+    out.append('        </BooleanConfiguration>')
 
 
-def dial_variant(style_name):
+def dial_body(style_name, tag, text_color, minor_color, disc, ambient=False):
+    """One dial: optional face disc, then marks and numerals in the colors of
+    whatever they sit on."""
     s = STYLES[style_name]
+    fade, variant = AMBIENT_FADE if ambient else ("", "")
     out = []
-    out.append(f'    <ListOption id="{style_name}">')
-    out.append(f'      <Group x="0" y="0" width="{DIAL_SIZE:.0f}" height="{DIAL_SIZE:.0f}" name="dial_{style_name}">')
-    out.append(f'        <Transform target="x" value="{GROUP_X}" />')
-    out.append(f'        <Transform target="y" value="{GROUP_Y}" />')
-    out.append(f'        <PartDraw x="0" y="0" width="{DIAL_SIZE:.0f}" height="{DIAL_SIZE:.0f}">')
+    out.append(f'        <Group x="0" y="0" width="{DIAL_SIZE:.0f}"'
+               f' height="{DIAL_SIZE:.0f}" name="dial_{tag}">')
+    out.append(f'          <PartDraw x="0" y="0" width="{DIAL_SIZE:.0f}"'
+               f' height="{DIAL_SIZE:.0f}"{" " + fade if fade else ""}>')
+    if variant:
+        out.append(f'            {variant}')
+    if disc:
+        # First, so the marks land on top of it. Its radius clears the marker
+        # ring by FACE_OVERSHOOT, exactly filling the widened group.
+        out.append(f'            <Ellipse x="{DC - FACE_R:.1f}" y="{DC - FACE_R:.1f}"'
+                   f' width="{2 * FACE_R:.1f}" height="{2 * FACE_R:.1f}">\n'
+                   f'              <Fill color="{FACE_COLOR}" />\n'
+                   f'            </Ellipse>')
     marks = []
     for i in range(12):
-        hour_tick(s, i * 30.0, marks)
-        minor_marks(s, i * 30.0, marks)
+        hour_tick(s, i * 30.0, marks, text_color)
+        minor_marks(s, i * 30.0, marks, minor_color)
     out.extend(marks)
-    out.append('        </PartDraw>')
-    numerals(s, out, style_name)
+    out.append('          </PartDraw>')
+    numerals(s, out, tag, text_color, ambient)
+    out.append('        </Group>')
+    return out
+
+
+def dial_variant(style_name, option_id, ambient=False):
+    """The dial, positioned on the orbiting center. The ambient copy carries
+    no face disc and is drawn in fixed light colors, faded in only when the
+    screen goes idle."""
+    tag = f'{style_name}_amb' if ambient else style_name
+    text = AMBIENT_TEXT if ambient else FACE_TEXT
+    minor = AMBIENT_MINOR if ambient else FACE_MINOR
+    out = []
+    out.append(f'    <BooleanOption id="{option_id}">')
+    out.append(f'      <Group x="0" y="0" width="{DIAL_SIZE:.0f}"'
+               f' height="{DIAL_SIZE:.0f}" name="dialpos_{tag}">')
+    out.append(f'        <Transform target="x" value="{GROUP_X}" />')
+    out.append(f'        <Transform target="y" value="{GROUP_Y}" />')
+    out.extend(dial_body(style_name, tag, text, minor,
+                         disc=not ambient, ambient=ambient))
     out.append('      </Group>')
-    out.append('    </ListOption>')
+    out.append('    </BooleanOption>')
     return "\n".join(out)
+
+
+def dark_ambient():
+    """Veil the whole face black and fade in a light dial, when idle. Only the
+    TRUE option is emitted: with the toggle off nothing is added at all."""
+    fade, variant = AMBIENT_FADE
+    return "\n".join([
+        '    <BooleanConfiguration id="darkAmbient">',
+        '      <BooleanOption id="TRUE">',
+        f'        <Group x="0" y="0" width="{CANVAS}" height="{CANVAS}"'
+        f' name="dark_ambient">',
+        f'          <PartDraw x="0" y="0" width="{CANVAS}"'
+        f' height="{CANVAS}" {fade}>',
+        f'            {variant}',
+        f'            <Rectangle x="0" y="0" width="{CANVAS}"'
+        f' height="{CANVAS}">',
+        f'              <Fill color="{AMBIENT_VEIL}" />',
+        '            </Rectangle>',
+        '          </PartDraw>',
+        '          <BooleanConfiguration id="largeNumerals">',
+        dial_variant("large", "TRUE", ambient=True),
+        dial_variant("classic", "FALSE", ambient=True),
+        '          </BooleanConfiguration>',
+        '        </Group>',
+        '      </BooleanOption>',
+        '    </BooleanConfiguration>',
+    ])
+
+
+def background():
+    """Painted over the scene's face-colored ground. The default background
+    option is fully transparent, which leaves the face color showing."""
+    return "\n".join([
+        f'    <PartDraw x="0" y="0" width="{CANVAS}" height="{CANVAS}">',
+        f'      <Rectangle x="0" y="0" width="{CANVAS}" height="{CANVAS}">',
+        f'        <Fill color="{BG_COLOR}" />',
+        '      </Rectangle>',
+        '    </PartDraw>',
+    ])
 
 
 def watchface():
@@ -287,11 +599,14 @@ def watchface():
   <Metadata key="CLOCK_TYPE" value="ANALOG" />
   <Metadata key="PREVIEW_TIME" value="07:07:00" />
 {user_configurations()}
-  <Scene backgroundColor="{BG_COLOR}">
-    <ListConfiguration id="dialStyle">
-{dial_variant("large")}
-{dial_variant("classic")}
-    </ListConfiguration>
+  <Scene backgroundColor="{FACE_COLOR}">
+{background()}
+    <BooleanConfiguration id="largeNumerals">
+{dial_variant("large", "TRUE")}
+{dial_variant("classic", "FALSE")}
+    </BooleanConfiguration>
+{dark_ambient()}
+{complication_slot()}
     <Group x="0" y="0" width="{DIAL_SIZE:.0f}" height="{DIAL_SIZE:.0f}" name="hand" angle="0" pivotX="0.5" pivotY="0.5">
       <Transform target="x" value="{GROUP_X}" />
       <Transform target="y" value="{GROUP_Y}" />
