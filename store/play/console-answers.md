@@ -38,17 +38,53 @@ Everything the Console forms ask, decided once. Fill from here.
 - Wear OS screenshots: `wear-1-hero.png`, `wear-2-24h.png`,
   `wear-3-indigo.png`, `wear-4-classic.png` (1:1, 1080×1080).
 
+The Wear OS form factor has a 3-step checklist (Advanced settings → Form
+factors) that gates public availability:
+
+1. Upload Wear OS screenshots for all store listings
+2. Release a Wear OS bundle to a testing track
+3. Opt-in to Wear OS and agree to the review policy (locked until 1 and 2)
+
+**Step 1 only ticks once the listing is saved out of draft.** Uploading
+screenshots leaves the listing in "Draft changes"; you must click through
+Next → Save so it reads "Changes ready to send for review". Until then the
+checklist stays incomplete, step 3 stays locked, and the app cannot reach
+production no matter what else is done.
+
 ## Release
 
 | Field | Value |
 |---|---|
-| Track | Internal testing first; promote to Production after install check |
+| Track | Production, with the track's form-factor selector set to **Wear OS only** |
 | AAB | wear/wff/build/outputs/bundle/release/wff-release.aab |
-| versionCode / versionName | 1 / 1.0.0 |
 | Play App Signing | Accept (Google holds signing key; our jks is the upload key) |
-| Release name | 1.0.0 |
+| Release name | Defaults to `<versionCode> (<versionName>)` |
 
-## Release notes (What's new, 431/500)
+A Wear-only app cannot go on the default "Phones, Tablets, Chrome OS,
+Android XR" production track — Play rejects the bundle and tells you to use
+a dedicated Wear OS track. Pick "Wear OS only" from the dropdown next to the
+Production heading first; it is a separate track with its own releases.
+
+### Version history
+
+| versionCode | versionName | Notes |
+|---|---|---|
+| 1 | 1.0.0 | First release; internal testing only |
+| 2 | 1.1.0 | Complication slot; first production rollout |
+
+## Release notes (What's new)
+
+### 1.1.0 (versionCode 2, 374/500)
+
+```
+One optional complication now rides along the dial's edge.
+
+Pick any complication from your watch: weather, battery, date, or an app shortcut. Numeric values draw a small gauge beside the hand, text curves along the dial and turns to stay upright as the hours pass, and icons sit at the rim.
+
+Leave it empty and the face is unchanged. Still no data collected, no permissions.
+```
+
+### 1.0.0 (versionCode 1, 431/500)
 
 ```
 Chronology's first Wear OS release, ten years after the Pebble original.

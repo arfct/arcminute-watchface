@@ -121,13 +121,57 @@ Gotchas learned the hard way:
 - `<Compare expression="...">` inside `<Condition>` must be exactly the bare
   `name` of an `<Expression>` in the same Condition (no brackets), and those
   names must be unique across the whole document.
-- Style differences from the Kotlin version: transparent-face/face-color are
-  folded into the theme color options (each `ColorOption` carries
-  `bg text minor` colors); 24h labels use `floor()` where C truncates toward
-  zero, differing only at the 6-hour tie point.
+- **Color attributes take one configuration reference or one literal — no
+  expressions.** `colorAttributeType` is the pattern
+  `\[[A-Z0-9]+(\.\w+)*\]|#([A-Fa-f0-9]{6,8})`, so a color cannot be chosen
+  with a ternary. Anything genuinely color-conditional has to become two
+  branches of a `BooleanConfiguration`, which doubles whatever it wraps —
+  prefer a transparent color option, as the background does below.
+- `BooleanConfiguration` has two forms: a self-closing declaration in
+  `<UserConfigurations>`, and a container in the scene whose
+  `<BooleanOption id="TRUE|FALSE">` holds **exactly one** child element.
+  The editor groups every boolean onto a single toggles page, placed after
+  the color pages; the complications page comes before it.
+- Complication slots are outlined in the editor from their bounding shape,
+  and content outside that shape is clipped. Chronology's complication
+  orbits the screen center, so it uses a full-circle `BoundingArc` over that
+  ring — a screen-sized `BoundingOval` outlines the bezel and marks nothing.
+- 24h labels use `floor()` where C truncates toward zero, differing only at
+  the 6-hour tie point.
+
+Configuration model (mirrors pebble's `BG_HEX` / `FACE_HEX` / `FACE_CLEAR` /
+`HAND_HEX`, inverted). The **face is the single source of color**: its
+`ColorOption` carries `fill text minor`, filling the dial disc and every
+mark drawn on it, so marks are always readable on the face whatever the
+background does. The **background** is a plain fill painted over a
+face-colored scene, and its default option is `#00000000` — fully
+transparent, so the face color shows through and the screen reads as one
+surface. That reproduces pebble's `FACE_CLEAR` with no toggle and no
+conditional colors, which is why the dial is emitted once (~75 KB) rather
+than twice. Choosing a real background color paints over the ground and the
+disc rim becomes visible.
+
+The face disc is drawn `8 * SCALE` past the marker ring, as in
+`my_face_draw` (`bounds.size.w / 2 + 8`), so the rim sits just outside the
+ticks; the dial group is widened by that much at each edge to avoid
+clipping it.
+
+"Dark when off" (`darkAmbient`, default off) veils the face black when the
+screen idles. `Variant` carries only numeric values — it can swap `alpha`,
+never a color — so ambient is an alpha crossfade, not a recolor: a
+full-screen black rectangle and a second dial in fixed light colors both sit
+at `alpha="0"` with `<Variant mode="AMBIENT" target="alpha" value="255" />`.
+The second dial is unavoidable; marks drawn in a light face's dark text
+would vanish against the veil. Only the `TRUE` BooleanOption is emitted, so
+with the toggle off nothing extra is added to the scene at all.
 
 Verified on the API 34 (Wear OS 5) emulator: both dial styles, 12h/24h
-labels, theme colors, and the system style editor.
+labels, matched and separate backgrounds, all three color settings, the
+toggles page, and the complication outline.
+
+Testing note: a config `defaultValue` does **not** apply to a watch face
+whose style is already stored, so changing a default and reinstalling shows
+the old value. Uninstall first when testing defaults.
 
 ### Play Store release
 
@@ -145,6 +189,15 @@ Notes:
 - A WFF package with minSdk >= 33 must contain NO dex files; release uses
   `isMinifyEnabled = true` so R8 strips the empty generated classes.
   bundleRelease fails with "cannot have dex files" if this regresses.
+- Publish to the **Production** track with its form-factor selector set to
+  "Wear OS only" — a separate track from the default phones/tablets one,
+  which rejects a watch-only bundle outright.
+- Store listing edits (screenshots, icon) sit in a "Draft changes" state
+  until you click Next → Save. Draft assets do not count toward the Wear OS
+  form-factor checklist, which silently blocks the Wear opt-in and therefore
+  all public availability. If the checklist looks stuck, open the listing and
+  check whether it says "Draft changes" instead of "Changes ready to send for
+  review".
 - Pre-check the Play watch face memory gate with google/watchface's
   `memory-footprint.jar --watch-face <aab> --schema-version 1`.
 - The `chronology_wear` AVD is configured at 1080x1080 (native) for
