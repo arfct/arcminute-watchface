@@ -29,10 +29,17 @@ pebble logs --emulator <platform>
 pebble screenshot <output.png> --emulator <platform>
 ```
 
+The SDK is installed per-user, not vendored. To set it up from scratch:
+```
+brew install uv && uv tool install --python 3.13 pebble-tool && pebble sdk install 4.33.1
+```
+`gabbro` needs 4.17 or newer; 4.9.169 predates it. The tool lands in
+`~/.local/bin`, the SDK in `~/Library/Application Support/Pebble SDK/SDKs/`.
+
 If an emulator gets stuck at boot, wipe its flash:
 ```
-pkill -9 -f <platform>
-rm ~/Library/Application\ Support/Pebble\ SDK/4.9.169/<platform>/qemu_spi_flash.bin
+pebble kill
+rm ~/Library/Application\ Support/Pebble\ SDK/SDKs/4.33.1/<platform>/qemu_spi_flash.bin
 ```
 
 ### Configuration
@@ -46,6 +53,7 @@ Settings are sent from the phone JS layer to the watch via `Pebble.sendAppMessag
 | `HAND_HEX` | 10002 | 7 | Hand color |
 | `FACE_CLEAR` | 10003 | 8 | Transparent face toggle |
 | `DIAL_STYLE` | 10004 | 9 | 0 = classic, 1 = large numerals |
+| `THICK_HAND` | 10005 | 10 | Draws the hand one pixel wider |
 
 To send a setting to a running emulator:
 ```
@@ -64,6 +72,32 @@ done
 ```
 
 To force a default setting for a build (e.g. screenshots), temporarily change the fallback value in `pebble/src/c/chronology.c` where persist keys are read on init, then revert after.
+
+### Publishing
+
+The store listing is managed at **https://developer.repebble.com/dashboard**
+(Core Devices' dashboard — *not* `dev-portal.rebble.io`, which is the older
+Rebble portal and does not manage this listing).
+
+| Fact | Value |
+|------|-------|
+| App UUID | `6ed35b3b-813b-402c-b3ed-c7d0146f70ec` |
+| Store listing | "Chronology 2" by Artifact |
+| Appstore id | `68937d18f7ca35000951da1b` |
+
+The UUID must match for a release to update the existing listing instead of
+creating a duplicate, and a release is only accepted if its version is
+greater than every already-published release.
+
+Checked 2026-09-01: the live store build was still **2.0** — targeting only
+aplite/basalt/chalk/diorite (no emery, no gabbro, so it does not run on a
+Pebble 2 Duo) with `INVERT_COLORS` as its only setting. Everything in the
+current config system is unpublished. Inspect what is actually live with:
+```
+curl -s https://appstore-api.rebble.io/api/v1/apps/id/68937d18f7ca35000951da1b
+```
+then download the `pbw_file` URL from `latest_release` and read its
+`appinfo.json`.
 
 ### Code structure
 
