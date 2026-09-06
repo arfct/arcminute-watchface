@@ -1,4 +1,4 @@
-# Chronology
+# Arcminute
 
 A watchface with an analog dial whose rim sweeps through the screen at the
 current hour, configurable colors, and two dial styles (classic and large
@@ -71,7 +71,7 @@ for platform in aplite basalt chalk diorite emery gabbro; do
 done
 ```
 
-To force a default setting for a build (e.g. screenshots), temporarily change the fallback value in `pebble/src/c/chronology.c` where persist keys are read on init, then revert after.
+To force a default setting for a build (e.g. screenshots), temporarily change the fallback value in `pebble/src/c/arcminute.c` where persist keys are read on init, then revert after.
 
 ### Publishing
 
@@ -82,7 +82,7 @@ Rebble portal and does not manage this listing).
 | Fact | Value |
 |------|-------|
 | App UUID | `6ed35b3b-813b-402c-b3ed-c7d0146f70ec` |
-| Store listing | "Chronology 2" by Artifact |
+| Store listing | "Arcminute" by Artifact (formerly "Chronology 2") |
 | Appstore id | `68937d18f7ca35000951da1b` |
 
 The UUID must match for a release to update the existing listing instead of
@@ -101,7 +101,7 @@ then download the `pbw_file` URL from `latest_release` and read its
 
 ### Code structure
 
-- `pebble/src/c/chronology.c` — main watchface logic (drawing, config handling)
+- `pebble/src/c/arcminute.c` — main watchface logic (drawing, config handling)
 - `pebble/src/pkjs/index.js` — phone-side JS, sends config messages to watch
 - `pebble/src/pkjs/config.js` — Clay config schema for the settings UI
 - `pebble/resources/fonts/` — custom digit fonts
@@ -138,7 +138,7 @@ never hand-edit the XML.**
 Activate on an emulator/device (WFF faces are addressed by package, not
 component):
 ```
-adb shell am broadcast -a com.google.android.wearable.app.DEBUG_SURFACE --es operation set-watchface --es watchFaceId com.artifact.chronology.wff
+adb shell am broadcast -a com.google.android.wearable.app.DEBUG_SURFACE --es operation set-watchface --es watchFaceId com.artifact.arcminute.wff
 ```
 
 Validate the XML with Google's official validator (build it once from
@@ -167,7 +167,7 @@ Gotchas learned the hard way:
   The editor groups every boolean onto a single toggles page, placed after
   the color pages; the complications page comes before it.
 - Complication slots are outlined in the editor from their bounding shape,
-  and content outside that shape is clipped. Chronology's complication
+  and content outside that shape is clipped. Arcminute's complication
   orbits the screen center, so it uses a full-circle `BoundingArc` over that
   ring — a screen-sized `BoundingOval` outlines the bezel and marks nothing.
 - 24h labels use `floor()` where C truncates toward zero, differing only at
@@ -246,4 +246,4 @@ Notes:
 
 Rendering uses gabbro (260 px) as the reference coordinate space: all pixel
 constants are gabbro values scaled by `screenMinDim / 260`.
-`pebble/src/c/chronology.c` is the source of truth for geometry.
+`pebble/src/c/arcminute.c` is the source of truth for geometry.

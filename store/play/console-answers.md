@@ -1,4 +1,4 @@
-# Play Console answer sheet — Chronology
+# Play Console answer sheet — Arcminute
 
 Everything the Console forms ask, decided once. Fill from here.
 
@@ -6,14 +6,14 @@ Everything the Console forms ask, decided once. Fill from here.
 
 | Field | Value |
 |---|---|
-| App name | Chronology |
+| App name | Arcminute |
 | Default language | English (United States) — en-US |
 | App or game | App |
 | Free or paid | Free |
 | Category | Personalization |
 | Tags | Watch faces |
 | Contact email | support@artifact.com |
-| Privacy policy | https://arfct.github.io/chronology-watchface/privacy.html |
+| Privacy policy | https://arfct.github.io/arcminute-watchface/privacy.html |
 
 ## Declarations
 
@@ -87,7 +87,7 @@ Leave it empty and the face is unchanged. Still no data collected, no permission
 ### 1.0.0 (versionCode 1, 431/500)
 
 ```
-Chronology's first Wear OS release, ten years after the Pebble original.
+Arcminute's first Wear OS release, ten years after the Pebble original.
 
 A dial three times wider than your watch slides past the screen; you see the hour it is now, the minute marks around it, and a hand crossing from off-screen. In 24-hour mode the dial renumbers itself after noon.
 
