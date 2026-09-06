@@ -64,5 +64,5 @@ dkms.conf
 /wear/.kotlin
 
 # Release signing (never commit - repo is public)
-/wear/upload-keystore.jks
-/wear/keystore.properties
+/wear/upload-keystore.jks*
+/wear/keystore.properties*

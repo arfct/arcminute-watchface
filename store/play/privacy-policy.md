@@ -1,10 +1,10 @@
-# Chronology privacy policy
+# Arcminute privacy policy
 
 Effective 2026-08-21.
 
-Chronology is a watch face for Wear OS, published by Artifact.
+Arcminute is a watch face for Wear OS, published by Artifact.
 
-Chronology does not collect, store, transmit, sell, or share any personal
+Arcminute does not collect, store, transmit, sell, or share any personal
 data or any other data. It has no network access, no analytics, no
 advertising, no accounts, and it requests no permissions.
 

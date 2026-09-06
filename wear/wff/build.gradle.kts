@@ -12,13 +12,13 @@ val keystoreProps = Properties().apply {
 }
 
 android {
-    namespace = "com.artifact.chronology.wff"
+    namespace = "com.artifact.arcminute.wff"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.artifact.chronology.wff"
+        applicationId = "com.artifact.arcminute.wff"
         minSdk = 33
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 2
         versionName = "1.1.0"
     }

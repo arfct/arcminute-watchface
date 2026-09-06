@@ -1,5 +1,5 @@
 {
-  "name": "Chronology",
+  "name": "Arcminute",
   "author": "Artifact",
   "version": "2.4.0",
   "keywords": [
@@ -15,7 +15,7 @@
     "install-phone": "pebble build && pebble install --cloudpebble"
   },
   "pebble": {
-    "displayName": "Chronology",
+    "displayName": "Arcminute",
     "uuid": "6ed35b3b-813b-402c-b3ed-c7d0146f70ec",
     "sdkVersion": "3",
     "enableMultiJS": true,

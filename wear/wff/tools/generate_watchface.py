@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Generates res/raw/watchface.xml for the Chronology Watch Face Format port.
+"""Generates res/raw/watchface.xml for the Arcminute Watch Face Format port.
 
-The geometry is the same orbiting-dial design as pebble/src/c/chronology.c and
-wear/app's ChronologyRenderer.kt: a dial three screen-sizes wide whose center
+The geometry is the same orbiting-dial design as pebble/src/c/arcminute.c and
+wear/app's ArcminuteRenderer.kt: a dial three screen-sizes wide whose center
 sits opposite the current hour angle, so the rim (numerals + ticks) sweeps
 through the visible screen, plus a hand from the dial center to the
 current-hour rim point.
@@ -23,7 +23,7 @@ ORBIT = 188 * SCALE             # 325.4
 DIST = CX + ORBIT               # dial-center distance from screen center
 DIAL_R = 1.5 * CANVAS           # 675
 # The face disc is filled 8 gabbro px past the marker ring, as in
-# chronology.c's my_face_draw (`bounds.size.w / 2 + 8`), so its edge reads as
+# arcminute.c's my_face_draw (`bounds.size.w / 2 + 8`), so its edge reads as
 # a rim just outside the ticks rather than slicing through them. The dial
 # group is grown by the same amount at every edge so the disc is not clipped;
 # every interior coordinate is measured from DC, so widening the group and

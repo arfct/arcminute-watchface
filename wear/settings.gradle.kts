@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "chronology-wear"
+rootProject.name = "arcminute-wear"
 include(":wff")

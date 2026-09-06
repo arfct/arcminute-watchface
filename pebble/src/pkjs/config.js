@@ -1,7 +1,7 @@
 module.exports = [
   {
     "type": "heading",
-    "defaultValue": "Chronology Configuration"
+    "defaultValue": "Arcminute Configuration"
   },
   {
     "type": "section",
