@@ -75,29 +75,68 @@ To force a default setting for a build (e.g. screenshots), temporarily change th
 
 ### Publishing
 
-The store listing is managed at **https://developer.repebble.com/dashboard**
-(Core Devices' dashboard — *not* `dev-portal.rebble.io`, which is the older
-Rebble portal and does not manage this listing).
+**There are two separate Pebble app stores, and this app is listed on both
+with different state.** They share the UUID but have different app ids,
+different titles and different live versions. Do not assume one reflects the
+other — an earlier version of this file conflated them.
 
-| Fact | Value |
-|------|-------|
-| App UUID | `6ed35b3b-813b-402c-b3ed-c7d0146f70ec` |
-| Store listing | "Arcminute" by Artifact (formerly "Chronology 2") |
-| Appstore id | `68937d18f7ca35000951da1b` |
+| | RePebble (Core Devices) | Rebble (community) |
+|---|---|---|
+| Dashboard | https://developer.repebble.com/dashboard | `dev-portal.rebble.io` |
+| API host | `appstore-api.repebble.com` | `appstore-api.rebble.io` |
+| App id | `72fb25c0fe5544428d71d221` | `68937d18f7ca35000951da1b` |
+| Title | "Arcminute" (was "Chronology") | "Arcminute" (was "Chronology 2") |
+| Live version (2026-09-07) | **2.5.0** | **2.5.0** |
 
+RePebble carries the full release history (2.0 → 2.5.0). Rebble was stranded
+at 2.0 — four platforms, `INVERT_COLORS` as its only setting — until 2.5.0
+brought it level on 2026-09-07. Store *metadata* on both sites claims platform
+support independently of what the binary targets, so never trust it.
+
+Shared facts: App UUID `6ed35b3b-813b-402c-b3ed-c7d0146f70ec`, author Artifact.
 The UUID must match for a release to update the existing listing instead of
-creating a duplicate, and a release is only accepted if its version is
-greater than every already-published release.
+creating a duplicate, and a release is only accepted if its version is greater
+than every already-published release **on that store**.
 
-Checked 2026-09-01: the live store build was still **2.0** — targeting only
-aplite/basalt/chalk/diorite (no emery, no gabbro, so it does not run on a
-Pebble 2 Duo) with `INVERT_COLORS` as its only setting. Everything in the
-current config system is unpublished. Inspect what is actually live with:
+Inspect what is actually live on either store — the id lookup only works on
+Rebble, so use the UUID lookup for RePebble:
 ```
+curl -s https://appstore-api.repebble.com/api/v1/apps/uuid/6ed35b3b-813b-402c-b3ed-c7d0146f70ec
 curl -s https://appstore-api.rebble.io/api/v1/apps/id/68937d18f7ca35000951da1b
 ```
 then download the `pbw_file` URL from `latest_release` and read its
-`appinfo.json`.
+`appinfo.json` — store metadata is not a reliable guide to what the binary
+actually targets.
+
+#### Store screenshots
+
+Store device names map to SDK codenames like this (RePebble shows device names,
+Rebble shows codenames):
+
+| Codename | Store name | Screenshot size |
+|---|---|---|
+| aplite | Pebble Classic | 144×168 |
+| basalt | Pebble Time | 144×168 |
+| chalk | Pebble Time Round | 180×180 |
+| diorite | Pebble 2 | 144×168 |
+| emery | Pebble Time 2 | 200×228 |
+| flint | **Pebble 2 Duo** | 144×168 |
+| gabbro | **Pebble Round 2** | 260×260 |
+
+Banners are 720×320 on both. The default dial style is large numerals, so the
+first screenshot on every platform should be the large-numeral capture in
+`store/screenshots/` — those files are already large-numeral; the stores had
+older small-numeral shots uploaded ahead of them.
+
+- **RePebble** is add-and-delete only with no reordering; the share card is
+  regenerated from whichever screenshot is first.
+- **Rebble** has five fixed slots per platform and refuses to delete the last
+  one, so upload the replacement *before* deleting the old shot. Deletes are
+  immediate and bypass "Update & Publish". The icon buttons (‹ trash ›) are
+  unlabeled — the delete dialog previews the image, so check it before
+  confirming.
+- `npm run screenshots` does not cover flint. Capture it separately:
+  `pebble install --emulator flint && pebble screenshot store/screenshots/screenshot_flint.png --emulator flint --no-open`.
 
 ### Code structure
 
