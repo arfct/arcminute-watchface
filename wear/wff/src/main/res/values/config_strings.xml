@@ -6,7 +6,6 @@
     <string name="hand_label">Hand</string>
     <string name="large_numerals_label">Large numerals</string>
     <string name="hour24_label">24-hour time</string>
-    <string name="dark_ambient_label">Dark when off</string>
     <string name="back_match_label">Back: Match face</string>
     <string name="back_black_label">Back: Black</string>
     <string name="back_white_label">Back: White</string>

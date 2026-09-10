@@ -8,9 +8,12 @@
         android:icon="@drawable/preview"
         android:hasCode="false">
 
+        <!-- Format 4 (Wear OS 6, API 36) for the ambient transition
+             attributes on Variant. minSdk must match this, or Play offers the
+             face to watches whose runtime cannot render it. -->
         <property
             android:name="com.google.wear.watchface.format.version"
-            android:value="1" />
+            android:value="4" />
 
         <meta-data
             android:name="com.google.android.wearable.standalone"
