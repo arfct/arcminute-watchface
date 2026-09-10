@@ -389,9 +389,30 @@ captures, so the same column samples different features. Use the numeral
 bounding box, which is rotation-invariant.
 
 A real watch drops adb the instant it sleeps, truncating captures and
-killing `screenrecord` mid-file. **Use the Wear OS 6 emulator for anything
-ambient**; it holds the connection and `screen_off_timeout` forces DOZE on
-demand.
+killing `screenrecord` mid-file. Use an emulator for capture mechanics; it
+holds the connection and `screen_off_timeout` forces DOZE on demand. Do
+**not** trust it for gradients — see the `positions` note above.
+
+### Wireless debugging on a real watch
+
+`wear/tools/deploy-watch.sh` builds, installs, activates and hangs up.
+
+> **`adb disconnect` does not stick.** adb runs its own mDNS discovery and
+> **auto-connects** to anything advertising `_adb-tls-connect` — the device
+> reappears under its service name (`adb-<serial>-<hash>._adb-tls-connect._tcp`)
+> rather than as `host:port`, which is the tell. `ADB_MDNS_AUTO_CONNECT=0`
+> is what actually stops it; the script exports it.
+
+The connect port is **not stable**: it changes whenever Wireless debugging is
+toggled on the watch (seen go 42765 → 45989). Pairing survives, so no new
+code is needed, but the port has to be rediscovered — hence the mDNS lookup.
+The *pairing* port rotates separately and its code is single-use, so a code
+is only good for the dialog that is currently open.
+
+To stop the watch advertising at all (and stop the "Wireless debugging
+connected" notification landing on the face, where it intercepts the
+long-press that opens the style editor), turn Wireless debugging off in
+Developer options. It also turns itself off on reboot.
 
 Testing note: a config `defaultValue` does **not** apply to a watch face
 whose style is already stored, so changing a default and reinstalling shows
