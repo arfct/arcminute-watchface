@@ -86,10 +86,14 @@
     </PartDraw>
     <BooleanConfiguration id="largeNumerals">
     <BooleanOption id="TRUE">
-      <Group x="0" y="0" width="1378" height="1378" name="dialpos_large" alpha="255">
+      <Group x="0" y="0" width="1378" height="1378" name="dialpos_large" alpha="255" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
         <Variant mode="AMBIENT" target="alpha" value="0" startOffset="0.1" duration="0.5" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleX" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleY" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
         <Transform target="x" value="(-463.8 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
         <Transform target="y" value="(-463.8 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
+        <Transform target="pivotX" value="((688.8 + 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
+        <Transform target="pivotY" value="((688.8 - 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
         <Group x="0" y="0" width="1378" height="1378" name="dial_large">
           <PartDraw x="0" y="0" width="1378" height="1378">
             <Ellipse x="0.0" y="0.0" width="1377.7" height="1377.7">
@@ -614,10 +618,14 @@
       </Group>
     </BooleanOption>
     <BooleanOption id="FALSE">
-      <Group x="0" y="0" width="1378" height="1378" name="dialpos_classic" alpha="255">
+      <Group x="0" y="0" width="1378" height="1378" name="dialpos_classic" alpha="255" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
         <Variant mode="AMBIENT" target="alpha" value="0" startOffset="0.1" duration="0.5" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleX" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleY" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
         <Transform target="x" value="(-463.8 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
         <Transform target="y" value="(-463.8 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
+        <Transform target="pivotX" value="((688.8 + 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
+        <Transform target="pivotY" value="((688.8 - 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
         <Group x="0" y="0" width="1378" height="1378" name="dial_classic">
           <PartDraw x="0" y="0" width="1378" height="1378">
             <Ellipse x="0.0" y="0.0" width="1377.7" height="1377.7">
@@ -1144,10 +1152,14 @@
     </BooleanConfiguration>
     <BooleanConfiguration id="largeNumerals">
     <BooleanOption id="TRUE">
-      <Group x="0" y="0" width="1378" height="1378" name="dialpos_large_amb" alpha="0">
+      <Group x="0" y="0" width="1378" height="1378" name="dialpos_large_amb" alpha="0" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
         <Variant mode="AMBIENT" target="alpha" value="255" startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT" />
+        <Variant mode="AMBIENT" target="scaleX" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleY" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
         <Transform target="x" value="(-463.8 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
         <Transform target="y" value="(-463.8 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
+        <Transform target="pivotX" value="((688.8 + 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
+        <Transform target="pivotY" value="((688.8 - 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
         <Group x="0" y="0" width="1378" height="1378" name="dial_large_amb">
           <PartDraw x="0" y="0" width="1378" height="1378">
         <Line startX="688.8" startY="61.8" endX="688.8" endY="19.0">
@@ -1669,10 +1681,14 @@
       </Group>
     </BooleanOption>
     <BooleanOption id="FALSE">
-      <Group x="0" y="0" width="1378" height="1378" name="dialpos_classic_amb" alpha="0">
+      <Group x="0" y="0" width="1378" height="1378" name="dialpos_classic_amb" alpha="0" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
         <Variant mode="AMBIENT" target="alpha" value="255" startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT" />
+        <Variant mode="AMBIENT" target="scaleX" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleY" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
         <Transform target="x" value="(-463.8 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
         <Transform target="y" value="(-463.8 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
+        <Transform target="pivotX" value="((688.8 + 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
+        <Transform target="pivotY" value="((688.8 - 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
         <Group x="0" y="0" width="1378" height="1378" name="dial_classic_amb">
           <PartDraw x="0" y="0" width="1378" height="1378">
         <Line startX="688.8" startY="37.7" endX="688.8" endY="16.4">
@@ -2286,18 +2302,21 @@
       </Complication>
       <Variant mode="AMBIENT" target="alpha" value="0" startOffset="0.5" duration="0.5" interpolation="EASE_OUT" />
     </ComplicationSlot>
-    <Group x="0" y="0" width="1378" height="1378" name="hand" angle="0" pivotX="0.5" pivotY="0.5" alpha="255" scaleX="1" scaleY="1">
-      <Variant mode="AMBIENT" target="scaleX" value="0.98" startOffset="0.4" duration="0.6" interpolation="OVERSHOOT" />
-      <Variant mode="AMBIENT" target="scaleY" value="0.98" startOffset="0.4" duration="0.6" interpolation="OVERSHOOT" />
-      <Variant mode="AMBIENT" target="alpha" value="190" startOffset="0.4" duration="0.6" interpolation="EASE_OUT" />
+    <Group x="0" y="0" width="1378" height="1378" name="handscale" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
+      <Variant mode="AMBIENT" target="scaleX" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+      <Variant mode="AMBIENT" target="scaleY" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
       <Transform target="x" value="(-463.8 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
       <Transform target="y" value="(-463.8 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
-      <Transform target="angle" value="(30 * [HOUR_0_11_MINUTE])" />
-      <PartDraw x="0" y="0" width="1378" height="1378">
-        <Line startX="688.8" startY="688.8" endX="688.8" endY="19.9">
-          <Stroke color="[CONFIGURATION.handColor.0]" thickness="12.1" cap="ROUND" />
-        </Line>
-      </PartDraw>
+      <Transform target="pivotX" value="((688.8 + 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
+      <Transform target="pivotY" value="((688.8 - 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
+      <Group x="0" y="0" width="1378" height="1378" name="hand" angle="0" pivotX="0.5" pivotY="0.5">
+        <Transform target="angle" value="(30 * [HOUR_0_11_MINUTE])" />
+        <PartDraw x="0" y="0" width="1378" height="1378">
+          <Line startX="688.8" startY="688.8" endX="688.8" endY="19.9">
+            <Stroke color="[CONFIGURATION.handColor.0]" thickness="12.1" cap="ROUND" />
+          </Line>
+        </PartDraw>
+      </Group>
     </Group>
   </Scene>
 </WatchFace>

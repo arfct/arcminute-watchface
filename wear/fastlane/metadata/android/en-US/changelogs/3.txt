@@ -1,5 +1,0 @@
-Waking the screen is now animated in stages rather than one fade: the dark lifts, the dial fills in, and the hand extends to the hour.
-
-Ambient is always dark, which draws less power. The "Dark when off" setting is gone as a result.
-
-Now requires Wear OS 6.
