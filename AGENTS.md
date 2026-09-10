@@ -265,6 +265,42 @@ Two things make it cheap:
   Variant per layer, nine in the file; before 1.2.0 there were 51, one per
   part, and the interactive dial was drawn in ambient and then painted over.
 
+### Verifying a WFF change
+
+The Gradle build does **not** check WFF schemas — it will happily package XML
+that Play rejects or the watch refuses to load. Use Google's own tools from
+[google/watchface](https://github.com/google/watchface/releases):
+
+```bash
+java -jar wff-validator.jar 4 wear/wff/src/main/res/raw/watchface.xml
+java -jar memory-footprint.jar --watch-face wear/wff/build/outputs/apk/release/wff-release.apk --schema-version 4 --report
+```
+
+Limits are 10 MB ambient / 100 MB active. As of 1.2.0 this face measures
+**1.63 MB ambient, 2.38 MB active** (it was 5.62 MB ambient at v1).
+
+To check ambient power, measure the lit-pixel ratio against Play's 15% bar.
+Ambient only shows its true cost with a **non-black face color**, so set
+`defaultValue="red"` on `faceColor` in the generator temporarily, uninstall
+first (a changed `defaultValue` does not apply to an installed face), then let
+the screen idle and capture:
+
+```bash
+adb shell settings put system screen_off_timeout 5000   # then wait ~12s
+adb shell dumpsys display | grep -m1 mScreenState        # want DOZE
+adb exec-out screencap -p > ambient.png
+```
+
+Count with PIL: `sum(1 for p in pixels if max(p) > 40) / len(pixels)`. Red
+face measures 79.8% interactive and 11.4% ambient.
+
+There is no adb broadcast that forces ambient — `DEBUG_SURFACE` and
+`DEBUG_SYSUI` reject every ambient operation, and the side button opens the
+launcher. Idling into `DOZE` via `screen_off_timeout` is the way.
+
+To see the transition itself, `adb shell screenrecord` then extract frames.
+The whole cascade lasts ~230 ms, so sample at 60fps or you get one hard cut.
+
 ### Ambient transitions (v4)
 
 `duration` and `startOffset` are fractions of the window the system allows
