@@ -310,16 +310,17 @@ forward on wake and in reverse going idle:
 
 | Layer | Target | startOffset | duration | interpolation |
 |---|---|---|---|---|
-| **Core scale** | `scaleX`/`scaleY` → `0.9` | 0 | 0.75 | `EASE_OUT` |
+| **Core scale** | `scaleX`/`scaleY` → `0.95` | 0 | 0.75 | `EASE_OUT` |
 | Ground (face + background) | `alpha` → 0 | 0 | 0.5 | `EASE_OUT` |
 | Color dial | `alpha` → 0 | 0.1 | 0.5 | `EASE_OUT` |
 | Light (ambient) dial | `alpha` → 255 | 0.25 | 0.6 | `EASE_IN_OUT` |
 | Complication | `alpha` → 0 | 0.5 | 0.5 | `EASE_OUT` |
+| Rim vignette | `alpha` → 255 | 0.25 | 0.6 | `EASE_IN_OUT` |
 
 Name them for the object, not a direction: each runs one way going idle and
-back on wake, on the same curve. The core move is the 10% scale-down; it
-spans the whole window underneath, so the fades read as detail on one
-gesture rather than separate events. The staggering is the point for the
+back on wake, on the same curve. The core move is the 5% scale-down (10%
+was tried first and read as too much); it spans the whole window underneath,
+so the fades read as detail on one gesture rather than separate events. The staggering is the point for the
 rest: a shared window cross-fades every layer through a muddy half-lit
 midpoint, whereas offsetting them lets the dark lift before the color
 arrives, and puts color under the marks before the light copy has finished
@@ -330,8 +331,8 @@ group's own center sits ~513px off-screen, so `pivotX/pivotY = 0.5` swings
 the visible rim away instead of shrinking it. `pivotX`/`pivotY` are
 transformable, so `PIVOT_X`/`PIVOT_Y` express the screen center as a
 fraction of the group's box and track the hour with it. Measured on-device,
-a mark 123px from the screen center moves to 111px — a ratio of 0.902
-against the 0.900 target.
+the numeral bounding box scales 0.947 x 0.949 against the 0.950 target (and
+0.894 x 0.899 against 0.900 when it was set to 10%).
 
 **The hand carries no Variant of its own.** It keeps full color and full
 length in ambient. An earlier version scaled it about its group pivot (the
@@ -342,9 +343,50 @@ center, the inner still rotates about the dial center — because one pivot
 cannot serve both. Both boxes are `DIAL_SIZE`, so the inner cannot be
 clipped by the outer.
 
+### The ambient rim vignette
+
+A `RadialGradient` in the last `PartDraw` ramps the outer ~10px to pure
+black in ambient, so the dial does not end on a hard lit edge against the
+bezel. It is drawn in screen coordinates outside the scaling groups, so it
+stays pinned to the rim while the composition draws back from it.
+
+> **The `Fill`'s own color must be OPAQUE.** `<Fill color="#00000000">` with
+> a gradient inside renders **nothing at all** — silently, and the validator
+> accepts it. The transparency belongs in the gradient stops, not the Fill.
+> The tell is that even an absurd test ramp (black from half radius) changes
+> nothing on screen.
+
+The ramp must also reach full black slightly *inside* the clip edge. Ending
+the last stop at `1.0` puts pure black only on the final pixel, where the
+circular clip and its antialiasing swallow it — measured, that took the rim
+from 217 to 174 and then held flat, a plateau rather than a fade.
+`VIGNETTE_SOLID_PX` lands full black ~2px early so the ramp has somewhere to
+arrive. Max brightness by radius on the emulator:
+
+| radius | 214 | 216 | 218 | 220 | 222 | 224 |
+|---|---|---|---|---|---|---|
+| Awake | 255 | 255 | 255 | 255 | 255 | 255 |
+| Ambient | 217 | 199 | 157 | 110 | 67 | 23 |
+
+### Measuring ambient on a device
+
 The panel dims the whole AOD frame by ~0.85 (white 255 → 217), which is the
 device, not the watch face. If you are checking whether something is being
 faded, compare its ratio against a neutral's.
+
+That ratio is also the only reliable way to tell an AOD capture from an
+awake one: **`mScreenState` and what `screencap` returns are not in sync**,
+so polling for `DOZE` and then capturing usually yields an awake frame.
+Burst-capture instead and pick by peak brightness (~217 = AOD, 255 = awake).
+
+Do not measure scale with a fixed-column probe — the dial rotates between
+captures, so the same column samples different features. Use the numeral
+bounding box, which is rotation-invariant.
+
+A real watch drops adb the instant it sleeps, truncating captures and
+killing `screenrecord` mid-file. **Use the Wear OS 6 emulator for anything
+ambient**; it holds the connection and `screen_off_timeout` forces DOZE on
+demand.
 
 Testing note: a config `defaultValue` does **not** apply to a watch face
 whose style is already stored, so changing a default and reinstalling shows

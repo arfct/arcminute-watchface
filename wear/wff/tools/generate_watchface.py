@@ -91,9 +91,10 @@ HAND_COLOR = "[CONFIGURATION.handColor.0]"
 # the disc lit would put a non-black face over Play's 15% illuminated-pixel
 # guidance for ambient, since the disc covers the whole screen.
 AMBIENT_TEXT = "#FFFFFF"
-# Dimmer than the interactive minor marks (0xAA). These are the marks that can
-# afford to recede at night, and fewer lit subpixels is the point.
-AMBIENT_MINOR = "#66FFFFFF"
+# Same weight as the interactive minor marks. An earlier version dropped
+# these to 0x66 to shave lit subpixels; the tick ring is the dial's
+# character and reading it as faded at night was not worth the pixels.
+AMBIENT_MINOR = "#AAFFFFFF"
 
 # ---- Ambient transitions (Watch Face Format 4) ----
 # duration and startOffset are fractions of the window the system allows for a
@@ -115,7 +116,7 @@ GROUND_FADE = 'startOffset="0" duration="0.5" interpolation="EASE_OUT"'
 COLOR_DIAL_FADE = 'startOffset="0.1" duration="0.5" interpolation="EASE_OUT"'
 LIGHT_DIAL_FADE = 'startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT"'
 COMPLICATION_FADE = 'startOffset="0.5" duration="0.5" interpolation="EASE_OUT"'
-# The core move: the whole composition draws back 10% when the screen idles.
+# The core move: the whole composition draws back 5% when the screen idles.
 # It runs the full window under everything else, so the fades read as detail
 # on top of one gesture rather than as separate events.
 #
@@ -125,11 +126,22 @@ COMPLICATION_FADE = 'startOffset="0.5" duration="0.5" interpolation="EASE_OUT"'
 # gap. Scaling the composition instead moves the hand with the dial, so the
 # tip stays on the marks.
 CORE_SCALE = 'startOffset="0" duration="0.75" interpolation="EASE_OUT"'
-AMBIENT_SCALE = 0.9
+AMBIENT_SCALE = 0.95
 # Screen center expressed as a fraction of the dial group's own box, so the
 # group scales about the middle of the screen rather than the dial's center
 # (which sits ~513px off-screen, and would swing the rim away instead of
 # shrinking it). pivotX/pivotY are transformable, so this tracks the hour.
+# Ambient rim vignette: the outermost few pixels ramp to pure black, so the
+# dial does not end on a hard lit edge against the bezel at night. Drawn last
+# and in screen coordinates, so it stays pinned to the rim while the
+# composition scales away from it.
+VIGNETTE_PX = 10
+# The ramp has to finish just inside the clip edge, not on it. Ending the
+# gradient at position 1.0 puts pure black on the very last pixel, where the
+# circular clip and its antialiasing hide it -- measured on-device that only
+# took the rim from 217 down to 174, a plateau rather than a fade. Landing
+# full black ~2px early gives the ramp somewhere to arrive.
+VIGNETTE_SOLID_PX = 2
 PIVOT_X = f"(({DC:.1f} + {DIST:.1f} * sin(rad({ANGLE}))) / {DIAL_SIZE:.1f})"
 PIVOT_Y = f"(({DC:.1f} - {DIST:.1f} * cos(rad({ANGLE}))) / {DIAL_SIZE:.1f})"
 # Complications ride the band just outside the rim, which the face disc
@@ -611,6 +623,36 @@ def dial_layer(ambient=False):
     ])
 
 
+def ambient_vignette():
+    """Transparent out to VIGNETTE_PX from the rim, then pure black at it.
+
+    RadialGradient lives inside a Fill and takes ARGB, so the ramp is done
+    with alpha rather than a second layer. The middle stops hold full
+    transparency right up to the ramp, otherwise the fade would start at the
+    center and dim the whole face.
+
+    The Fill's own color must be OPAQUE. A transparent one (#00000000)
+    suppresses the entire fill, gradient included -- it renders nothing at
+    all, silently, and the validator accepts it. The transparency belongs in
+    the gradient stops, not the Fill.
+    """
+    start = (CX - VIGNETTE_PX - VIGNETTE_SOLID_PX) / CX
+    solid = (CX - VIGNETTE_SOLID_PX) / CX
+    return "\n".join([
+        f'    <PartDraw x="0" y="0" width="{CANVAS}" height="{CANVAS}" alpha="0">',
+        f'      <Variant mode="AMBIENT" target="alpha" value="255" {LIGHT_DIAL_FADE} />',
+        f'      <Ellipse x="0" y="0" width="{CANVAS}" height="{CANVAS}">',
+        f'        <Fill color="#FF000000">',
+        f'          <RadialGradient centerX="{CX:.1f}" centerY="{CX:.1f}"'
+        f' radius="{CX:.1f}"'
+        f' colors="#00000000 #00000000 #FF000000 #FF000000"'
+        f' positions="0.0 {start:.4f} {solid:.4f} 1.0" />',
+        '        </Fill>',
+        '      </Ellipse>',
+        '    </PartDraw>',
+    ])
+
+
 def ground():
     """Every colored surface behind the dial, in one part so a single Variant
     clears the lot for ambient.
@@ -668,6 +710,7 @@ def watchface():
         </PartDraw>
       </Group>
     </Group>
+{ambient_vignette()}
   </Scene>
 </WatchFace>
 '''

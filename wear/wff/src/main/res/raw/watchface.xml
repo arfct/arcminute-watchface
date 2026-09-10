@@ -88,8 +88,8 @@
     <BooleanOption id="TRUE">
       <Group x="0" y="0" width="1378" height="1378" name="dialpos_large" alpha="255" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
         <Variant mode="AMBIENT" target="alpha" value="0" startOffset="0.1" duration="0.5" interpolation="EASE_OUT" />
-        <Variant mode="AMBIENT" target="scaleX" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
-        <Variant mode="AMBIENT" target="scaleY" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleX" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleY" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
         <Transform target="x" value="(-463.8 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
         <Transform target="y" value="(-463.8 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
         <Transform target="pivotX" value="((688.8 + 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
@@ -620,8 +620,8 @@
     <BooleanOption id="FALSE">
       <Group x="0" y="0" width="1378" height="1378" name="dialpos_classic" alpha="255" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
         <Variant mode="AMBIENT" target="alpha" value="0" startOffset="0.1" duration="0.5" interpolation="EASE_OUT" />
-        <Variant mode="AMBIENT" target="scaleX" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
-        <Variant mode="AMBIENT" target="scaleY" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleX" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleY" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
         <Transform target="x" value="(-463.8 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
         <Transform target="y" value="(-463.8 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
         <Transform target="pivotX" value="((688.8 + 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
@@ -1154,8 +1154,8 @@
     <BooleanOption id="TRUE">
       <Group x="0" y="0" width="1378" height="1378" name="dialpos_large_amb" alpha="0" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
         <Variant mode="AMBIENT" target="alpha" value="255" startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT" />
-        <Variant mode="AMBIENT" target="scaleX" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
-        <Variant mode="AMBIENT" target="scaleY" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleX" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleY" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
         <Transform target="x" value="(-463.8 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
         <Transform target="y" value="(-463.8 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
         <Transform target="pivotX" value="((688.8 + 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
@@ -1166,433 +1166,433 @@
           <Stroke color="#FFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="712.9" y="14.5" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="742.0" y="16.4" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="773.8" startY="43.4" endX="776.3" endY="24.8">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="800.0" y="24.0" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="828.6" y="29.7" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="851.1" startY="83.2" endX="862.2" endY="41.9">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="885.1" y="44.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="912.7" y="54.2" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="938.0" startY="87.4" endX="945.2" endY="70.0">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="966.7" y="76.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="992.9" y="89.5" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1002.4" startY="145.8" endX="1023.7" endY="108.8">
           <Stroke color="#FFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1043.5" y="118.7" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1067.8" y="135.0" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1085.2" startY="172.4" endX="1096.6" endY="157.5">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1114.2" y="170.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1136.2" y="189.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1132.2" startY="245.4" endX="1162.5" endY="215.2">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1177.5" y="231.1" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1196.8" y="253.1" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1205.3" startY="292.5" endX="1220.2" endY="281.1">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1232.3" y="299.5" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1248.6" y="323.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1231.9" startY="375.3" endX="1268.9" endY="353.9">
           <Stroke color="#FFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1277.8" y="374.4" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1290.7" y="400.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1290.3" startY="439.7" endX="1307.7" endY="432.5">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1313.1" y="454.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1322.5" y="482.2" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1294.5" startY="526.6" endX="1335.8" endY="515.5">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1337.6" y="538.7" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1343.3" y="567.3" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1334.3" startY="603.9" endX="1352.9" endY="601.4">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1350.9" y="625.3" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1352.8" y="654.4" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1315.9" startY="688.8" endX="1358.7" endY="688.8">
           <Stroke color="#FFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1352.8" y="712.9" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1350.9" y="742.0" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1334.3" startY="773.8" endX="1352.9" endY="776.3">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1343.3" y="800.0" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1337.6" y="828.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1294.5" startY="851.1" endX="1335.8" endY="862.2">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1322.5" y="885.1" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1313.1" y="912.7" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1290.3" startY="938.0" endX="1307.7" endY="945.2">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1290.7" y="966.7" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1277.8" y="992.9" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1231.9" startY="1002.4" endX="1268.9" endY="1023.7">
           <Stroke color="#FFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1248.6" y="1043.5" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1232.3" y="1067.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1205.3" startY="1085.2" endX="1220.2" endY="1096.6">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1196.8" y="1114.2" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1177.5" y="1136.2" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1132.2" startY="1132.2" endX="1162.5" endY="1162.5">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1136.2" y="1177.5" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1114.2" y="1196.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1085.2" startY="1205.3" endX="1096.6" endY="1220.2">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="1067.8" y="1232.3" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1043.5" y="1248.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1002.4" startY="1231.9" endX="1023.7" endY="1268.9">
           <Stroke color="#FFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="992.9" y="1277.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="966.7" y="1290.7" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="938.0" startY="1290.3" endX="945.2" endY="1307.7">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="912.7" y="1313.1" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="885.1" y="1322.5" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="851.1" startY="1294.5" endX="862.2" endY="1335.8">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="828.6" y="1337.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="800.0" y="1343.3" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="773.8" startY="1334.3" endX="776.3" endY="1352.9">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="742.0" y="1350.9" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="712.9" y="1352.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="688.8" startY="1315.9" endX="688.8" endY="1358.7">
           <Stroke color="#FFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="654.4" y="1352.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="625.3" y="1350.9" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="603.9" startY="1334.3" endX="601.4" endY="1352.9">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="567.3" y="1343.3" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="538.7" y="1337.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="526.6" startY="1294.5" endX="515.5" endY="1335.8">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="482.2" y="1322.5" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="454.6" y="1313.1" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="439.7" startY="1290.3" endX="432.5" endY="1307.7">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="400.6" y="1290.7" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="374.4" y="1277.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="375.3" startY="1231.9" endX="353.9" endY="1268.9">
           <Stroke color="#FFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="323.8" y="1248.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="299.5" y="1232.3" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="292.5" startY="1205.3" endX="281.1" endY="1220.2">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="253.1" y="1196.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="231.1" y="1177.5" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="245.4" startY="1132.2" endX="215.2" endY="1162.5">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="189.8" y="1136.2" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="170.6" y="1114.2" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="172.4" startY="1085.2" endX="157.5" endY="1096.6">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="135.0" y="1067.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="118.7" y="1043.5" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="145.8" startY="1002.4" endX="108.8" endY="1023.8">
           <Stroke color="#FFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="89.5" y="992.9" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="76.6" y="966.7" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="87.4" startY="938.0" endX="70.0" endY="945.2">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="54.2" y="912.7" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="44.8" y="885.1" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="83.2" startY="851.1" endX="41.9" endY="862.2">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="29.7" y="828.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="24.0" y="800.0" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="43.4" startY="773.8" endX="24.8" endY="776.3">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="16.4" y="742.0" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="14.5" y="712.9" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="61.8" startY="688.8" endX="19.0" endY="688.8">
           <Stroke color="#FFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="14.5" y="654.4" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="16.4" y="625.3" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="43.4" startY="603.9" endX="24.8" endY="601.4">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="24.0" y="567.3" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="29.7" y="538.7" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="83.2" startY="526.6" endX="41.9" endY="515.5">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="44.8" y="482.2" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="54.2" y="454.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="87.4" startY="439.7" endX="70.0" endY="432.5">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="76.6" y="400.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="89.5" y="374.4" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="145.8" startY="375.3" endX="108.8" endY="353.9">
           <Stroke color="#FFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="118.7" y="323.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="135.0" y="299.5" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="172.4" startY="292.5" endX="157.5" endY="281.1">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="170.6" y="253.1" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="189.8" y="231.1" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="245.4" startY="245.4" endX="215.2" endY="215.2">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="231.1" y="189.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="253.1" y="170.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="292.5" startY="172.4" endX="281.1" endY="157.5">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="299.5" y="135.0" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="323.8" y="118.7" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="375.3" startY="145.8" endX="353.9" endY="108.8">
           <Stroke color="#FFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="374.4" y="89.5" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="400.6" y="76.6" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="439.7" startY="87.4" endX="432.5" endY="70.0">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="454.6" y="54.2" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="482.2" y="44.8" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="526.6" startY="83.2" endX="515.5" endY="41.9">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="538.7" y="29.7" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="567.3" y="24.0" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="603.9" startY="43.4" endX="601.4" endY="24.8">
-          <Stroke color="#66FFFFFF" thickness="10.4" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="10.4" cap="ROUND" />
         </Line>
         <Ellipse x="625.3" y="16.4" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="654.4" y="14.5" width="10.4" height="10.4">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
           </PartDraw>
         <BooleanConfiguration id="hour24">
@@ -1683,8 +1683,8 @@
     <BooleanOption id="FALSE">
       <Group x="0" y="0" width="1378" height="1378" name="dialpos_classic_amb" alpha="0" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
         <Variant mode="AMBIENT" target="alpha" value="255" startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT" />
-        <Variant mode="AMBIENT" target="scaleX" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
-        <Variant mode="AMBIENT" target="scaleY" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleX" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+        <Variant mode="AMBIENT" target="scaleY" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
         <Transform target="x" value="(-463.8 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
         <Transform target="y" value="(-463.8 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
         <Transform target="pivotX" value="((688.8 + 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
@@ -1695,433 +1695,433 @@
           <Stroke color="#FFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="715.6" y="14.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="744.9" y="16.4" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="775.4" startY="31.5" endX="776.6" endY="22.2">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="803.0" y="24.1" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="831.8" y="29.8" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="857.4" startY="59.9" endX="862.9" endY="39.4">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="888.4" y="45.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="916.2" y="54.4" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="942.6" startY="76.3" endX="946.2" endY="67.6">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="970.4" y="76.8" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="996.7" y="89.8" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1014.4" startY="125.0" endX="1025.0" endY="106.5">
           <Stroke color="#FFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1047.5" y="119.2" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1071.9" y="135.4" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1092.5" startY="162.8" endX="1098.2" endY="155.4">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1118.5" y="171.2" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1140.5" y="190.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1149.3" startY="228.4" endX="1164.3" endY="213.4">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1182.0" y="232.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1201.3" y="254.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1214.9" startY="285.2" endX="1222.3" endY="279.5">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1237.1" y="300.6" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1253.3" y="325.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1252.7" startY="363.3" endX="1271.2" endY="352.6">
           <Stroke color="#FFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1282.7" y="375.8" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1295.7" y="402.1" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1301.4" startY="435.1" endX="1310.1" endY="431.5">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1318.1" y="456.3" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1327.5" y="484.1" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1317.8" startY="520.3" endX="1338.3" endY="514.8">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1342.7" y="540.7" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1348.4" y="569.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1346.2" startY="602.3" endX="1355.5" endY="601.1">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1356.1" y="627.6" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1358.0" y="656.9" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1340.0" startY="688.8" endX="1361.2" endY="688.8">
           <Stroke color="#FFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1358.0" y="715.6" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1356.1" y="744.9" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1346.2" startY="775.4" endX="1355.5" endY="776.6">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1348.4" y="803.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1342.7" y="831.8" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1317.8" startY="857.4" endX="1338.3" endY="862.9">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1327.5" y="888.4" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1318.1" y="916.2" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1301.4" startY="942.6" endX="1310.1" endY="946.2">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1295.7" y="970.4" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1282.7" y="996.7" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1252.7" startY="1014.4" endX="1271.2" endY="1025.0">
           <Stroke color="#FFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1253.3" y="1047.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1237.1" y="1071.9" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1214.9" startY="1092.5" endX="1222.3" endY="1098.2">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1201.3" y="1118.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1182.0" y="1140.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1149.3" startY="1149.3" endX="1164.3" endY="1164.3">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1140.5" y="1182.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1118.5" y="1201.3" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1092.5" startY="1214.9" endX="1098.2" endY="1222.3">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="1071.9" y="1237.1" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="1047.5" y="1253.3" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="1014.4" startY="1252.7" endX="1025.0" endY="1271.2">
           <Stroke color="#FFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="996.7" y="1282.7" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="970.4" y="1295.7" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="942.6" startY="1301.4" endX="946.2" endY="1310.1">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="916.2" y="1318.1" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="888.4" y="1327.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="857.4" startY="1317.8" endX="862.9" endY="1338.3">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="831.8" y="1342.7" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="803.0" y="1348.4" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="775.4" startY="1346.2" endX="776.6" endY="1355.5">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="744.9" y="1356.1" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="715.6" y="1358.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="688.8" startY="1340.0" endX="688.8" endY="1361.2">
           <Stroke color="#FFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="656.9" y="1358.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="627.6" y="1356.1" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="602.3" startY="1346.2" endX="601.1" endY="1355.5">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="569.5" y="1348.4" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="540.7" y="1342.7" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="520.3" startY="1317.8" endX="514.8" endY="1338.3">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="484.1" y="1327.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="456.3" y="1318.1" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="435.1" startY="1301.4" endX="431.5" endY="1310.1">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="402.1" y="1295.7" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="375.8" y="1282.7" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="363.3" startY="1252.7" endX="352.6" endY="1271.2">
           <Stroke color="#FFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="325.0" y="1253.3" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="300.6" y="1237.1" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="285.2" startY="1214.9" endX="279.5" endY="1222.3">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="254.0" y="1201.3" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="232.0" y="1182.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="228.4" startY="1149.3" endX="213.4" endY="1164.3">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="190.5" y="1140.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="171.2" y="1118.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="162.8" startY="1092.5" endX="155.4" endY="1098.2">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="135.4" y="1071.9" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="119.2" y="1047.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="125.0" startY="1014.4" endX="106.5" endY="1025.0">
           <Stroke color="#FFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="89.8" y="996.7" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="76.8" y="970.4" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="76.3" startY="942.6" endX="67.6" endY="946.2">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="54.4" y="916.2" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="45.0" y="888.4" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="59.9" startY="857.4" endX="39.4" endY="862.9">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="29.8" y="831.8" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="24.1" y="803.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="31.5" startY="775.4" endX="22.2" endY="776.6">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="16.4" y="744.9" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="14.5" y="715.6" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="37.7" startY="688.8" endX="16.4" endY="688.8">
           <Stroke color="#FFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="14.5" y="656.9" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="16.4" y="627.6" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="31.5" startY="602.3" endX="22.2" endY="601.1">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="24.1" y="569.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="29.8" y="540.7" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="59.9" startY="520.3" endX="39.4" endY="514.8">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="45.0" y="484.1" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="54.4" y="456.3" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="76.3" startY="435.1" endX="67.6" endY="431.5">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="76.8" y="402.1" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="89.8" y="375.8" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="125.0" startY="363.3" endX="106.5" endY="352.6">
           <Stroke color="#FFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="119.2" y="325.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="135.4" y="300.6" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="162.8" startY="285.2" endX="155.4" endY="279.5">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="171.2" y="254.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="190.5" y="232.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="228.4" startY="228.4" endX="213.4" endY="213.4">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="232.0" y="190.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="254.0" y="171.2" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="285.2" startY="162.8" endX="279.5" endY="155.4">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="300.6" y="135.4" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="325.0" y="119.2" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="363.3" startY="125.0" endX="352.6" endY="106.5">
           <Stroke color="#FFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="375.8" y="89.8" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="402.1" y="76.8" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="435.1" startY="76.3" endX="431.5" endY="67.6">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="456.3" y="54.4" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="484.1" y="45.0" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="520.3" startY="59.9" endX="514.8" endY="39.4">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="540.7" y="29.8" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="569.5" y="24.1" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Line startX="602.3" startY="31.5" endX="601.1" endY="22.2">
-          <Stroke color="#66FFFFFF" thickness="5.2" cap="ROUND" />
+          <Stroke color="#AAFFFFFF" thickness="5.2" cap="ROUND" />
         </Line>
         <Ellipse x="627.6" y="16.4" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
         <Ellipse x="656.9" y="14.5" width="5.2" height="5.2">
-          <Fill color="#66FFFFFF" />
+          <Fill color="#AAFFFFFF" />
         </Ellipse>
           </PartDraw>
         <BooleanConfiguration id="hour24">
@@ -2303,8 +2303,8 @@
       <Variant mode="AMBIENT" target="alpha" value="0" startOffset="0.5" duration="0.5" interpolation="EASE_OUT" />
     </ComplicationSlot>
     <Group x="0" y="0" width="1378" height="1378" name="handscale" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
-      <Variant mode="AMBIENT" target="scaleX" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
-      <Variant mode="AMBIENT" target="scaleY" value="0.9" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+      <Variant mode="AMBIENT" target="scaleX" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+      <Variant mode="AMBIENT" target="scaleY" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
       <Transform target="x" value="(-463.8 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
       <Transform target="y" value="(-463.8 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
       <Transform target="pivotX" value="((688.8 + 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE])))) / 1377.7)" />
@@ -2318,5 +2318,13 @@
         </PartDraw>
       </Group>
     </Group>
+    <PartDraw x="0" y="0" width="450" height="450" alpha="0">
+      <Variant mode="AMBIENT" target="alpha" value="255" startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT" />
+      <Ellipse x="0" y="0" width="450" height="450">
+        <Fill color="#FF000000">
+          <RadialGradient centerX="225.0" centerY="225.0" radius="225.0" colors="#00000000 #00000000 #FF000000 #FF000000" positions="0.0 0.9467 0.9911 1.0" />
+        </Fill>
+      </Ellipse>
+    </PartDraw>
   </Scene>
 </WatchFace>
