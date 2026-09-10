@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 """Generates res/raw/watchface.xml for the Arcminute Watch Face Format port.
 
-The geometry is the same orbiting-dial design as pebble/src/c/arcminute.c and
-wear/app's ArcminuteRenderer.kt: a dial three screen-sizes wide whose center
-sits opposite the current hour angle, so the rim (numerals + ticks) sweeps
-through the visible screen, plus a hand from the dial center to the
-current-hour rim point.
+The geometry is the same orbiting-dial design as pebble/src/c/arcminute.c: a
+dial three screen-sizes wide whose center sits opposite the current hour
+angle, so the rim (numerals + ticks) sweeps through the visible screen, plus
+a hand from the dial center to the current-hour rim point.
+
+Targets Watch Face Format 4 (Wear OS 6, API 36), for the ambient transition
+attributes on Variant. Version 5 adds nothing this face uses and would cost
+every watch below Wear OS 7.
 
 Edit THIS file and re-run it; never hand-edit watchface.xml.
 
@@ -80,13 +83,44 @@ FACE_COLOR = "[CONFIGURATION.faceColor.0]"
 FACE_TEXT = "[CONFIGURATION.faceColor.1]"
 FACE_MINOR = "[CONFIGURATION.faceColor.2]"
 HAND_COLOR = "[CONFIGURATION.handColor.0]"
-# "Dark when off": in ambient the face is veiled black and a light copy of the
-# dial fades in over it. A copy is needed because Variant only carries numeric
-# values -- it can swap alpha, never a color -- and marks drawn in a light
-# face's dark text would vanish against the veil.
+# Ambient is always dark, and is not a user choice. Everything colored -- the
+# ground, the face disc, the marks on it, the complication -- fades out, and a
+# light copy of the dial fades in on black. A copy is needed because Variant
+# only carries numeric values (it can swap alpha, never a color), so marks
+# drawn in a light face's dark text would vanish against the black. Leaving
+# the disc lit would put a non-black face over Play's 15% illuminated-pixel
+# guidance for ambient, since the disc covers the whole screen.
 AMBIENT_TEXT = "#FFFFFF"
-AMBIENT_MINOR = "#AAFFFFFF"
-AMBIENT_VEIL = "#000000"
+# Dimmer than the interactive minor marks (0xAA). These are the marks that can
+# afford to recede at night, and fewer lit subpixels is the point.
+AMBIENT_MINOR = "#66FFFFFF"
+
+# ---- Ambient transitions (Watch Face Format 4) ----
+# duration and startOffset are fractions of the window the system allows for a
+# mode change, and the runtime discards BOTH if they sum past 1.0. Each
+# Variant carries one curve that serves both directions, so this cascade runs
+# forward on wake and in reverse going idle:
+#
+#   ground drains -> dials cross -> hand reaches -> complication returns
+#
+# The staggering is the point. A single shared window cross-fades every layer
+# through a muddy half-lit midpoint; offsetting them means the dark lifts
+# before the color arrives, and each stage reads as its own move.
+GROUND_FADE = 'startOffset="0" duration="0.5" interpolation="EASE_OUT"'
+# Named for the object, not a direction: each of these fades out going idle
+# and in again on wake, on the same curve. The color dial moves first at
+# both ends, so waking, the face has color under the marks before the light
+# copy has finished dissolving off the top of it.
+COLOR_DIAL_FADE = 'startOffset="0.1" duration="0.5" interpolation="EASE_OUT"'
+LIGHT_DIAL_FADE = 'startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT"'
+COMPLICATION_FADE = 'startOffset="0.5" duration="0.5" interpolation="EASE_OUT"'
+HAND_FADE = 'startOffset="0.4" duration="0.6" interpolation="EASE_OUT"'
+# The hand is the reading, so it lands last and with a bounce. Scaling pivots
+# on the group center, which is the dial center, so a scale under 1 retracts
+# the tip from the rim; waking, it reaches back out and past before settling.
+HAND_REACH = 'startOffset="0.4" duration="0.6" interpolation="OVERSHOOT"'
+HAND_AMBIENT_SCALE = 0.98
+HAND_AMBIENT_ALPHA = 190
 # Complications ride the band just outside the rim, which the face disc
 # overshoots, so they follow the face too.
 TEXT_COLOR = FACE_TEXT
@@ -172,9 +206,6 @@ def user_configurations():
                ' screenReaderText="large_numerals_label" defaultValue="TRUE" />')
     out.append('    <BooleanConfiguration id="hour24" displayName="hour24_label"'
                ' screenReaderText="hour24_label" defaultValue="FALSE" />')
-    out.append('    <BooleanConfiguration id="darkAmbient"'
-               ' displayName="dark_ambient_label"'
-               ' screenReaderText="dark_ambient_label" defaultValue="FALSE" />')
     out.append('  </UserConfigurations>')
     return "\n".join(out)
 
@@ -187,8 +218,7 @@ def config_strings():
              '    <string name="face_label">Dial face</string>',
              '    <string name="hand_label">Hand</string>',
              '    <string name="large_numerals_label">Large numerals</string>',
-             '    <string name="hour24_label">24-hour time</string>',
-             '    <string name="dark_ambient_label">Dark when off</string>']
+             '    <string name="hour24_label">24-hour time</string>']
     lines.append('    <string name="back_match_label">Back: Match face</string>')
     for prefix, word in PREFIXES.items():
         for cid, label, _ in BLACK_WHITE + TAILWIND:
@@ -367,6 +397,14 @@ def complication_slot():
         '      <Complication type="SMALL_IMAGE">',
         event_image("[COMPLICATION.SMALL_IMAGE]", None),
         '      </Complication>',
+        # Complication content is drawn in face colors, which are chosen for
+        # contrast against the disc -- against the ambient black a light face
+        # would render it invisible anyway. Dropping it in ambient costs
+        # nothing readable and saves the lit pixels. Variant goes last: the
+        # element's optional children follow its required Bounding and
+        # Complication ones.
+        f'      <Variant mode="AMBIENT" target="alpha" value="0"'
+        f' {COMPLICATION_FADE} />',
         '    </ComplicationSlot>',
     ])
 
@@ -442,22 +480,14 @@ def numeral_center(s, i, two_digits):
     return ix - (gap + d_edge) * ux, iy - (gap + d_edge) * uy
 
 
-AMBIENT_FADE = ('alpha="0"',
-                '<Variant mode="AMBIENT" target="alpha" value="255" />')
-
-
-def part_text(s, name, cx, cy, content, text_color, ambient=False):
+def part_text(s, name, cx, cy, content, text_color):
     w = 2 * s["half_w2"] + 24
     h = s["font_size"] * 1.3
     # The runtime renders Font text content verbatim: leading whitespace or a
     # newline becomes an empty first line and the digits get clipped away, so
     # the Font element must stay on ONE line with no padding around content.
-    fade, variant = AMBIENT_FADE if ambient else ("", "")
-    fade = f' {fade}' if fade else ""
-    variant = f'            {variant}\n' if variant else ""
     return (
-        f'          <PartText x="{cx - w / 2:.0f}" y="{cy - h / 2:.0f}" width="{w:.0f}" height="{h:.0f}" name="{name}"{fade}>\n'
-        f'{variant}'
+        f'          <PartText x="{cx - w / 2:.0f}" y="{cy - h / 2:.0f}" width="{w:.0f}" height="{h:.0f}" name="{name}">\n'
         f'            <Text align="CENTER">'
         f'<Font family="helvetica_digits" size="{s["font_size"]:.0f}" color="{text_color}">{content}</Font>'
         f'</Text>\n'
@@ -465,7 +495,7 @@ def part_text(s, name, cx, cy, content, text_color, ambient=False):
     )
 
 
-def numerals(s, out, tag, text_color, ambient=False):
+def numerals(s, out, tag, text_color):
     """12h numerals statically, 24h numerals via Template, switched on the
     hour24 toggle."""
     h24 = []
@@ -475,11 +505,11 @@ def numerals(s, out, tag, text_color, ambient=False):
         expr = label24_expression(i)
         h24.append(part_text(s, f'num24_{tag}_{i}', cx, cy,
                              f'<Template>%d<Parameter expression="{expr}" /></Template>',
-                             text_color, ambient))
+                             text_color))
         label = 12 if i == 0 else i
         cx, cy = numeral_center(s, i, two_digits=label >= 10)
         h12.append(part_text(s, f'num12_{tag}_{i}', cx, cy, str(label),
-                             text_color, ambient))
+                             text_color))
     # A BooleanOption holds exactly one child, so each numeral set is grouped.
     out.append('        <BooleanConfiguration id="hour24">')
     out.append('          <BooleanOption id="TRUE">')
@@ -497,18 +527,15 @@ def numerals(s, out, tag, text_color, ambient=False):
     out.append('        </BooleanConfiguration>')
 
 
-def dial_body(style_name, tag, text_color, minor_color, disc, ambient=False):
+def dial_body(style_name, tag, text_color, minor_color, disc):
     """One dial: optional face disc, then marks and numerals in the colors of
     whatever they sit on."""
     s = STYLES[style_name]
-    fade, variant = AMBIENT_FADE if ambient else ("", "")
     out = []
     out.append(f'        <Group x="0" y="0" width="{DIAL_SIZE:.0f}"'
                f' height="{DIAL_SIZE:.0f}" name="dial_{tag}">')
     out.append(f'          <PartDraw x="0" y="0" width="{DIAL_SIZE:.0f}"'
-               f' height="{DIAL_SIZE:.0f}"{" " + fade if fade else ""}>')
-    if variant:
-        out.append(f'            {variant}')
+               f' height="{DIAL_SIZE:.0f}">')
     if disc:
         # First, so the marks land on top of it. Its radius clears the marker
         # ring by FACE_OVERSHOOT, exactly filling the widened group.
@@ -522,63 +549,66 @@ def dial_body(style_name, tag, text_color, minor_color, disc, ambient=False):
         minor_marks(s, i * 30.0, marks, minor_color)
     out.extend(marks)
     out.append('          </PartDraw>')
-    numerals(s, out, tag, text_color, ambient)
+    numerals(s, out, tag, text_color)
     out.append('        </Group>')
     return out
 
 
 def dial_variant(style_name, option_id, ambient=False):
-    """The dial, positioned on the orbiting center. The ambient copy carries
-    no face disc and is drawn in fixed light colors, faded in only when the
-    screen goes idle."""
+    """The dial, positioned on the orbiting center.
+
+    One alpha Variant on the position group carries the entire subtree in and
+    out of ambient, so none of the ~170 parts below it needs one of its own.
+    The ambient copy drops the face disc and is drawn in fixed light colors,
+    because a Variant can animate alpha but cannot swap a color.
+    """
     tag = f'{style_name}_amb' if ambient else style_name
     text = AMBIENT_TEXT if ambient else FACE_TEXT
     minor = AMBIENT_MINOR if ambient else FACE_MINOR
+    base_alpha = 0 if ambient else 255
+    value, timing = (("255", LIGHT_DIAL_FADE) if ambient
+                     else ("0", COLOR_DIAL_FADE))
     out = []
     out.append(f'    <BooleanOption id="{option_id}">')
     out.append(f'      <Group x="0" y="0" width="{DIAL_SIZE:.0f}"'
-               f' height="{DIAL_SIZE:.0f}" name="dialpos_{tag}">')
+               f' height="{DIAL_SIZE:.0f}" name="dialpos_{tag}"'
+               f' alpha="{base_alpha}">')
+    out.append(f'        <Variant mode="AMBIENT" target="alpha"'
+               f' value="{value}" {timing} />')
     out.append(f'        <Transform target="x" value="{GROUP_X}" />')
     out.append(f'        <Transform target="y" value="{GROUP_Y}" />')
-    out.extend(dial_body(style_name, tag, text, minor,
-                         disc=not ambient, ambient=ambient))
+    out.extend(dial_body(style_name, tag, text, minor, disc=not ambient))
     out.append('      </Group>')
     out.append('    </BooleanOption>')
     return "\n".join(out)
 
 
-def dark_ambient():
-    """Veil the whole face black and fade in a light dial, when idle. Only the
-    TRUE option is emitted: with the toggle off nothing is added at all."""
-    fade, variant = AMBIENT_FADE
+def dial_layer(ambient=False):
+    """Both dial styles under the toggle; only the selected one is built."""
     return "\n".join([
-        '    <BooleanConfiguration id="darkAmbient">',
-        '      <BooleanOption id="TRUE">',
-        f'        <Group x="0" y="0" width="{CANVAS}" height="{CANVAS}"'
-        f' name="dark_ambient">',
-        f'          <PartDraw x="0" y="0" width="{CANVAS}"'
-        f' height="{CANVAS}" {fade}>',
-        f'            {variant}',
-        f'            <Rectangle x="0" y="0" width="{CANVAS}"'
-        f' height="{CANVAS}">',
-        f'              <Fill color="{AMBIENT_VEIL}" />',
-        '            </Rectangle>',
-        '          </PartDraw>',
-        '          <BooleanConfiguration id="largeNumerals">',
-        dial_variant("large", "TRUE", ambient=True),
-        dial_variant("classic", "FALSE", ambient=True),
-        '          </BooleanConfiguration>',
-        '        </Group>',
-        '      </BooleanOption>',
+        '    <BooleanConfiguration id="largeNumerals">',
+        dial_variant("large", "TRUE", ambient),
+        dial_variant("classic", "FALSE", ambient),
         '    </BooleanConfiguration>',
     ])
 
 
-def background():
-    """Painted over the scene's face-colored ground. The default background
-    option is fully transparent, which leaves the face color showing."""
+def ground():
+    """Every colored surface behind the dial, in one part so a single Variant
+    clears the lot for ambient.
+
+    The Scene's own backgroundColor is not transformable, so it stays black
+    and the face color is painted here instead. Left on the Scene it would
+    keep lighting the crescent of screen the dial disc does not reach, all
+    night. The background option is painted over it and defaults to fully
+    transparent, which leaves the face color showing.
+    """
     return "\n".join([
-        f'    <PartDraw x="0" y="0" width="{CANVAS}" height="{CANVAS}">',
+        f'    <PartDraw x="0" y="0" width="{CANVAS}" height="{CANVAS}" alpha="255">',
+        f'      <Variant mode="AMBIENT" target="alpha" value="0" {GROUND_FADE} />',
+        f'      <Rectangle x="0" y="0" width="{CANVAS}" height="{CANVAS}">',
+        f'        <Fill color="{FACE_COLOR}" />',
+        '      </Rectangle>',
         f'      <Rectangle x="0" y="0" width="{CANVAS}" height="{CANVAS}">',
         f'        <Fill color="{BG_COLOR}" />',
         '      </Rectangle>',
@@ -599,15 +629,15 @@ def watchface():
   <Metadata key="CLOCK_TYPE" value="ANALOG" />
   <Metadata key="PREVIEW_TIME" value="07:07:00" />
 {user_configurations()}
-  <Scene backgroundColor="{FACE_COLOR}">
-{background()}
-    <BooleanConfiguration id="largeNumerals">
-{dial_variant("large", "TRUE")}
-{dial_variant("classic", "FALSE")}
-    </BooleanConfiguration>
-{dark_ambient()}
+  <Scene backgroundColor="#000000">
+{ground()}
+{dial_layer()}
+{dial_layer(ambient=True)}
 {complication_slot()}
-    <Group x="0" y="0" width="{DIAL_SIZE:.0f}" height="{DIAL_SIZE:.0f}" name="hand" angle="0" pivotX="0.5" pivotY="0.5">
+    <Group x="0" y="0" width="{DIAL_SIZE:.0f}" height="{DIAL_SIZE:.0f}" name="hand" angle="0" pivotX="0.5" pivotY="0.5" alpha="255" scaleX="1" scaleY="1">
+      <Variant mode="AMBIENT" target="scaleX" value="{HAND_AMBIENT_SCALE}" {HAND_REACH} />
+      <Variant mode="AMBIENT" target="scaleY" value="{HAND_AMBIENT_SCALE}" {HAND_REACH} />
+      <Variant mode="AMBIENT" target="alpha" value="{HAND_AMBIENT_ALPHA}" {HAND_FADE} />
       <Transform target="x" value="{GROUP_X}" />
       <Transform target="y" value="{GROUP_Y}" />
       <Transform target="angle" value="{ANGLE}" />

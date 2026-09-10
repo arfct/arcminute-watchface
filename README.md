@@ -7,6 +7,6 @@ cropped to the current location on the clock's perimeter.
 Two implementations:
 
 - [`pebble/`](pebble/) — the original Pebble watchface (C, Clay config)
-- [`wear/`](wear/) — Wear OS port in the declarative Watch Face Format (Wear OS 4+)
+- [`wear/`](wear/) — Wear OS port in the declarative Watch Face Format (Wear OS 6+)
 
 See [AGENTS.md](AGENTS.md) for build and emulator instructions for both.

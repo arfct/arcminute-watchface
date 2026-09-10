@@ -17,10 +17,12 @@ android {
 
     defaultConfig {
         applicationId = "com.artifact.arcminute.wff"
-        minSdk = 33
-        targetSdk = 35
-        versionCode = 2
-        versionName = "1.1.0"
+        // Tied to the Watch Face Format version in the manifest: format 4
+        // needs Wear OS 6.
+        minSdk = 36
+        targetSdk = 36
+        versionCode = 3
+        versionName = "1.2.0"
     }
 
     signingConfigs {
