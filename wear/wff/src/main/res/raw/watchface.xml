@@ -4,6 +4,28 @@
   <Metadata key="CLOCK_TYPE" value="ANALOG" />
   <Metadata key="PREVIEW_TIME" value="07:07:00" />
   <UserConfigurations>
+    <ColorConfiguration id="faceColor" displayName="face_label" screenReaderText="face_label" defaultValue="black">
+      <ColorOption id="black" displayName="face_black_label" colors="#000000 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="white" displayName="face_white_label" colors="#FFFFFF #000000 #AA000000" />
+      <ColorOption id="red" displayName="face_red_label" colors="#EF4444 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="orange" displayName="face_orange_label" colors="#F97316 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="amber" displayName="face_amber_label" colors="#F59E0B #000000 #AA000000" />
+      <ColorOption id="yellow" displayName="face_yellow_label" colors="#EAB308 #000000 #AA000000" />
+      <ColorOption id="lime" displayName="face_lime_label" colors="#84CC16 #000000 #AA000000" />
+      <ColorOption id="olive" displayName="face_olive_label" colors="#708238 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="green" displayName="face_green_label" colors="#22C55E #000000 #AA000000" />
+      <ColorOption id="emerald" displayName="face_emerald_label" colors="#10B981 #000000 #AA000000" />
+      <ColorOption id="teal" displayName="face_teal_label" colors="#14B8A6 #000000 #AA000000" />
+      <ColorOption id="cyan" displayName="face_cyan_label" colors="#06B6D4 #000000 #AA000000" />
+      <ColorOption id="sky" displayName="face_sky_label" colors="#0EA5E9 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="blue" displayName="face_blue_label" colors="#3B82F6 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="indigo" displayName="face_indigo_label" colors="#6366F1 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="violet" displayName="face_violet_label" colors="#8B5CF6 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="purple" displayName="face_purple_label" colors="#A855F7 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="fuchsia" displayName="face_fuchsia_label" colors="#D946EF #FFFFFF #AAFFFFFF" />
+      <ColorOption id="pink" displayName="face_pink_label" colors="#EC4899 #FFFFFF #AAFFFFFF" />
+      <ColorOption id="rose" displayName="face_rose_label" colors="#F43F5E #FFFFFF #AAFFFFFF" />
+    </ColorConfiguration>
     <ColorConfiguration id="backColor" displayName="back_label" screenReaderText="back_label" defaultValue="match">
       <ColorOption id="match" displayName="back_match_label" colors="#00000000" />
       <ColorOption id="black" displayName="back_black_label" colors="#000000" />
@@ -26,28 +48,6 @@
       <ColorOption id="fuchsia" displayName="back_fuchsia_label" colors="#D946EF" />
       <ColorOption id="pink" displayName="back_pink_label" colors="#EC4899" />
       <ColorOption id="rose" displayName="back_rose_label" colors="#F43F5E" />
-    </ColorConfiguration>
-    <ColorConfiguration id="faceColor" displayName="face_label" screenReaderText="face_label" defaultValue="black">
-      <ColorOption id="black" displayName="face_black_label" colors="#000000 #FFFFFF #AAFFFFFF" />
-      <ColorOption id="white" displayName="face_white_label" colors="#FFFFFF #000000 #AA000000" />
-      <ColorOption id="red" displayName="face_red_label" colors="#EF4444 #FFFFFF #AAFFFFFF" />
-      <ColorOption id="orange" displayName="face_orange_label" colors="#F97316 #FFFFFF #AAFFFFFF" />
-      <ColorOption id="amber" displayName="face_amber_label" colors="#F59E0B #000000 #AA000000" />
-      <ColorOption id="yellow" displayName="face_yellow_label" colors="#EAB308 #000000 #AA000000" />
-      <ColorOption id="lime" displayName="face_lime_label" colors="#84CC16 #000000 #AA000000" />
-      <ColorOption id="olive" displayName="face_olive_label" colors="#708238 #FFFFFF #AAFFFFFF" />
-      <ColorOption id="green" displayName="face_green_label" colors="#22C55E #000000 #AA000000" />
-      <ColorOption id="emerald" displayName="face_emerald_label" colors="#10B981 #000000 #AA000000" />
-      <ColorOption id="teal" displayName="face_teal_label" colors="#14B8A6 #000000 #AA000000" />
-      <ColorOption id="cyan" displayName="face_cyan_label" colors="#06B6D4 #000000 #AA000000" />
-      <ColorOption id="sky" displayName="face_sky_label" colors="#0EA5E9 #FFFFFF #AAFFFFFF" />
-      <ColorOption id="blue" displayName="face_blue_label" colors="#3B82F6 #FFFFFF #AAFFFFFF" />
-      <ColorOption id="indigo" displayName="face_indigo_label" colors="#6366F1 #FFFFFF #AAFFFFFF" />
-      <ColorOption id="violet" displayName="face_violet_label" colors="#8B5CF6 #FFFFFF #AAFFFFFF" />
-      <ColorOption id="purple" displayName="face_purple_label" colors="#A855F7 #FFFFFF #AAFFFFFF" />
-      <ColorOption id="fuchsia" displayName="face_fuchsia_label" colors="#D946EF #FFFFFF #AAFFFFFF" />
-      <ColorOption id="pink" displayName="face_pink_label" colors="#EC4899 #FFFFFF #AAFFFFFF" />
-      <ColorOption id="rose" displayName="face_rose_label" colors="#F43F5E #FFFFFF #AAFFFFFF" />
     </ColorConfiguration>
     <ColorConfiguration id="handColor" displayName="hand_label" screenReaderText="hand_label" defaultValue="red">
       <ColorOption id="red" displayName="hand_red_label" colors="#EF4444" />

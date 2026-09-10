@@ -207,18 +207,21 @@ PREFIXES = {"back": "Back", "face": "Face", "hand": "Hand"}
 def user_configurations():
     out = []
     out.append('  <UserConfigurations>')
-    out.append('    <ColorConfiguration id="backColor" displayName="back_label"'
-               ' screenReaderText="back_label" defaultValue="match">')
-    for cid, _, bg in BACK_PALETTE:
-        out.append(f'      <ColorOption id="{cid}" displayName="back_{cid}_label"'
-                   f' colors="{bg}" />')
-    out.append('    </ColorConfiguration>')
+    # Face before background: the face is the one that actually changes the
+    # watch, and the background defaults to matching it, so it reads as the
+    # exception you reach for second.
     out.append('    <ColorConfiguration id="faceColor" displayName="face_label"'
                ' screenReaderText="face_label" defaultValue="black">')
     for cid, _, fill in FACE_PALETTE:
         text, minor = theme_colors(fill)
         out.append(f'      <ColorOption id="{cid}" displayName="face_{cid}_label"'
                    f' colors="{fill} {text} {minor}" />')
+    out.append('    </ColorConfiguration>')
+    out.append('    <ColorConfiguration id="backColor" displayName="back_label"'
+               ' screenReaderText="back_label" defaultValue="match">')
+    for cid, _, bg in BACK_PALETTE:
+        out.append(f'      <ColorOption id="{cid}" displayName="back_{cid}_label"'
+                   f' colors="{bg}" />')
     out.append('    </ColorConfiguration>')
     out.append('    <ColorConfiguration id="handColor" displayName="hand_label"'
                ' screenReaderText="hand_label" defaultValue="red">')
