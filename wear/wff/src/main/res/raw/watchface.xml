@@ -2322,7 +2322,7 @@
       <Variant mode="AMBIENT" target="alpha" value="255" startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT" />
       <Ellipse x="0" y="0" width="450" height="450">
         <Fill color="#FF000000">
-          <RadialGradient centerX="225.0" centerY="225.0" radius="225.0" colors="#00000000 #00000000 #FF000000 #FF000000" positions="0.0 0.9467 0.9911 1.0" />
+          <RadialGradient centerX="225.0" centerY="225.0" radius="225.0" colors="#00000000 #00000000 #00000000 #00000000 #00000000 #FF000000" positions="0.0000 0.2000 0.4000 0.6000 0.8000 1.0000" />
         </Fill>
       </Ellipse>
     </PartDraw>

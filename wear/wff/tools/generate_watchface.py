@@ -135,13 +135,17 @@ AMBIENT_SCALE = 0.95
 # dial does not end on a hard lit edge against the bezel at night. Drawn last
 # and in screen coordinates, so it stays pinned to the rim while the
 # composition scales away from it.
-VIGNETTE_PX = 10
-# The ramp has to finish just inside the clip edge, not on it. Ending the
-# gradient at position 1.0 puts pure black on the very last pixel, where the
-# circular clip and its antialiasing hide it -- measured on-device that only
-# took the rim from 217 down to 174, a plateau rather than a fade. Landing
-# full black ~2px early gives the ramp somewhere to arrive.
-VIGNETTE_SOLID_PX = 2
+VIGNETTE_WIDTH = 0.10
+# The ramp spans this fraction of the screen WIDTH, so twice that of the
+# radius. Stops are laid out to be evenly spaced BY CONSTRUCTION and
+# `positions` is emitted to match, because the two runtimes disagree about
+# it: Wear OS 7 ignores `positions` and distributes stops evenly, while the
+# Wear OS 6 emulator honors them. The same four-stop file rendered a 10px
+# rim on the emulator and a 75px wash across a third of the radius on a
+# Pixel Watch 5. Even spacing is the one layout both agree on.
+#
+# For the last gap to be the ramp, N stops evenly spaced need the
+# second-to-last at 1 - 2*width, which gives N = 1/(2*width) + 1.
 PIVOT_X = f"(({DC:.1f} + {DIST:.1f} * sin(rad({ANGLE}))) / {DIAL_SIZE:.1f})"
 PIVOT_Y = f"(({DC:.1f} - {DIST:.1f} * cos(rad({ANGLE}))) / {DIAL_SIZE:.1f})"
 # Complications ride the band just outside the rim, which the face disc
@@ -624,7 +628,7 @@ def dial_layer(ambient=False):
 
 
 def ambient_vignette():
-    """Transparent out to VIGNETTE_PX from the rim, then pure black at it.
+    """Transparent until the last stop gap, then ramping to pure black.
 
     RadialGradient lives inside a Fill and takes ARGB, so the ramp is done
     with alpha rather than a second layer. The middle stops hold full
@@ -636,17 +640,20 @@ def ambient_vignette():
     all, silently, and the validator accepts it. The transparency belongs in
     the gradient stops, not the Fill.
     """
-    start = (CX - VIGNETTE_PX - VIGNETTE_SOLID_PX) / CX
-    solid = (CX - VIGNETTE_SOLID_PX) / CX
+    stops = 1 / (2 * VIGNETTE_WIDTH) + 1
+    assert abs(stops - round(stops)) < 1e-9, (
+        f"VIGNETTE_WIDTH {VIGNETTE_WIDTH} needs {stops} evenly spaced stops; "
+        "pick a width of the form 1/(2*(n-1))")
+    stops = round(stops)
+    colors = " ".join(["#00000000"] * (stops - 1) + ["#FF000000"])
+    positions = " ".join(f"{i / (stops - 1):.4f}" for i in range(stops))
     return "\n".join([
         f'    <PartDraw x="0" y="0" width="{CANVAS}" height="{CANVAS}" alpha="0">',
         f'      <Variant mode="AMBIENT" target="alpha" value="255" {LIGHT_DIAL_FADE} />',
         f'      <Ellipse x="0" y="0" width="{CANVAS}" height="{CANVAS}">',
         f'        <Fill color="#FF000000">',
         f'          <RadialGradient centerX="{CX:.1f}" centerY="{CX:.1f}"'
-        f' radius="{CX:.1f}"'
-        f' colors="#00000000 #00000000 #FF000000 #FF000000"'
-        f' positions="0.0 {start:.4f} {solid:.4f} 1.0" />',
+        f' radius="{CX:.1f}" colors="{colors}" positions="{positions}" />',
         '        </Fill>',
         '      </Ellipse>',
         '    </PartDraw>',

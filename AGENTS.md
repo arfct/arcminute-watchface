@@ -345,10 +345,19 @@ clipped by the outer.
 
 ### The ambient rim vignette
 
-A `RadialGradient` in the last `PartDraw` ramps the outer ~10px to pure
-black in ambient, so the dial does not end on a hard lit edge against the
-bezel. It is drawn in screen coordinates outside the scaling groups, so it
-stays pinned to the rim while the composition draws back from it.
+A `RadialGradient` in the last `PartDraw` ramps the outer 10% of the screen
+width to pure black in ambient, so the dial does not end on a hard lit edge
+against the bezel. It is drawn in screen coordinates outside the scaling
+groups, so it stays pinned to the rim while the composition draws back
+from it.
+
+> **The two runtimes disagree about `positions`.** Wear OS 7 (Pixel Watch 5)
+> **ignores** it and distributes stops evenly; the Wear OS 6 emulator honors
+> it. The same four-stop file rendered a 10px rim on the emulator and a 75px
+> wash across a third of the radius on the watch. So lay the stops out to be
+> evenly spaced **by construction** and emit `positions` to match — then both
+> readings give the same picture. `VIGNETTE_WIDTH` needs a value of the form
+> `1/(2*(n-1))`; the generator asserts it.
 
 > **The `Fill`'s own color must be OPAQUE.** `<Fill color="#00000000">` with
 > a gradient inside renders **nothing at all** — silently, and the validator
@@ -356,17 +365,13 @@ stays pinned to the rim while the composition draws back from it.
 > The tell is that even an absurd test ramp (black from half radius) changes
 > nothing on screen.
 
-The ramp must also reach full black slightly *inside* the clip edge. Ending
-the last stop at `1.0` puts pure black only on the final pixel, where the
-circular clip and its antialiasing swallow it — measured, that took the rim
-from 217 to 174 and then held flat, a plateau rather than a fade.
-`VIGNETTE_SOLID_PX` lands full black ~2px early so the ramp has somewhere to
-arrive. Max brightness by radius on the emulator:
+Max brightness by radius, measured in ambient on a Pixel Watch 5 (426px,
+radius 213, so the ramp should begin at 170):
 
-| radius | 214 | 216 | 218 | 220 | 222 | 224 |
-|---|---|---|---|---|---|---|
-| Awake | 255 | 255 | 255 | 255 | 255 | 255 |
-| Ambient | 217 | 199 | 157 | 110 | 67 | 23 |
+| radius | 160 | 170 | 180 | 190 | 200 |
+|---|---|---|---|---|---|
+| Awake | 255 | 255 | 255 | 255 | 255 |
+| Ambient | 217 | 217 | 164 | 114 | 53 |
 
 ### Measuring ambient on a device
 
