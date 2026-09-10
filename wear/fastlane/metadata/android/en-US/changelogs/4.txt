@@ -1,0 +1,5 @@
+The whole face now draws back slightly when the screen idles, and comes forward again when you raise your wrist.
+
+Ambient is always dark, which draws less power. The "Dark when off" setting is gone as a result.
+
+Now requires Wear OS 6.

@@ -308,22 +308,43 @@ for a mode change, and **the runtime discards both if they sum past 1.0**.
 Each `Variant` has one curve serving both directions, so the cascade plays
 forward on wake and in reverse going idle:
 
-| Layer | startOffset | duration | interpolation |
-|---|---|---|---|
-| Ground (face + background) | 0 | 0.5 | `EASE_OUT` |
-| Color dial | 0.1 | 0.5 | `EASE_OUT` |
-| Light (ambient) dial | 0.25 | 0.6 | `EASE_IN_OUT` |
-| Hand reach (`scaleX`/`scaleY`) | 0.4 | 0.6 | `OVERSHOOT` |
-| Hand alpha | 0.4 | 0.6 | `EASE_OUT` |
-| Complication | 0.5 | 0.5 | `EASE_OUT` |
+| Layer | Target | startOffset | duration | interpolation |
+|---|---|---|---|---|
+| **Core scale** | `scaleX`/`scaleY` → `0.9` | 0 | 0.75 | `EASE_OUT` |
+| Ground (face + background) | `alpha` → 0 | 0 | 0.5 | `EASE_OUT` |
+| Color dial | `alpha` → 0 | 0.1 | 0.5 | `EASE_OUT` |
+| Light (ambient) dial | `alpha` → 255 | 0.25 | 0.6 | `EASE_IN_OUT` |
+| Complication | `alpha` → 0 | 0.5 | 0.5 | `EASE_OUT` |
 
-Name them for the object, not a direction: each fades out going idle and back
-in on wake, on the same curve. The staggering is the point: a shared window
-cross-fades every layer through a muddy half-lit midpoint, whereas offsetting
-them lets the dark lift before the color arrives, and puts color under the
-marks before the light copy has finished dissolving off the top. The hand scales about its group pivot, which is the dial
-center, so `0.98` in ambient retracts the tip from the rim and waking makes
-it reach back out past the mark before settling.
+Name them for the object, not a direction: each runs one way going idle and
+back on wake, on the same curve. The core move is the 10% scale-down; it
+spans the whole window underneath, so the fades read as detail on one
+gesture rather than separate events. The staggering is the point for the
+rest: a shared window cross-fades every layer through a muddy half-lit
+midpoint, whereas offsetting them lets the dark lift before the color
+arrives, and puts color under the marks before the light copy has finished
+dissolving off the top.
+
+**Scaling has to pivot on the screen center, not the group center.** A dial
+group's own center sits ~513px off-screen, so `pivotX/pivotY = 0.5` swings
+the visible rim away instead of shrinking it. `pivotX`/`pivotY` are
+transformable, so `PIVOT_X`/`PIVOT_Y` express the screen center as a
+fraction of the group's box and track the hour with it. Measured on-device,
+a mark 123px from the screen center moves to 111px — a ratio of 0.902
+against the 0.900 target.
+
+**The hand carries no Variant of its own.** It keeps full color and full
+length in ambient. An earlier version scaled it about its group pivot (the
+dial center), which retracted the tip from the rim and left a gap; scaling
+the composition instead carries the hand with the dial so the tip stays on
+the marks. It needs two nested groups — the outer scales about the screen
+center, the inner still rotates about the dial center — because one pivot
+cannot serve both. Both boxes are `DIAL_SIZE`, so the inner cannot be
+clipped by the outer.
+
+The panel dims the whole AOD frame by ~0.85 (white 255 → 217), which is the
+device, not the watch face. If you are checking whether something is being
+faded, compare its ratio against a neutral's.
 
 Testing note: a config `defaultValue` does **not** apply to a watch face
 whose style is already stored, so changing a default and reinstalling shows

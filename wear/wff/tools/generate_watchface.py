@@ -101,7 +101,8 @@ AMBIENT_MINOR = "#66FFFFFF"
 # Variant carries one curve that serves both directions, so this cascade runs
 # forward on wake and in reverse going idle:
 #
-#   ground drains -> dials cross -> hand reaches -> complication returns
+#   the whole face draws back 10%, and under that:
+#   ground drains -> dials cross -> complication returns
 #
 # The staggering is the point. A single shared window cross-fades every layer
 # through a muddy half-lit midpoint; offsetting them means the dark lifts
@@ -114,13 +115,23 @@ GROUND_FADE = 'startOffset="0" duration="0.5" interpolation="EASE_OUT"'
 COLOR_DIAL_FADE = 'startOffset="0.1" duration="0.5" interpolation="EASE_OUT"'
 LIGHT_DIAL_FADE = 'startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT"'
 COMPLICATION_FADE = 'startOffset="0.5" duration="0.5" interpolation="EASE_OUT"'
-HAND_FADE = 'startOffset="0.4" duration="0.6" interpolation="EASE_OUT"'
-# The hand is the reading, so it lands last and with a bounce. Scaling pivots
-# on the group center, which is the dial center, so a scale under 1 retracts
-# the tip from the rim; waking, it reaches back out and past before settling.
-HAND_REACH = 'startOffset="0.4" duration="0.6" interpolation="OVERSHOOT"'
-HAND_AMBIENT_SCALE = 0.98
-HAND_AMBIENT_ALPHA = 190
+# The core move: the whole composition draws back 10% when the screen idles.
+# It runs the full window under everything else, so the fades read as detail
+# on top of one gesture rather than as separate events.
+#
+# The hand deliberately has no Variant of its own. It keeps full color and
+# full length in ambient -- an earlier version scaled it about its own group
+# pivot, which is the dial center, so it retracted from the rim and left a
+# gap. Scaling the composition instead moves the hand with the dial, so the
+# tip stays on the marks.
+CORE_SCALE = 'startOffset="0" duration="0.75" interpolation="EASE_OUT"'
+AMBIENT_SCALE = 0.9
+# Screen center expressed as a fraction of the dial group's own box, so the
+# group scales about the middle of the screen rather than the dial's center
+# (which sits ~513px off-screen, and would swing the rim away instead of
+# shrinking it). pivotX/pivotY are transformable, so this tracks the hour.
+PIVOT_X = f"(({DC:.1f} + {DIST:.1f} * sin(rad({ANGLE}))) / {DIAL_SIZE:.1f})"
+PIVOT_Y = f"(({DC:.1f} - {DIST:.1f} * cos(rad({ANGLE}))) / {DIAL_SIZE:.1f})"
 # Complications ride the band just outside the rim, which the face disc
 # overshoots, so they follow the face too.
 TEXT_COLOR = FACE_TEXT
@@ -572,11 +583,18 @@ def dial_variant(style_name, option_id, ambient=False):
     out.append(f'    <BooleanOption id="{option_id}">')
     out.append(f'      <Group x="0" y="0" width="{DIAL_SIZE:.0f}"'
                f' height="{DIAL_SIZE:.0f}" name="dialpos_{tag}"'
-               f' alpha="{base_alpha}">')
+               f' alpha="{base_alpha}" pivotX="0.5" pivotY="0.5"'
+               f' scaleX="1" scaleY="1">')
     out.append(f'        <Variant mode="AMBIENT" target="alpha"'
                f' value="{value}" {timing} />')
+    out.append(f'        <Variant mode="AMBIENT" target="scaleX"'
+               f' value="{AMBIENT_SCALE}" {CORE_SCALE} />')
+    out.append(f'        <Variant mode="AMBIENT" target="scaleY"'
+               f' value="{AMBIENT_SCALE}" {CORE_SCALE} />')
     out.append(f'        <Transform target="x" value="{GROUP_X}" />')
     out.append(f'        <Transform target="y" value="{GROUP_Y}" />')
+    out.append(f'        <Transform target="pivotX" value="{PIVOT_X}" />')
+    out.append(f'        <Transform target="pivotY" value="{PIVOT_Y}" />')
     out.extend(dial_body(style_name, tag, text, minor, disc=not ambient))
     out.append('      </Group>')
     out.append('    </BooleanOption>')
@@ -634,18 +652,21 @@ def watchface():
 {dial_layer()}
 {dial_layer(ambient=True)}
 {complication_slot()}
-    <Group x="0" y="0" width="{DIAL_SIZE:.0f}" height="{DIAL_SIZE:.0f}" name="hand" angle="0" pivotX="0.5" pivotY="0.5" alpha="255" scaleX="1" scaleY="1">
-      <Variant mode="AMBIENT" target="scaleX" value="{HAND_AMBIENT_SCALE}" {HAND_REACH} />
-      <Variant mode="AMBIENT" target="scaleY" value="{HAND_AMBIENT_SCALE}" {HAND_REACH} />
-      <Variant mode="AMBIENT" target="alpha" value="{HAND_AMBIENT_ALPHA}" {HAND_FADE} />
+    <Group x="0" y="0" width="{DIAL_SIZE:.0f}" height="{DIAL_SIZE:.0f}" name="handscale" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
+      <Variant mode="AMBIENT" target="scaleX" value="{AMBIENT_SCALE}" {CORE_SCALE} />
+      <Variant mode="AMBIENT" target="scaleY" value="{AMBIENT_SCALE}" {CORE_SCALE} />
       <Transform target="x" value="{GROUP_X}" />
       <Transform target="y" value="{GROUP_Y}" />
-      <Transform target="angle" value="{ANGLE}" />
-      <PartDraw x="0" y="0" width="{DIAL_SIZE:.0f}" height="{DIAL_SIZE:.0f}">
-        <Line startX="{hand_x1:.1f}" startY="{hand_y1:.1f}" endX="{hand_x2:.1f}" endY="{hand_y2:.1f}">
-          <Stroke color="{HAND_COLOR}" thickness="{HAND_STROKE:.1f}" cap="ROUND" />
-        </Line>
-      </PartDraw>
+      <Transform target="pivotX" value="{PIVOT_X}" />
+      <Transform target="pivotY" value="{PIVOT_Y}" />
+      <Group x="0" y="0" width="{DIAL_SIZE:.0f}" height="{DIAL_SIZE:.0f}" name="hand" angle="0" pivotX="0.5" pivotY="0.5">
+        <Transform target="angle" value="{ANGLE}" />
+        <PartDraw x="0" y="0" width="{DIAL_SIZE:.0f}" height="{DIAL_SIZE:.0f}">
+          <Line startX="{hand_x1:.1f}" startY="{hand_y1:.1f}" endX="{hand_x2:.1f}" endY="{hand_y2:.1f}">
+            <Stroke color="{HAND_COLOR}" thickness="{HAND_STROKE:.1f}" cap="ROUND" />
+          </Line>
+        </PartDraw>
+      </Group>
     </Group>
   </Scene>
 </WatchFace>
