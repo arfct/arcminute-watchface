@@ -21,7 +21,7 @@ Imagine a dial three times wider than your watch. It slides past the screen over
 
 The hand moves continuously, twelve times slower than a minute hand. Watch it long enough and you can see the hour coming.
 
-Two dials: large numerals or a finer classic scale. Nineteen colors for the background and the hand, from a plain black or white to a full saturated palette. In 24-hour mode the numerals renumber themselves so the dial reads 13 through 24 in the afternoon.
+Two dials: large numerals or a finer classic scale. Nineteen colors for the background and the hand, from a plain black or white to a full saturated palette. In 24-hour mode the numerals renumber themselves so the dial reads 13 through 23 in the afternoon.
 
 No data collected, no permissions, no companion app. It tells the time, sideways.
 

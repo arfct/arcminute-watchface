@@ -277,9 +277,10 @@ static void my_face_draw(Layer *layer, GContext *ctx)
   graphics_context_set_stroke_width(ctx, 2);
   graphics_context_set_text_color(ctx, face_text_color());
 
-  // In 24h mode each tick shows the absolute hour (1-24) nearest the current
-  // time, so the visible arc reads 13-24 in the afternoon and combos across
-  // midnight (...23, 24, 1, 2...) as the dial rolls over.
+  // In 24h mode each tick shows the absolute hour (0-23) nearest the current
+  // time, so the visible arc reads 13-23 in the afternoon and combos across
+  // midnight (...22, 23, 0, 1...) as the dial rolls over. Midnight is 0, not
+  // 24, matching how a 24h clock is actually written (per ericmigi, #4).
   const bool h24 = clock_is_24h_style();
   time_t face_now = time(NULL);
   struct tm *face_tm = localtime(&face_now);
@@ -293,8 +294,7 @@ static void my_face_draw(Layer *layer, GContext *ctx)
     if (h24) {
       float laps = (cur_hour - i) / 12.0f;
       int nearest = i + 12 * (int)(laps + (laps >= 0 ? 0.5f : -0.5f));
-      nearest = ((nearest % 24) + 24) % 24;
-      label = nearest == 0 ? 24 : nearest;
+      label = ((nearest % 24) + 24) % 24;
     } else {
       label = i == 0 ? 12 : i;
     }
