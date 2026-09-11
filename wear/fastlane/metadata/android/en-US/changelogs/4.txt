@@ -1,4 +1,4 @@
-The whole face now draws back slightly when the screen idles, and comes forward again when you raise your wrist.
+The whole face now draws back slightly when the screen idles, and comes forward again when you raise your wrist. The very edge of the dial fades to black while it rests.
 
 Ambient is always dark, which draws less power. The "Dark when off" setting is gone as a result.
 

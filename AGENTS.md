@@ -310,16 +310,17 @@ forward on wake and in reverse going idle:
 
 | Layer | Target | startOffset | duration | interpolation |
 |---|---|---|---|---|
-| **Core scale** | `scaleX`/`scaleY` → `0.9` | 0 | 0.75 | `EASE_OUT` |
+| **Core scale** | `scaleX`/`scaleY` → `0.95` | 0 | 0.75 | `EASE_OUT` |
 | Ground (face + background) | `alpha` → 0 | 0 | 0.5 | `EASE_OUT` |
 | Color dial | `alpha` → 0 | 0.1 | 0.5 | `EASE_OUT` |
 | Light (ambient) dial | `alpha` → 255 | 0.25 | 0.6 | `EASE_IN_OUT` |
 | Complication | `alpha` → 0 | 0.5 | 0.5 | `EASE_OUT` |
+| Rim vignette | `alpha` → 255 | 0.25 | 0.6 | `EASE_IN_OUT` |
 
 Name them for the object, not a direction: each runs one way going idle and
-back on wake, on the same curve. The core move is the 10% scale-down; it
-spans the whole window underneath, so the fades read as detail on one
-gesture rather than separate events. The staggering is the point for the
+back on wake, on the same curve. The core move is the 5% scale-down (10%
+was tried first and read as too much); it spans the whole window underneath,
+so the fades read as detail on one gesture rather than separate events. The staggering is the point for the
 rest: a shared window cross-fades every layer through a muddy half-lit
 midpoint, whereas offsetting them lets the dark lift before the color
 arrives, and puts color under the marks before the light copy has finished
@@ -330,8 +331,8 @@ group's own center sits ~513px off-screen, so `pivotX/pivotY = 0.5` swings
 the visible rim away instead of shrinking it. `pivotX`/`pivotY` are
 transformable, so `PIVOT_X`/`PIVOT_Y` express the screen center as a
 fraction of the group's box and track the hour with it. Measured on-device,
-a mark 123px from the screen center moves to 111px — a ratio of 0.902
-against the 0.900 target.
+the numeral bounding box scales 0.947 x 0.949 against the 0.950 target (and
+0.894 x 0.899 against 0.900 when it was set to 10%).
 
 **The hand carries no Variant of its own.** It keeps full color and full
 length in ambient. An earlier version scaled it about its group pivot (the
@@ -342,9 +343,76 @@ center, the inner still rotates about the dial center — because one pivot
 cannot serve both. Both boxes are `DIAL_SIZE`, so the inner cannot be
 clipped by the outer.
 
+### The ambient rim vignette
+
+A `RadialGradient` in the last `PartDraw` ramps the outer 10% of the screen
+width to pure black in ambient, so the dial does not end on a hard lit edge
+against the bezel. It is drawn in screen coordinates outside the scaling
+groups, so it stays pinned to the rim while the composition draws back
+from it.
+
+> **The two runtimes disagree about `positions`.** Wear OS 7 (Pixel Watch 5)
+> **ignores** it and distributes stops evenly; the Wear OS 6 emulator honors
+> it. The same four-stop file rendered a 10px rim on the emulator and a 75px
+> wash across a third of the radius on the watch. So lay the stops out to be
+> evenly spaced **by construction** and emit `positions` to match — then both
+> readings give the same picture. `VIGNETTE_WIDTH` needs a value of the form
+> `1/(2*(n-1))`; the generator asserts it.
+
+> **The `Fill`'s own color must be OPAQUE.** `<Fill color="#00000000">` with
+> a gradient inside renders **nothing at all** — silently, and the validator
+> accepts it. The transparency belongs in the gradient stops, not the Fill.
+> The tell is that even an absurd test ramp (black from half radius) changes
+> nothing on screen.
+
+Max brightness by radius, measured in ambient on a Pixel Watch 5 (426px,
+radius 213, so the ramp should begin at 170):
+
+| radius | 160 | 170 | 180 | 190 | 200 |
+|---|---|---|---|---|---|
+| Awake | 255 | 255 | 255 | 255 | 255 |
+| Ambient | 217 | 217 | 164 | 114 | 53 |
+
+### Measuring ambient on a device
+
 The panel dims the whole AOD frame by ~0.85 (white 255 → 217), which is the
 device, not the watch face. If you are checking whether something is being
 faded, compare its ratio against a neutral's.
+
+That ratio is also the only reliable way to tell an AOD capture from an
+awake one: **`mScreenState` and what `screencap` returns are not in sync**,
+so polling for `DOZE` and then capturing usually yields an awake frame.
+Burst-capture instead and pick by peak brightness (~217 = AOD, 255 = awake).
+
+Do not measure scale with a fixed-column probe — the dial rotates between
+captures, so the same column samples different features. Use the numeral
+bounding box, which is rotation-invariant.
+
+A real watch drops adb the instant it sleeps, truncating captures and
+killing `screenrecord` mid-file. Use an emulator for capture mechanics; it
+holds the connection and `screen_off_timeout` forces DOZE on demand. Do
+**not** trust it for gradients — see the `positions` note above.
+
+### Wireless debugging on a real watch
+
+`wear/tools/deploy-watch.sh` builds, installs, activates and hangs up.
+
+> **`adb disconnect` does not stick.** adb runs its own mDNS discovery and
+> **auto-connects** to anything advertising `_adb-tls-connect` — the device
+> reappears under its service name (`adb-<serial>-<hash>._adb-tls-connect._tcp`)
+> rather than as `host:port`, which is the tell. `ADB_MDNS_AUTO_CONNECT=0`
+> is what actually stops it; the script exports it.
+
+The connect port is **not stable**: it changes whenever Wireless debugging is
+toggled on the watch (seen go 42765 → 45989). Pairing survives, so no new
+code is needed, but the port has to be rediscovered — hence the mDNS lookup.
+The *pairing* port rotates separately and its code is single-use, so a code
+is only good for the dialog that is currently open.
+
+To stop the watch advertising at all (and stop the "Wireless debugging
+connected" notification landing on the face, where it intercepts the
+long-press that opens the style editor), turn Wireless debugging off in
+Developer options. It also turns itself off on reboot.
 
 Testing note: a config `defaultValue` does **not** apply to a watch face
 whose style is already stored, so changing a default and reinstalling shows
