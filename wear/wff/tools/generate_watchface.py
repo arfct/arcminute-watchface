@@ -450,14 +450,16 @@ def polar(radius, angle_deg):
 
 
 def label24_expression(i):
-    """Absolute hour (1-24) nearest the current time for tick i.
+    """Absolute hour (0-23) nearest the current time for tick i.
+
+    Midnight reads 0, not 24, matching how a 24h clock is written and keeping
+    this port in step with the Pebble one (per ericmigi, #4).
 
     floor() where the C code truncates toward zero; differs only at the exact
     6-hour tie point. n+24 is always positive, so % semantics don't matter.
     """
     n = f"({i} + 12 * floor(([HOUR_0_23_MINUTE] - {i}) / 12 + 0.5))"
-    w = f"(({n} + 24) % 24)"
-    return f"{w} == 0 ? 24 : {w}"
+    return f"(({n} + 24) % 24)"
 
 
 def hour_tick(s, angle_deg, out, text_color):
