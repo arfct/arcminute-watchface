@@ -71,8 +71,18 @@
       <ColorOption id="black" displayName="hand_black_label" colors="#000000" />
       <ColorOption id="white" displayName="hand_white_label" colors="#FFFFFF" />
     </ColorConfiguration>
-    <BooleanConfiguration id="largeNumerals" displayName="large_numerals_label" screenReaderText="large_numerals_label" defaultValue="TRUE" />
-    <BooleanConfiguration id="hour24" displayName="hour24_label" screenReaderText="hour24_label" defaultValue="FALSE" />
+    <ListConfiguration id="numerals" displayName="numerals_label" screenReaderText="numerals_label" defaultValue="large">
+      <ListOption id="large" displayName="numerals_large_label" />
+      <ListOption id="classic" displayName="numerals_classic_label" />
+    </ListConfiguration>
+    <ListConfiguration id="hours" displayName="hours_label" screenReaderText="hours_label" defaultValue="h12">
+      <ListOption id="h12" displayName="hours_h12_label" />
+      <ListOption id="h24" displayName="hours_h24_label" />
+    </ListConfiguration>
+    <ListConfiguration id="iconPosition" displayName="icon_position_label" screenReaderText="icon_position_label" defaultValue="tip">
+      <ListOption id="tip" displayName="icon_position_tip_label" />
+      <ListOption id="base" displayName="icon_position_base_label" />
+    </ListConfiguration>
   </UserConfigurations>
   <Scene backgroundColor="#000000">
     <PartDraw x="0" y="0" width="450" height="450" alpha="255">
@@ -84,8 +94,8 @@
         <Fill color="[CONFIGURATION.backColor.0]" />
       </Rectangle>
     </PartDraw>
-    <BooleanConfiguration id="largeNumerals">
-    <BooleanOption id="TRUE">
+    <ListConfiguration id="numerals">
+    <ListOption id="large">
       <Group x="0" y="0" width="1378" height="1378" name="dialpos_large" alpha="255" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
         <Variant mode="AMBIENT" target="alpha" value="0" startOffset="0.1" duration="0.5" interpolation="EASE_OUT" />
         <Variant mode="AMBIENT" target="scaleX" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
@@ -532,8 +542,8 @@
           <Fill color="[CONFIGURATION.faceColor.2]" />
         </Ellipse>
           </PartDraw>
-        <BooleanConfiguration id="hour24">
-          <BooleanOption id="TRUE">
+        <ListConfiguration id="hours">
+          <ListOption id="h24">
             <Group x="0" y="0" width="1378" height="1378" name="num24_large">
           <PartText x="585" y="38" width="207" height="214" name="num24_large_0">
             <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.faceColor.1]"><Template>%d<Parameter expression="(((0 + 12 * floor(([HOUR_0_23_MINUTE] - 0) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
@@ -572,8 +582,8 @@
             <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.faceColor.1]"><Template>%d<Parameter expression="(((11 + 12 * floor(([HOUR_0_23_MINUTE] - 11) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
             </Group>
-          </BooleanOption>
-          <BooleanOption id="FALSE">
+          </ListOption>
+          <ListOption id="h12">
             <Group x="0" y="0" width="1378" height="1378" name="num12_large">
           <PartText x="585" y="38" width="207" height="214" name="num12_large_0">
             <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.faceColor.1]">12</Font></Text>
@@ -612,12 +622,12 @@
             <Text align="CENTER"><Font family="helvetica_digits" size="164" color="[CONFIGURATION.faceColor.1]">11</Font></Text>
           </PartText>
             </Group>
-          </BooleanOption>
-        </BooleanConfiguration>
+          </ListOption>
+        </ListConfiguration>
         </Group>
       </Group>
-    </BooleanOption>
-    <BooleanOption id="FALSE">
+    </ListOption>
+    <ListOption id="classic">
       <Group x="0" y="0" width="1378" height="1378" name="dialpos_classic" alpha="255" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
         <Variant mode="AMBIENT" target="alpha" value="0" startOffset="0.1" duration="0.5" interpolation="EASE_OUT" />
         <Variant mode="AMBIENT" target="scaleX" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
@@ -1064,8 +1074,8 @@
           <Fill color="[CONFIGURATION.faceColor.2]" />
         </Ellipse>
           </PartDraw>
-        <BooleanConfiguration id="hour24">
-          <BooleanOption id="TRUE">
+        <ListConfiguration id="hours">
+          <ListOption id="h24">
             <Group x="0" y="0" width="1378" height="1378" name="num24_classic">
           <PartText x="636" y="29" width="105" height="94" name="num24_classic_0">
             <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.faceColor.1]"><Template>%d<Parameter expression="(((0 + 12 * floor(([HOUR_0_23_MINUTE] - 0) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
@@ -1104,8 +1114,8 @@
             <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.faceColor.1]"><Template>%d<Parameter expression="(((11 + 12 * floor(([HOUR_0_23_MINUTE] - 11) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
             </Group>
-          </BooleanOption>
-          <BooleanOption id="FALSE">
+          </ListOption>
+          <ListOption id="h12">
             <Group x="0" y="0" width="1378" height="1378" name="num12_classic">
           <PartText x="636" y="29" width="105" height="94" name="num12_classic_0">
             <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.faceColor.1]">12</Font></Text>
@@ -1144,14 +1154,14 @@
             <Text align="CENTER"><Font family="helvetica_digits" size="73" color="[CONFIGURATION.faceColor.1]">11</Font></Text>
           </PartText>
             </Group>
-          </BooleanOption>
-        </BooleanConfiguration>
+          </ListOption>
+        </ListConfiguration>
         </Group>
       </Group>
-    </BooleanOption>
-    </BooleanConfiguration>
-    <BooleanConfiguration id="largeNumerals">
-    <BooleanOption id="TRUE">
+    </ListOption>
+    </ListConfiguration>
+    <ListConfiguration id="numerals">
+    <ListOption id="large">
       <Group x="0" y="0" width="1378" height="1378" name="dialpos_large_amb" alpha="0" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
         <Variant mode="AMBIENT" target="alpha" value="255" startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT" />
         <Variant mode="AMBIENT" target="scaleX" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
@@ -1595,8 +1605,8 @@
           <Fill color="#AAFFFFFF" />
         </Ellipse>
           </PartDraw>
-        <BooleanConfiguration id="hour24">
-          <BooleanOption id="TRUE">
+        <ListConfiguration id="hours">
+          <ListOption id="h24">
             <Group x="0" y="0" width="1378" height="1378" name="num24_large_amb">
           <PartText x="585" y="38" width="207" height="214" name="num24_large_amb_0">
             <Text align="CENTER"><Font family="helvetica_digits" size="164" color="#FFFFFF"><Template>%d<Parameter expression="(((0 + 12 * floor(([HOUR_0_23_MINUTE] - 0) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
@@ -1635,8 +1645,8 @@
             <Text align="CENTER"><Font family="helvetica_digits" size="164" color="#FFFFFF"><Template>%d<Parameter expression="(((11 + 12 * floor(([HOUR_0_23_MINUTE] - 11) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
             </Group>
-          </BooleanOption>
-          <BooleanOption id="FALSE">
+          </ListOption>
+          <ListOption id="h12">
             <Group x="0" y="0" width="1378" height="1378" name="num12_large_amb">
           <PartText x="585" y="38" width="207" height="214" name="num12_large_amb_0">
             <Text align="CENTER"><Font family="helvetica_digits" size="164" color="#FFFFFF">12</Font></Text>
@@ -1675,12 +1685,12 @@
             <Text align="CENTER"><Font family="helvetica_digits" size="164" color="#FFFFFF">11</Font></Text>
           </PartText>
             </Group>
-          </BooleanOption>
-        </BooleanConfiguration>
+          </ListOption>
+        </ListConfiguration>
         </Group>
       </Group>
-    </BooleanOption>
-    <BooleanOption id="FALSE">
+    </ListOption>
+    <ListOption id="classic">
       <Group x="0" y="0" width="1378" height="1378" name="dialpos_classic_amb" alpha="0" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
         <Variant mode="AMBIENT" target="alpha" value="255" startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT" />
         <Variant mode="AMBIENT" target="scaleX" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
@@ -2124,8 +2134,8 @@
           <Fill color="#AAFFFFFF" />
         </Ellipse>
           </PartDraw>
-        <BooleanConfiguration id="hour24">
-          <BooleanOption id="TRUE">
+        <ListConfiguration id="hours">
+          <ListOption id="h24">
             <Group x="0" y="0" width="1378" height="1378" name="num24_classic_amb">
           <PartText x="636" y="29" width="105" height="94" name="num24_classic_amb_0">
             <Text align="CENTER"><Font family="helvetica_digits" size="73" color="#FFFFFF"><Template>%d<Parameter expression="(((0 + 12 * floor(([HOUR_0_23_MINUTE] - 0) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
@@ -2164,8 +2174,8 @@
             <Text align="CENTER"><Font family="helvetica_digits" size="73" color="#FFFFFF"><Template>%d<Parameter expression="(((11 + 12 * floor(([HOUR_0_23_MINUTE] - 11) / 12 + 0.5)) + 24) % 24)" /></Template></Font></Text>
           </PartText>
             </Group>
-          </BooleanOption>
-          <BooleanOption id="FALSE">
+          </ListOption>
+          <ListOption id="h12">
             <Group x="0" y="0" width="1378" height="1378" name="num12_classic_amb">
           <PartText x="636" y="29" width="105" height="94" name="num12_classic_amb_0">
             <Text align="CENTER"><Font family="helvetica_digits" size="73" color="#FFFFFF">12</Font></Text>
@@ -2204,104 +2214,12 @@
             <Text align="CENTER"><Font family="helvetica_digits" size="73" color="#FFFFFF">11</Font></Text>
           </PartText>
             </Group>
-          </BooleanOption>
-        </BooleanConfiguration>
+          </ListOption>
+        </ListConfiguration>
         </Group>
       </Group>
-    </BooleanOption>
-    </BooleanConfiguration>
-    <ComplicationSlot slotId="0" supportedTypes="RANGED_VALUE SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE EMPTY" x="0" y="0" width="450" height="450">
-      <BoundingArc centerX="225.0" centerY="225.0" width="301.2" height="301.2" thickness="61.0" startAngle="0" endAngle="360" outlinePadding="2" />
-      <Complication type="RANGED_VALUE">
-        <PartDraw x="0" y="0" width="450" height="450">
-          <Arc centerX="0" centerY="0" width="1377.7" height="1377.7" startAngle="-4.96" endAngle="4.96">
-            <Transform target="centerX" value="(225.0 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
-            <Transform target="centerY" value="(225.0 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
-            <Transform target="startAngle" value="((30 * [HOUR_0_11_MINUTE]) - 4.96)" />
-            <Transform target="endAngle" value="((30 * [HOUR_0_11_MINUTE]) + 4.96)" />
-            <Stroke color="[CONFIGURATION.faceColor.2]" thickness="10.4" cap="ROUND" />
-          </Arc>
-          <Arc centerX="0" centerY="0" width="1377.7" height="1377.7" startAngle="-4.96" endAngle="4.96">
-            <Transform target="centerX" value="(225.0 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
-            <Transform target="centerY" value="(225.0 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
-            <Transform target="startAngle" value="((30 * [HOUR_0_11_MINUTE]) - 4.96)" />
-            <Transform target="endAngle" value="(((30 * [HOUR_0_11_MINUTE]) - 4.96) + 9.92 * ([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN] ? 0 : clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]), 0, 1)))" />
-            <Stroke color="[CONFIGURATION.handColor.0]" thickness="10.4" cap="ROUND" />
-          </Arc>
-        </PartDraw>
-        <Condition>
-          <Expressions>
-            <Expression name="evflip_rv">([HOUR_0_11_MINUTE] &gt;= 3) &amp;&amp; ([HOUR_0_11_MINUTE] &lt; 9)</Expression>
-          </Expressions>
-          <Compare expression="evflip_rv">
-        <PartText x="0" y="0" width="450" height="450">
-          <TextCircular centerX="0" centerY="0" width="1446.9" height="1446.9" startAngle="40" endAngle="-40" direction="COUNTER_CLOCKWISE" align="CENTER" ellipsis="TRUE">
-            <Transform target="centerX" value="(225.0 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
-            <Transform target="centerY" value="(225.0 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
-            <Transform target="startAngle" value="((30 * [HOUR_0_11_MINUTE]) - -40)" />
-            <Transform target="endAngle" value="((30 * [HOUR_0_11_MINUTE]) + -40)" />
-            <Font family="SYNC_TO_DEVICE" size="26" color="[CONFIGURATION.faceColor.1]"><Template>%s %s<Parameter expression="[COMPLICATION.TITLE]" /><Parameter expression="[COMPLICATION.TEXT]" /></Template></Font>
-          </TextCircular>
-        </PartText>
-          </Compare>
-          <Default>
-        <PartText x="0" y="0" width="450" height="450">
-          <TextCircular centerX="0" centerY="0" width="1446.9" height="1446.9" startAngle="-40" endAngle="40" direction="CLOCKWISE" align="CENTER" ellipsis="TRUE">
-            <Transform target="centerX" value="(225.0 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
-            <Transform target="centerY" value="(225.0 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
-            <Transform target="startAngle" value="((30 * [HOUR_0_11_MINUTE]) - 40)" />
-            <Transform target="endAngle" value="((30 * [HOUR_0_11_MINUTE]) + 40)" />
-            <Font family="SYNC_TO_DEVICE" size="26" color="[CONFIGURATION.faceColor.1]"><Template>%s %s<Parameter expression="[COMPLICATION.TITLE]" /><Parameter expression="[COMPLICATION.TEXT]" /></Template></Font>
-          </TextCircular>
-        </PartText>
-          </Default>
-        </Condition>
-      </Complication>
-      <Complication type="SHORT_TEXT">
-        <Condition>
-          <Expressions>
-            <Expression name="evflip_st">([HOUR_0_11_MINUTE] &gt;= 3) &amp;&amp; ([HOUR_0_11_MINUTE] &lt; 9)</Expression>
-          </Expressions>
-          <Compare expression="evflip_st">
-        <PartText x="0" y="0" width="450" height="450">
-          <TextCircular centerX="0" centerY="0" width="1408.8" height="1408.8" startAngle="40" endAngle="-40" direction="COUNTER_CLOCKWISE" align="CENTER" ellipsis="TRUE">
-            <Transform target="centerX" value="(225.0 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
-            <Transform target="centerY" value="(225.0 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
-            <Transform target="startAngle" value="((30 * [HOUR_0_11_MINUTE]) - -40)" />
-            <Transform target="endAngle" value="((30 * [HOUR_0_11_MINUTE]) + -40)" />
-            <Font family="SYNC_TO_DEVICE" size="26" color="[CONFIGURATION.faceColor.1]"><Template>%s %s<Parameter expression="[COMPLICATION.TITLE]" /><Parameter expression="[COMPLICATION.TEXT]" /></Template></Font>
-          </TextCircular>
-        </PartText>
-          </Compare>
-          <Default>
-        <PartText x="0" y="0" width="450" height="450">
-          <TextCircular centerX="0" centerY="0" width="1408.8" height="1408.8" startAngle="-40" endAngle="40" direction="CLOCKWISE" align="CENTER" ellipsis="TRUE">
-            <Transform target="centerX" value="(225.0 - 550.4 * sin(rad((30 * [HOUR_0_11_MINUTE]))))" />
-            <Transform target="centerY" value="(225.0 + 550.4 * cos(rad((30 * [HOUR_0_11_MINUTE]))))" />
-            <Transform target="startAngle" value="((30 * [HOUR_0_11_MINUTE]) - 40)" />
-            <Transform target="endAngle" value="((30 * [HOUR_0_11_MINUTE]) + 40)" />
-            <Font family="SYNC_TO_DEVICE" size="26" color="[CONFIGURATION.faceColor.1]"><Template>%s %s<Parameter expression="[COMPLICATION.TITLE]" /><Parameter expression="[COMPLICATION.TEXT]" /></Template></Font>
-          </TextCircular>
-        </PartText>
-          </Default>
-        </Condition>
-      </Complication>
-      <Complication type="MONOCHROMATIC_IMAGE">
-        <PartImage x="208" y="57" width="35" height="35" tintColor="[CONFIGURATION.faceColor.1]">
-          <Transform target="x" value="(225.0 + 150.6 * sin(rad((30 * [HOUR_0_11_MINUTE]))) - 17.3)" />
-          <Transform target="y" value="(225.0 - 150.6 * cos(rad((30 * [HOUR_0_11_MINUTE]))) - 17.3)" />
-          <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
-        </PartImage>
-      </Complication>
-      <Complication type="SMALL_IMAGE">
-        <PartImage x="208" y="57" width="35" height="35">
-          <Transform target="x" value="(225.0 + 150.6 * sin(rad((30 * [HOUR_0_11_MINUTE]))) - 17.3)" />
-          <Transform target="y" value="(225.0 - 150.6 * cos(rad((30 * [HOUR_0_11_MINUTE]))) - 17.3)" />
-          <Image resource="[COMPLICATION.SMALL_IMAGE]" />
-        </PartImage>
-      </Complication>
-      <Variant mode="AMBIENT" target="alpha" value="0" startOffset="0.5" duration="0.5" interpolation="EASE_OUT" />
-    </ComplicationSlot>
+    </ListOption>
+    </ListConfiguration>
     <Group x="0" y="0" width="1378" height="1378" name="handscale" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
       <Variant mode="AMBIENT" target="scaleX" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
       <Variant mode="AMBIENT" target="scaleY" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
@@ -2318,6 +2236,107 @@
         </PartDraw>
       </Group>
     </Group>
+    <ComplicationSlot slotId="0" supportedTypes="MONOCHROMATIC_IMAGE SMALL_IMAGE EMPTY" x="0" y="0" width="450" height="450">
+      <BoundingArc centerX="225.0" centerY="225.0" width="450.0" height="450.0" thickness="108.6" startAngle="0" endAngle="359.9" outlinePadding="2" />
+      <Complication type="MONOCHROMATIC_IMAGE">
+        <Group x="0" y="0" width="450" height="450" name="icon_monochromatic_image" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
+          <Variant mode="AMBIENT" target="scaleX" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+          <Variant mode="AMBIENT" target="scaleY" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+          <ListConfiguration id="iconPosition">
+          <ListOption id="tip">
+            <Group x="0" y="0" width="450" height="450" name="icon_monochromatic_image_tip">
+            <PartImage x="183" y="9" width="83" height="83" alpha="255" tintColor="[CONFIGURATION.faceColor.1]">
+              <Variant mode="AMBIENT" target="alpha" value="0" startOffset="0.1" duration="0.5" interpolation="EASE_OUT" />
+              <Transform target="x" value="(225.0 + 174.8 * sin(rad((30 * [HOUR_0_11_MINUTE]))) - 41.5)" />
+              <Transform target="y" value="(225.0 - 174.8 * cos(rad((30 * [HOUR_0_11_MINUTE]))) - 41.5)" />
+              <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+            </PartImage>
+            <PartImage x="183" y="9" width="83" height="83" alpha="0" tintColor="#FFFFFF">
+              <Variant mode="AMBIENT" target="alpha" value="255" startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT" />
+              <Transform target="x" value="(225.0 + 174.8 * sin(rad((30 * [HOUR_0_11_MINUTE]))) - 41.5)" />
+              <Transform target="y" value="(225.0 - 174.8 * cos(rad((30 * [HOUR_0_11_MINUTE]))) - 41.5)" />
+              <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+            </PartImage>
+            </Group>
+          </ListOption>
+          <ListOption id="base">
+            <Group x="0" y="0" width="450" height="450" name="icon_monochromatic_image_base">
+            <PartDraw x="175" y="350" width="100" height="100" alpha="255">
+              <Variant mode="AMBIENT" target="alpha" value="0" startOffset="0.1" duration="0.5" interpolation="EASE_OUT" />
+              <Transform target="x" value="(225.0 - 174.8 * sin(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Transform target="y" value="(225.0 + 174.8 * cos(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Ellipse x="0" y="0" width="100.4" height="100.4">
+                <Fill color="[CONFIGURATION.faceColor.0]" />
+              </Ellipse>
+            </PartDraw>
+            <PartDraw x="175" y="350" width="100" height="100" alpha="0">
+              <Variant mode="AMBIENT" target="alpha" value="255" startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT" />
+              <Transform target="x" value="(225.0 - 174.8 * sin(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Transform target="y" value="(225.0 + 174.8 * cos(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Ellipse x="0" y="0" width="100.4" height="100.4">
+                <Fill color="#000000" />
+              </Ellipse>
+            </PartDraw>
+            <PartImage x="175" y="350" width="100" height="100" alpha="255" tintColor="[CONFIGURATION.faceColor.1]">
+              <Variant mode="AMBIENT" target="alpha" value="0" startOffset="0.1" duration="0.5" interpolation="EASE_OUT" />
+              <Transform target="x" value="(225.0 - 174.8 * sin(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Transform target="y" value="(225.0 + 174.8 * cos(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+            </PartImage>
+            <PartImage x="175" y="350" width="100" height="100" alpha="0" tintColor="#FFFFFF">
+              <Variant mode="AMBIENT" target="alpha" value="255" startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT" />
+              <Transform target="x" value="(225.0 - 174.8 * sin(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Transform target="y" value="(225.0 + 174.8 * cos(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+            </PartImage>
+            </Group>
+          </ListOption>
+          </ListConfiguration>
+        </Group>
+      </Complication>
+      <Complication type="SMALL_IMAGE">
+        <Group x="0" y="0" width="450" height="450" name="icon_small_image" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
+          <Variant mode="AMBIENT" target="scaleX" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+          <Variant mode="AMBIENT" target="scaleY" value="0.95" startOffset="0" duration="0.75" interpolation="EASE_OUT" />
+          <ListConfiguration id="iconPosition">
+          <ListOption id="tip">
+            <Group x="0" y="0" width="450" height="450" name="icon_small_image_tip">
+            <PartImage x="183" y="9" width="83" height="83" alpha="255">
+              <Transform target="x" value="(225.0 + 174.8 * sin(rad((30 * [HOUR_0_11_MINUTE]))) - 41.5)" />
+              <Transform target="y" value="(225.0 - 174.8 * cos(rad((30 * [HOUR_0_11_MINUTE]))) - 41.5)" />
+              <Image resource="[COMPLICATION.SMALL_IMAGE]" />
+            </PartImage>
+            </Group>
+          </ListOption>
+          <ListOption id="base">
+            <Group x="0" y="0" width="450" height="450" name="icon_small_image_base">
+            <PartDraw x="175" y="350" width="100" height="100" alpha="255">
+              <Variant mode="AMBIENT" target="alpha" value="0" startOffset="0.1" duration="0.5" interpolation="EASE_OUT" />
+              <Transform target="x" value="(225.0 - 174.8 * sin(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Transform target="y" value="(225.0 + 174.8 * cos(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Ellipse x="0" y="0" width="100.4" height="100.4">
+                <Fill color="[CONFIGURATION.faceColor.0]" />
+              </Ellipse>
+            </PartDraw>
+            <PartDraw x="175" y="350" width="100" height="100" alpha="0">
+              <Variant mode="AMBIENT" target="alpha" value="255" startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT" />
+              <Transform target="x" value="(225.0 - 174.8 * sin(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Transform target="y" value="(225.0 + 174.8 * cos(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Ellipse x="0" y="0" width="100.4" height="100.4">
+                <Fill color="#000000" />
+              </Ellipse>
+            </PartDraw>
+            <PartImage x="175" y="350" width="100" height="100" alpha="255">
+              <Transform target="x" value="(225.0 - 174.8 * sin(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Transform target="y" value="(225.0 + 174.8 * cos(rad((30 * [HOUR_0_11_MINUTE]))) - 50.2)" />
+              <Image resource="[COMPLICATION.SMALL_IMAGE]" />
+            </PartImage>
+            </Group>
+          </ListOption>
+          </ListConfiguration>
+        </Group>
+      </Complication>
+    </ComplicationSlot>
     <PartDraw x="0" y="0" width="450" height="450" alpha="0">
       <Variant mode="AMBIENT" target="alpha" value="255" startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT" />
       <Ellipse x="0" y="0" width="450" height="450">

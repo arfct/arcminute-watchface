@@ -4,8 +4,15 @@
     <string name="back_label">Background</string>
     <string name="face_label">Dial face</string>
     <string name="hand_label">Hand</string>
-    <string name="large_numerals_label">Large numerals</string>
-    <string name="hour24_label">24-hour time</string>
+    <string name="numerals_label">Numerals</string>
+    <string name="numerals_large_label">Numerals: Large</string>
+    <string name="numerals_classic_label">Numerals: Classic</string>
+    <string name="hours_label">Hours</string>
+    <string name="hours_h12_label">Hours: 12-hour</string>
+    <string name="hours_h24_label">Hours: 24-hour</string>
+    <string name="icon_position_label">Complication</string>
+    <string name="icon_position_tip_label">Complication: Tip</string>
+    <string name="icon_position_base_label">Complication: Base</string>
     <string name="back_match_label">Back: Match face</string>
     <string name="back_black_label">Back: Black</string>
     <string name="back_white_label">Back: White</string>
