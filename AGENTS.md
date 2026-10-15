@@ -212,15 +212,35 @@ Gotchas learned the hard way:
   with a ternary. Anything genuinely color-conditional has to become two
   branches of a `BooleanConfiguration`, which doubles whatever it wraps —
   prefer a transparent color option, as the background does below.
-- `BooleanConfiguration` has two forms: a self-closing declaration in
-  `<UserConfigurations>`, and a container in the scene whose
-  `<BooleanOption id="TRUE|FALSE">` holds **exactly one** child element.
-  The editor groups every boolean onto a single toggles page, placed after
-  the color pages; the complications page comes before it.
+- `ListConfiguration` and `BooleanConfiguration` each have two forms: a
+  declaration in `<UserConfigurations>`, and a container in the scene whose
+  `<ListOption>` / `<BooleanOption>` holds **exactly one** child element.
+- **Every setting is a `ListConfiguration`; the face has no booleans.** The
+  editor puts all booleans on one shared toggles page, and on a Pixel Watch
+  5 (Wear OS 7) that page draws every switch cut off at the right edge of
+  the round screen, even with two rows (the Wear OS 6 emulator draws them
+  whole). Each list gets its own crown-turn page instead, like the colors.
+  Lists appear in declaration order after the color pages, with the
+  complications page after them.
 - Complication slots are outlined in the editor from their bounding shape,
   and content outside that shape is clipped. Arcminute's complication
   orbits the screen center, so it uses a full-circle `BoundingArc` over that
   ring — a screen-sized `BoundingOval` outlines the bezel and marks nothing.
+  `ComplicationSlot` must be a direct child of `Scene` and takes no
+  `Transform`, so the bound cannot follow the content.
+- **`BoundingArc` `width`/`height` are the outer diameter**, with
+  `thickness` growing inward, and **`endAngle="360"` collapses the bounds**
+  to a wrong rect in the upper left that clips most content; use `359.9`.
+  Both were measured on the Wear OS 6 emulator from `adb shell dumpsys
+  activity service DeclarativeWatchFaceRuntime` (`complicationSlotBounds`).
+- **`supportedTypes` order is a preference.** When a provider is picked, the
+  system gives the slot the first listed type that provider offers, and
+  keeps it until the provider is picked again. With `SHORT_TEXT` listed
+  first, Battery arrived as text; with `RANGED_VALUE` first, as a gauge.
+- **The editor hit-tests each slot's bounding rect, and the last-declared
+  containing rect wins.** A ring's rect depends only on its outer radius, so
+  two orbiting slots at similar radii cannot both be selected for editing.
+  That is why the face has one slot.
 - 24h labels use `floor()` where C truncates toward zero, differing only at
   the 6-hour tie point.
 
@@ -259,11 +279,17 @@ Two things make it cheap:
   it is not transformable. The face color is painted by a full-screen
   `Rectangle` instead, which *can* fade out. Left on the `Scene` it would
   keep lighting the crescent the dial disc does not reach, all night.
-- Every interactive layer — ground, dial, complication — carries
+- Every interactive layer (the ground and the color dial) carries
   `<Variant mode="AMBIENT" target="alpha" value="0" />` on its group, so the
-  runtime drops the whole subtree instead of drawing it under a veil. One
-  Variant per layer, nine in the file; before 1.2.0 there were 51, one per
-  part, and the interactive dial was drawn in ambient and then painted over.
+  runtime drops the whole subtree instead of drawing it under a veil. The
+  fade goes on the layer, never on each part inside it; before 1.2.0 there
+  were 51 alpha Variants, one per part, and the interactive dial was drawn
+  in ambient and then painted over.
+- The complication stays up in ambient. Its monochrome icon crossfades from
+  the face text color to a white copy, as the dial does, and the base-of-hand
+  hub crossfades from the face color to black. A full-color icon is drawn
+  unchanged. Everything inside it sits in a canvas-sized group carrying the
+  core scale, so it draws back with the dial and stays on the hand line.
 
 ### Verifying a WFF change
 
@@ -314,7 +340,8 @@ forward on wake and in reverse going idle:
 | Ground (face + background) | `alpha` → 0 | 0 | 0.5 | `EASE_OUT` |
 | Color dial | `alpha` → 0 | 0.1 | 0.5 | `EASE_OUT` |
 | Light (ambient) dial | `alpha` → 255 | 0.25 | 0.6 | `EASE_IN_OUT` |
-| Complication | `alpha` → 0 | 0.5 | 0.5 | `EASE_OUT` |
+| Complication (face-tinted icon, hub) | `alpha` → 0 | 0.1 | 0.5 | `EASE_OUT` |
+| Complication (white icon, black hub) | `alpha` → 255 | 0.25 | 0.6 | `EASE_IN_OUT` |
 | Rim vignette | `alpha` → 255 | 0.25 | 0.6 | `EASE_IN_OUT` |
 
 Name them for the object, not a direction: each runs one way going idle and

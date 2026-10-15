@@ -102,8 +102,8 @@ AMBIENT_MINOR = "#AAFFFFFF"
 # Variant carries one curve that serves both directions, so this cascade runs
 # forward on wake and in reverse going idle:
 #
-#   the whole face draws back 10%, and under that:
-#   ground drains -> dials cross -> complication returns
+#   the whole face draws back 5%, and under that:
+#   ground drains -> dials cross
 #
 # The staggering is the point. A single shared window cross-fades every layer
 # through a muddy half-lit midpoint; offsetting them means the dark lifts
@@ -115,7 +115,6 @@ GROUND_FADE = 'startOffset="0" duration="0.5" interpolation="EASE_OUT"'
 # copy has finished dissolving off the top of it.
 COLOR_DIAL_FADE = 'startOffset="0.1" duration="0.5" interpolation="EASE_OUT"'
 LIGHT_DIAL_FADE = 'startOffset="0.25" duration="0.6" interpolation="EASE_IN_OUT"'
-COMPLICATION_FADE = 'startOffset="0.5" duration="0.5" interpolation="EASE_OUT"'
 # The core move: the whole composition draws back 5% when the screen idles.
 # It runs the full window under everything else, so the fades read as detail
 # on top of one gesture rather than as separate events.
@@ -148,8 +147,8 @@ VIGNETTE_WIDTH = 0.10
 # second-to-last at 1 - 2*width, which gives N = 1/(2*width) + 1.
 PIVOT_X = f"(({DC:.1f} + {DIST:.1f} * sin(rad({ANGLE}))) / {DIAL_SIZE:.1f})"
 PIVOT_Y = f"(({DC:.1f} - {DIST:.1f} * cos(rad({ANGLE}))) / {DIAL_SIZE:.1f})"
-# Complications ride the band just outside the rim, which the face disc
-# overshoots, so they follow the face too.
+# The complication rides the band just outside the rim, which the face disc
+# overshoots, so it follows the face too.
 TEXT_COLOR = FACE_TEXT
 MINOR_COLOR = FACE_MINOR
 
@@ -202,6 +201,17 @@ BACK_PALETTE = [MATCH_FACE] + BLACK_WHITE + TAILWIND
 FACE_PALETTE = BLACK_WHITE + TAILWIND
 HAND_PALETTE = TAILWIND + BLACK_WHITE
 PREFIXES = {"back": "Back", "face": "Face", "hand": "Hand"}
+# id -> (string prefix, label word, {option id: label}, default option), in
+# editor page order. Option labels carry the setting's word, as colors do.
+LIST_SETTINGS = {
+    "numerals": ("numerals", "Numerals",
+                 {"large": "Large", "classic": "Classic"}, "large"),
+    "hours": ("hours", "Hours",
+              {"h12": "12-hour", "h24": "24-hour"}, "h12"),
+    # Last, so it sits next to the editor's own complications page.
+    "iconPosition": ("icon_position", "Complication",
+                     {"tip": "Tip", "base": "Base"}, "tip"),
+}
 
 
 def user_configurations():
@@ -229,13 +239,17 @@ def user_configurations():
         out.append(f'      <ColorOption id="{cid}" displayName="hand_{cid}_label"'
                    f' colors="{hex_color}" />')
     out.append('    </ColorConfiguration>')
-    # Toggles last: the editor lists configurations in declaration order, and
-    # appends its own complications page after them.
-    out.append('    <BooleanConfiguration id="largeNumerals"'
-               ' displayName="large_numerals_label"'
-               ' screenReaderText="large_numerals_label" defaultValue="TRUE" />')
-    out.append('    <BooleanConfiguration id="hour24" displayName="hour24_label"'
-               ' screenReaderText="hour24_label" defaultValue="FALSE" />')
+    # Lists rather than toggles: each gets its own editor page, whereas the
+    # Wear OS 7 editor draws its shared toggles page with every switch cut
+    # off at the right edge of the round screen.
+    for config_id, (prefix, _, options, default) in LIST_SETTINGS.items():
+        out.append(f'    <ListConfiguration id="{config_id}"'
+                   f' displayName="{prefix}_label"'
+                   f' screenReaderText="{prefix}_label" defaultValue="{default}">')
+        for option_id in options:
+            out.append(f'      <ListOption id="{option_id}"'
+                       f' displayName="{prefix}_{option_id}_label" />')
+        out.append('    </ListConfiguration>')
     out.append('  </UserConfigurations>')
     return "\n".join(out)
 
@@ -246,9 +260,12 @@ def config_strings():
              '<resources>',
              '    <string name="back_label">Background</string>',
              '    <string name="face_label">Dial face</string>',
-             '    <string name="hand_label">Hand</string>',
-             '    <string name="large_numerals_label">Large numerals</string>',
-             '    <string name="hour24_label">24-hour time</string>']
+             '    <string name="hand_label">Hand</string>']
+    for prefix, word, options, _ in LIST_SETTINGS.values():
+        lines.append(f'    <string name="{prefix}_label">{word}</string>')
+        for option_id, label in options.items():
+            lines.append(f'    <string name="{prefix}_{option_id}_label">'
+                         f'{word}: {label}</string>')
     lines.append('    <string name="back_match_label">Back: Match face</string>')
     for prefix, word in PREFIXES.items():
         for cid, label, _ in BLACK_WHITE + TAILWIND:
@@ -258,183 +275,262 @@ def config_strings():
     return "\n".join(lines) + "\n"
 
 
-# ---- Event complication slot (experimental; no companion provider yet) ----
-# RANGED_VALUE min/max are read as minutes-of-day; on the 12-hour dial one
-# minute is half a degree. The arc sits in the free band between the tick
-# ring (which ends exactly at DIAL_R) and the screen edge.
-ARC_STROKE = 6 * SCALE                              # matches large hour ticks
-EVENT_GAP = 5 * SCALE                               # one tick-gap of separation
-ARC_R = DIAL_R + EVENT_GAP + ARC_STROKE / 2         # arc centerline
-EVENT_FONT = 15 * SCALE
-# TextCircular draws glyphs inset from its circle; measured on the Wear OS 5
-# emulator the glyph bottoms sit ~12 gabbro px inside the circle radius.
-GLYPH_DROP = 12 * SCALE
-# SHORT_TEXT has no arc: baseline one tick-gap off the tick ring.
-TEXT_R_ST = DIAL_R + EVENT_GAP + GLYPH_DROP
-# RANGED_VALUE text clears its arc by the same gap.
-TEXT_R_RV = ARC_R + ARC_STROKE / 2 + EVENT_GAP + GLYPH_DROP
-# When the hour angle points into the lower half (3..9 o'clock) the visible
-# rim is the BOTTOM of the giant dial circle, so tangent-following text
-# renders upside down unless the direction is flipped.
-FLIP = "([HOUR_0_11_MINUTE] &gt;= 3) &amp;&amp; ([HOUR_0_11_MINUTE] &lt; 9)"
-# Image complications sit upright at the same rim spot the short text uses:
-# centered on the current hour direction, one tick-gap outside the ring.
-IMG_SIZE = 20 * SCALE
-IMG_K = DIAL_R + EVENT_GAP + IMG_SIZE / 2 - DIST    # rim offset from screen center
-# RANGED_VALUE renders as a gauge riding with the hand: a quiet track
-# centered on the current hour, filled proportionally. Generic system
-# providers (battery %, weather temperature between today's low/high) all
-# read naturally this way; a calendar companion will need its own contract.
-#
-# The track must not run edge-to-edge: cap the span so its endpoints (round
-# caps included) stay a margin inside the screen circle at every hour. For a
-# point at dial angle phi off the hour direction, the distance from screen
-# center is sqrt(DIST^2 + ARC_R^2 - 2*DIST*ARC_R*cos(phi)); solve for phi at
-# the allowed maximum.
-GAUGE_EDGE_INSET = 5 * SCALE
-_reach = CX - GAUGE_EDGE_INSET - ARC_STROKE / 2
-_EDGE_LIMIT = math.degrees(math.acos(
-    (DIST ** 2 + ARC_R ** 2 - _reach ** 2) / (2 * DIST * ARC_R)))
-# A third of the edge-limited span reads as a meter, not a band.
-GAUGE_HALF = _EDGE_LIMIT / 3
-RV_FRAC = ("([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]"
-           " ? 0 : clamp(([COMPLICATION.RANGED_VALUE_VALUE] -"
-           " [COMPLICATION.RANGED_VALUE_MIN]) / ([COMPLICATION.RANGED_VALUE_MAX]"
-           " - [COMPLICATION.RANGED_VALUE_MIN]), 0, 1))")
-GAUGE_START = f"({ANGLE} - {GAUGE_HALF:.2f})"
-GAUGE_FILL_END = f"({GAUGE_START} + {2 * GAUGE_HALF:.2f} * {RV_FRAC})"
-GAUGE_TRACK_END = f"({ANGLE} + {GAUGE_HALF:.2f})"
+# ---- Icon complication at the tip or base of the hand ----
+# A circle on the hand line, one tick-gap outside the tick ring at its inner
+# edge and one tick-gap inside the bezel at its outer edge. The iconPosition
+# setting moves it from past the tip to the same distance on the far side,
+# where the hand starts; both positions share one ring, so one slot bound
+# covers either.
+ICON_GAP = 5 * SCALE
+ICON_INNER = DIAL_R - DIST + ICON_GAP
+ICON_OUTER = CX - ICON_GAP
+ICON_SIZE = ICON_OUTER - ICON_INNER
+ICON_K = (ICON_INNER + ICON_OUTER) / 2      # circle center from screen center
+# At the base nothing else is drawn nearby, so the circle grows about the
+# same center until it touches the bezel.
+BASE_SIZE = 2 * (CX - ICON_K)
 
 
-def event_text_variant(direction, mid_expr, text_r):
-    """Curved [COMPLICATION.TEXT] centered on mid_expr along the dial rim.
-
-    COUNTER_CLOCKWISE traverses its angles the other way, so start/end swap
-    to keep the same visual span.
-    """
-    sign = 1 if direction == "CLOCKWISE" else -1
-    start = f"({mid_expr} - {40 * sign})"
-    end = f"({mid_expr} + {40 * sign})"
-    d = 2 * text_r
-    # Providers are inconsistent about which of TITLE/TEXT carries the label
-    # (Date: TITLE="Fri" TEXT="21"; Battery: TEXT only; agenda-style sources
-    # often TITLE only), so render both. Extra whitespace collapses visually.
-    return (
-        f'        <PartText x="0" y="0" width="{CANVAS}" height="{CANVAS}">\n'
-        f'          <TextCircular centerX="0" centerY="0" width="{d:.1f}" height="{d:.1f}"'
-        f' startAngle="{-40 * sign}" endAngle="{40 * sign}" direction="{direction}" align="CENTER" ellipsis="TRUE">\n'
-        f'            <Transform target="centerX" value="{DIAL_CX}" />\n'
-        f'            <Transform target="centerY" value="{DIAL_CY}" />\n'
-        f'            <Transform target="startAngle" value="{start}" />\n'
-        f'            <Transform target="endAngle" value="{end}" />\n'
-        f'            <Font family="SYNC_TO_DEVICE" size="{EVENT_FONT:.0f}" color="{TEXT_COLOR}">'
-        f'<Template>%s %s<Parameter expression="[COMPLICATION.TITLE]" />'
-        f'<Parameter expression="[COMPLICATION.TEXT]" /></Template></Font>\n'
-        f'          </TextCircular>\n'
-        f'        </PartText>'
-    )
+def orbit_xy(k, half_w, half_h=None, dy=0.0):
+    """Top-left of a box centered k px from the screen center along the hour
+    direction (negative k points away from it), then dy px down the screen.
+    Content stays upright, so offsets inside the circle are screen-aligned."""
+    half_h = half_w if half_h is None else half_h
+    toward, away = ("+", "-") if k >= 0 else ("-", "+")
+    x = f"({CX:.1f} {toward} {abs(k):.1f} * sin(rad({ANGLE})) - {half_w:.1f})"
+    offset = dy - half_h
+    sign = "+" if offset >= 0 else "-"
+    y = (f"({CX:.1f} {away} {abs(k):.1f} * cos(rad({ANGLE}))"
+         f" {sign} {abs(offset):.1f})")
+    return x, y
 
 
-def event_text(flip_name, mid_expr, text_r):
-    return "\n".join([
-        '        <Condition>',
-        '          <Expressions>',
-        f'            <Expression name="{flip_name}">{FLIP}</Expression>',
-        '          </Expressions>',
-        f'          <Compare expression="{flip_name}">',
-        event_text_variant("COUNTER_CLOCKWISE", mid_expr, text_r),
-        '          </Compare>',
-        '          <Default>',
-        event_text_variant("CLOCKWISE", mid_expr, text_r),
-        '          </Default>',
-        '        </Condition>',
-    ])
+def ambient_fade(value, timing):
+    return (f'              <Variant mode="AMBIENT" target="alpha"'
+            f' value="{value}" {timing} />\n')
 
 
-def gauge_arc(end_expr, color):
-    d = 2 * ARC_R
-    return (
-        f'          <Arc centerX="0" centerY="0" width="{d:.1f}" height="{d:.1f}"'
-        f' startAngle="{-GAUGE_HALF:.2f}" endAngle="{GAUGE_HALF:.2f}">\n'
-        f'            <Transform target="centerX" value="{DIAL_CX}" />\n'
-        f'            <Transform target="centerY" value="{DIAL_CY}" />\n'
-        f'            <Transform target="startAngle" value="{GAUGE_START}" />\n'
-        f'            <Transform target="endAngle" value="{end_expr}" />\n'
-        f'            <Stroke color="{color}" thickness="{ARC_STROKE:.1f}" cap="ROUND" />\n'
-        f'          </Arc>'
-    )
+# Interactive copies fade out with the color dial, ambient copies fade in
+# with the light one. Each pairs a face color with the ambient color that
+# replaces it, since a Variant can swap alpha but never a color.
+INTERACTIVE = (255, ambient_fade("0", COLOR_DIAL_FADE))
+AMBIENT = (0, ambient_fade("255", LIGHT_DIAL_FADE))
+PHASES = [(INTERACTIVE, TEXT_COLOR, MINOR_COLOR),
+          (AMBIENT, AMBIENT_TEXT, AMBIENT_MINOR)]
+STILL = (255, "")
 
 
-def event_gauge():
-    return "\n".join([
-        f'        <PartDraw x="0" y="0" width="{CANVAS}" height="{CANVAS}">',
-        gauge_arc(GAUGE_TRACK_END, MINOR_COLOR),
-        gauge_arc(GAUGE_FILL_END, HAND_COLOR),
-        '        </PartDraw>',
-    ])
-
-
-def event_image(resource, tint):
-    """Icon centered on the current hour direction, one tick-gap off the
-    ring. Icons stay upright, so no direction flip is needed."""
-    half = IMG_SIZE / 2
-    x = f"({CX:.1f} + {IMG_K:.1f} * sin(rad({ANGLE})) - {half:.1f})"
-    y = f"({CX:.1f} - {IMG_K:.1f} * cos(rad({ANGLE})) - {half:.1f})"
+def icon_image(k, size, resource, tint, phase=STILL, dy=0.0):
+    half = size / 2
+    x, y = orbit_xy(k, half, dy=dy)
+    alpha, variant = phase
     tint_attr = f' tintColor="{tint}"' if tint else ""
     return (
-        f'        <PartImage x="{CX - half:.0f}" y="{CX - IMG_K - half:.0f}"'
-        f' width="{IMG_SIZE:.0f}" height="{IMG_SIZE:.0f}"{tint_attr}>\n'
-        f'          <Transform target="x" value="{x}" />\n'
-        f'          <Transform target="y" value="{y}" />\n'
-        f'          <Image resource="{resource}" />\n'
-        f'        </PartImage>'
+        f'            <PartImage x="{CX - half:.0f}" y="{CX - k - half + dy:.0f}"'
+        f' width="{size:.0f}" height="{size:.0f}"'
+        f' alpha="{alpha}"{tint_attr}>\n'
+        f'{variant}'
+        f'              <Transform target="x" value="{x}" />\n'
+        f'              <Transform target="y" value="{y}" />\n'
+        f'              <Image resource="{resource}" />\n'
+        f'            </PartImage>'
+    )
+
+
+def short_text(k, width, font_size, color, phase, dy):
+    """[COMPLICATION.TEXT] on one line. The Font content stays inline: any
+    whitespace around it renders as an empty first line and hides the text."""
+    height = font_size * 1.3
+    x, y = orbit_xy(k, width / 2, height / 2, dy)
+    alpha, variant = phase
+    return (
+        f'            <PartText x="{CX - width / 2:.0f}" y="{CX - k - height / 2 + dy:.0f}"'
+        f' width="{width:.0f}" height="{height:.0f}" alpha="{alpha}">\n'
+        f'{variant}'
+        f'              <Transform target="x" value="{x}" />\n'
+        f'              <Transform target="y" value="{y}" />\n'
+        f'              <Text align="CENTER" ellipsis="TRUE">'
+        f'<Font family="SYNC_TO_DEVICE" size="{font_size:.0f}" color="{color}">'
+        f'<Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template>'
+        f'</Font></Text>\n'
+        f'            </PartText>'
+    )
+
+
+def ring_arc(k, diameter, stroke, color, end_expr, phase=STILL):
+    """Arc around the circle, clockwise from 12 o'clock to end_expr."""
+    cx, cy = orbit_xy(k, 0)
+    alpha, variant = phase
+    return (
+        f'            <PartDraw x="0" y="0" width="{CANVAS}" height="{CANVAS}"'
+        f' alpha="{alpha}">\n'
+        f'{variant}'
+        f'              <Arc centerX="{CX:.1f}" centerY="{CX - k:.1f}"'
+        f' width="{diameter:.1f}" height="{diameter:.1f}"'
+        f' startAngle="0" endAngle="359.9">\n'
+        f'                <Transform target="centerX" value="{cx}" />\n'
+        f'                <Transform target="centerY" value="{cy}" />\n'
+        f'                <Transform target="endAngle" value="{end_expr}" />\n'
+        f'                <Stroke color="{color}" thickness="{stroke:.1f}" cap="ROUND" />\n'
+        f'              </Arc>\n'
+        f'            </PartDraw>'
+    )
+
+
+def hub(k, size, color, phase):
+    """Disc under the base circle, so the hand reads as starting from it."""
+    half = size / 2
+    x, y = orbit_xy(k, half)
+    alpha, variant = phase
+    return (
+        f'            <PartDraw x="{CX - half:.0f}" y="{CX - k - half:.0f}"'
+        f' width="{size:.0f}" height="{size:.0f}" alpha="{alpha}">\n'
+        f'{variant}'
+        f'              <Transform target="x" value="{x}" />\n'
+        f'              <Transform target="y" value="{y}" />\n'
+        f'              <Ellipse x="0" y="0" width="{size:.1f}" height="{size:.1f}">\n'
+        f'                <Fill color="{color}" />\n'
+        f'              </Ellipse>\n'
+        f'            </PartDraw>'
+    )
+
+
+# Progress fraction per gauge type, clamped so a provider sending a value
+# past its range cannot wrap the ring.
+GAUGE_FRACTIONS = {
+    "RANGED_VALUE": (
+        "([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]"
+        " ? 0 : clamp(([COMPLICATION.RANGED_VALUE_VALUE] -"
+        " [COMPLICATION.RANGED_VALUE_MIN]) / ([COMPLICATION.RANGED_VALUE_MAX]"
+        " - [COMPLICATION.RANGED_VALUE_MIN]), 0, 1))"),
+    "GOAL_PROGRESS": (
+        "([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE] &lt;= 0 ? 0 :"
+        " clamp([COMPLICATION.GOAL_PROGRESS_VALUE] /"
+        " [COMPLICATION.GOAL_PROGRESS_TARGET_VALUE], 0, 1))"),
+}
+GAUGE_STROKE = 3 * SCALE
+GAUGE_GAP = 2 * SCALE
+# In preference order: the system gives a provider the first of these it
+# offers, so a battery or step count arrives as a gauge rather than text.
+SUPPORTED_TYPES = ("RANGED_VALUE", "GOAL_PROGRESS", "SHORT_TEXT",
+                   "MONOCHROMATIC_IMAGE", "SMALL_IMAGE")
+
+
+def icon_and_text(k, d, color, phase):
+    """Round-slot layout inside a circle of diameter d: icon above center,
+    one line of text below it, both kept inside the circle's chord."""
+    icon = 0.42 * d
+    font = 0.24 * d
+    return [
+        icon_image(k, icon, "[COMPLICATION.MONOCHROMATIC_IMAGE]", color, phase,
+                   dy=-0.17 * d),
+        short_text(k, 0.8 * d, font, color, phase, dy=0.22 * d),
+    ]
+
+
+def complication_parts(complication_type, k, size):
+    """Face-colored parts crossfade to ambient-colored copies, as the dial
+    does. A full-color icon and the hand-colored gauge fill have no face
+    color to swap and draw unchanged in both modes."""
+    if complication_type == "SMALL_IMAGE":
+        return [icon_image(k, size, "[COMPLICATION.SMALL_IMAGE]", None)]
+    if complication_type == "MONOCHROMATIC_IMAGE":
+        return [icon_image(k, size, "[COMPLICATION.MONOCHROMATIC_IMAGE]", text,
+                           phase) for phase, text, _ in PHASES]
+    parts = []
+    content = size
+    if complication_type in GAUGE_FRACTIONS:
+        ring = size - GAUGE_STROKE
+        fraction = GAUGE_FRACTIONS[complication_type]
+        parts += [ring_arc(k, ring, GAUGE_STROKE, minor, "359.9", phase)
+                  for phase, _, minor in PHASES]
+        parts.append(ring_arc(k, ring, GAUGE_STROKE, HAND_COLOR,
+                              f"(359.9 * {fraction})"))
+        content = size - 2 * (GAUGE_STROKE + GAUGE_GAP)
+    for phase, text, _ in PHASES:
+        parts += icon_and_text(k, content, text, phase)
+    return parts
+
+
+def complication_position(option_id, complication_type, k, size, with_hub):
+    # The hub is face-colored while awake and black in ambient, where a
+    # light face color would light the disc all night.
+    backing = ([hub(k, size, FACE_COLOR, INTERACTIVE),
+                hub(k, size, "#000000", AMBIENT)] if with_hub else [])
+    return "\n".join([
+        f'          <ListOption id="{option_id}">',
+        f'            <Group x="0" y="0" width="{CANVAS}" height="{CANVAS}"'
+        f' name="comp_{complication_type.lower()}_{option_id.lower()}">',
+        *backing,
+        *complication_parts(complication_type, k, size),
+        '            </Group>',
+        '          </ListOption>',
+    ])
+
+
+def complication_type_layout(complication_type):
+    """The complication stays up in ambient and draws back with the dial: a
+    canvas-sized group pivots on the screen center, so the same 5% scale
+    keeps it on the hand line. A ComplicationSlot cannot sit inside a
+    configuration, so the position setting lives in here instead."""
+    return "\n".join([
+        f'      <Complication type="{complication_type}">',
+        f'        <Group x="0" y="0" width="{CANVAS}" height="{CANVAS}"'
+        f' name="comp_{complication_type.lower()}"'
+        f' pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">',
+        f'          <Variant mode="AMBIENT" target="scaleX"'
+        f' value="{AMBIENT_SCALE}" {CORE_SCALE} />',
+        f'          <Variant mode="AMBIENT" target="scaleY"'
+        f' value="{AMBIENT_SCALE}" {CORE_SCALE} />',
+        '          <ListConfiguration id="iconPosition">',
+        complication_position("tip", complication_type, ICON_K, ICON_SIZE,
+                              with_hub=False),
+        complication_position("base", complication_type, -ICON_K, BASE_SIZE,
+                              with_hub=True),
+        '          </ListConfiguration>',
+        '        </Group>',
+        '      </Complication>',
+    ])
+
+
+def ring_bounds(inner, outer):
+    """Full-circle BoundingArc from inner to outer radius.
+
+    A ComplicationSlot must be a direct child of Scene and takes no
+    Transform, so a slot whose content orbits can only be bounded by the
+    whole ring it travels. The bound also clips content.
+
+    Measured on the Wear OS 6 emulator via dumpsys complicationSlotBounds:
+    width/height are the OUTER diameter, with thickness growing inward, and
+    endAngle="360" collapses the bounds to a wrong rect in the upper left
+    that clips most content. 359.9 leaves a 0.3 px gap at the bezel.
+    """
+    return (
+        f'      <BoundingArc centerX="{CX:.1f}" centerY="{CX:.1f}"'
+        f' width="{2 * outer:.1f}" height="{2 * outer:.1f}"'
+        f' thickness="{outer - inner:.1f}" startAngle="0" endAngle="359.9"'
+        f' outlinePadding="2" />'
     )
 
 
 def complication_slot():
-    # Content orbits the screen center: a point at radius R from the dial
-    # center lands at R - DIST from the screen center, along the hour
-    # direction. So every complication shape lives in one ring, and a
-    # BoundingArc over that ring gives the editor a tap outline that actually
-    # marks the spot (a full-screen oval outlined nothing useful). The ring
-    # also clips content, so it is padded past the extremes:
-    #   gauge      ARC_R +/- stroke/2  -> 133..144
-    #   short text TEXT_R_ST, glyphs inward by the font size -> 128..154
-    #   gauge text TEXT_R_RV, same     -> 147..173
-    #   icon       IMG_K +/- IMG_SIZE/2 -> 133..168
-    inner = min(ARC_R - ARC_STROKE / 2, TEXT_R_ST - EVENT_FONT) - DIST - 8
-    outer = max(TEXT_R_RV, ARC_R + ARC_STROKE / 2,
-                DIST + IMG_K + IMG_SIZE / 2) - DIST + 8
-    mid = (inner + outer) / 2
+    # One slot only: the editor hit-tests each slot's bounding RECT and the
+    # last-declared containing rect wins, so a second orbiting slot at a
+    # similar radius could never be selected for editing.
+    #
+    # Types are the ones that fit a small circle. LONG_TEXT does not fit;
+    # PHOTO_IMAGE needs a circular clip PartImage cannot do; WEIGHTED_ELEMENTS
+    # sends its segments as a space-separated list, which expressions cannot
+    # split.
     return "\n".join([
         f'    <ComplicationSlot slotId="0"'
-        f' supportedTypes="RANGED_VALUE SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE EMPTY"'
+        f' supportedTypes="{" ".join(SUPPORTED_TYPES)} EMPTY"'
         f' x="0" y="0" width="{CANVAS}" height="{CANVAS}">',
-        f'      <BoundingArc centerX="{CX:.1f}" centerY="{CX:.1f}"'
-        f' width="{2 * mid:.1f}" height="{2 * mid:.1f}"'
-        f' thickness="{outer - inner:.1f}" startAngle="0" endAngle="360"'
-        f' outlinePadding="2" />',
-        '      <Complication type="RANGED_VALUE">',
-        event_gauge(),
-        event_text("evflip_rv", ANGLE, TEXT_R_RV),
-        '      </Complication>',
-        '      <Complication type="SHORT_TEXT">',
-        event_text("evflip_st", ANGLE, TEXT_R_ST),
-        '      </Complication>',
-        '      <Complication type="MONOCHROMATIC_IMAGE">',
-        event_image("[COMPLICATION.MONOCHROMATIC_IMAGE]", TEXT_COLOR),
-        '      </Complication>',
-        '      <Complication type="SMALL_IMAGE">',
-        event_image("[COMPLICATION.SMALL_IMAGE]", None),
-        '      </Complication>',
-        # Complication content is drawn in face colors, which are chosen for
-        # contrast against the disc -- against the ambient black a light face
-        # would render it invisible anyway. Dropping it in ambient costs
-        # nothing readable and saves the lit pixels. Variant goes last: the
-        # element's optional children follow its required Bounding and
-        # Complication ones.
-        f'      <Variant mode="AMBIENT" target="alpha" value="0"'
-        f' {COMPLICATION_FADE} />',
+        # Covers both positions, the base circle reaching the bezel, and the
+        # inner edge at its ambient scale, where it sits closer to the center.
+        ring_bounds(AMBIENT_SCALE * min(ICON_INNER, ICON_K - BASE_SIZE / 2) - 2,
+                    CX),
+        *[complication_type_layout(t) for t in SUPPORTED_TYPES],
         '    </ComplicationSlot>',
     ])
 
@@ -529,7 +625,7 @@ def part_text(s, name, cx, cy, content, text_color):
 
 def numerals(s, out, tag, text_color):
     """12h numerals statically, 24h numerals via Template, switched on the
-    hour24 toggle."""
+    hours setting."""
     h24 = []
     h12 = []
     for i in range(12):
@@ -542,21 +638,21 @@ def numerals(s, out, tag, text_color):
         cx, cy = numeral_center(s, i, two_digits=label >= 10)
         h12.append(part_text(s, f'num12_{tag}_{i}', cx, cy, str(label),
                              text_color))
-    # A BooleanOption holds exactly one child, so each numeral set is grouped.
-    out.append('        <BooleanConfiguration id="hour24">')
-    out.append('          <BooleanOption id="TRUE">')
+    # A ListOption holds exactly one child, so each numeral set is grouped.
+    out.append('        <ListConfiguration id="hours">')
+    out.append('          <ListOption id="h24">')
     out.append(f'            <Group x="0" y="0" width="{DIAL_SIZE:.0f}"'
                f' height="{DIAL_SIZE:.0f}" name="num24_{tag}">')
     out.extend(h24)
     out.append('            </Group>')
-    out.append('          </BooleanOption>')
-    out.append('          <BooleanOption id="FALSE">')
+    out.append('          </ListOption>')
+    out.append('          <ListOption id="h12">')
     out.append(f'            <Group x="0" y="0" width="{DIAL_SIZE:.0f}"'
                f' height="{DIAL_SIZE:.0f}" name="num12_{tag}">')
     out.extend(h12)
     out.append('            </Group>')
-    out.append('          </BooleanOption>')
-    out.append('        </BooleanConfiguration>')
+    out.append('          </ListOption>')
+    out.append('        </ListConfiguration>')
 
 
 def dial_body(style_name, tag, text_color, minor_color, disc):
@@ -586,7 +682,7 @@ def dial_body(style_name, tag, text_color, minor_color, disc):
     return out
 
 
-def dial_variant(style_name, option_id, ambient=False):
+def dial_variant(style_name, ambient=False):
     """The dial, positioned on the orbiting center.
 
     One alpha Variant on the position group carries the entire subtree in and
@@ -601,7 +697,7 @@ def dial_variant(style_name, option_id, ambient=False):
     value, timing = (("255", LIGHT_DIAL_FADE) if ambient
                      else ("0", COLOR_DIAL_FADE))
     out = []
-    out.append(f'    <BooleanOption id="{option_id}">')
+    out.append(f'    <ListOption id="{style_name}">')
     out.append(f'      <Group x="0" y="0" width="{DIAL_SIZE:.0f}"'
                f' height="{DIAL_SIZE:.0f}" name="dialpos_{tag}"'
                f' alpha="{base_alpha}" pivotX="0.5" pivotY="0.5"'
@@ -618,17 +714,17 @@ def dial_variant(style_name, option_id, ambient=False):
     out.append(f'        <Transform target="pivotY" value="{PIVOT_Y}" />')
     out.extend(dial_body(style_name, tag, text, minor, disc=not ambient))
     out.append('      </Group>')
-    out.append('    </BooleanOption>')
+    out.append('    </ListOption>')
     return "\n".join(out)
 
 
 def dial_layer(ambient=False):
-    """Both dial styles under the toggle; only the selected one is built."""
+    """Both dial styles under the setting; only the selected one is built."""
     return "\n".join([
-        '    <BooleanConfiguration id="largeNumerals">',
-        dial_variant("large", "TRUE", ambient),
-        dial_variant("classic", "FALSE", ambient),
-        '    </BooleanConfiguration>',
+        '    <ListConfiguration id="numerals">',
+        dial_variant("large", ambient),
+        dial_variant("classic", ambient),
+        '    </ListConfiguration>',
     ])
 
 
@@ -705,7 +801,6 @@ def watchface():
 {ground()}
 {dial_layer()}
 {dial_layer(ambient=True)}
-{complication_slot()}
     <Group x="0" y="0" width="{DIAL_SIZE:.0f}" height="{DIAL_SIZE:.0f}" name="handscale" pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">
       <Variant mode="AMBIENT" target="scaleX" value="{AMBIENT_SCALE}" {CORE_SCALE} />
       <Variant mode="AMBIENT" target="scaleY" value="{AMBIENT_SCALE}" {CORE_SCALE} />
@@ -722,6 +817,7 @@ def watchface():
         </PartDraw>
       </Group>
     </Group>
+{complication_slot()}
 {ambient_vignette()}
   </Scene>
 </WatchFace>
