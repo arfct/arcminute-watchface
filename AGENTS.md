@@ -233,6 +233,10 @@ Gotchas learned the hard way:
   to a wrong rect in the upper left that clips most content; use `359.9`.
   Both were measured on the Wear OS 6 emulator from `adb shell dumpsys
   activity service DeclarativeWatchFaceRuntime` (`complicationSlotBounds`).
+- **`supportedTypes` order is a preference.** When a provider is picked, the
+  system gives the slot the first listed type that provider offers, and
+  keeps it until the provider is picked again. With `SHORT_TEXT` listed
+  first, Battery arrived as text; with `RANGED_VALUE` first, as a gauge.
 - **The editor hit-tests each slot's bounding rect, and the last-declared
   containing rect wins.** A ring's rect depends only on its outer radius, so
   two orbiting slots at similar radii cannot both be selected for editing.

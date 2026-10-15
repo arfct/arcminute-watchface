@@ -150,6 +150,7 @@ PIVOT_Y = f"(({DC:.1f} - {DIST:.1f} * cos(rad({ANGLE}))) / {DIAL_SIZE:.1f})"
 # The complication rides the band just outside the rim, which the face disc
 # overshoots, so it follows the face too.
 TEXT_COLOR = FACE_TEXT
+MINOR_COLOR = FACE_MINOR
 
 # Tailwind CSS 500-series palette
 TAILWIND = [
@@ -290,12 +291,17 @@ ICON_K = (ICON_INNER + ICON_OUTER) / 2      # circle center from screen center
 BASE_SIZE = 2 * (CX - ICON_K)
 
 
-def orbit_xy(k, half):
-    """Top-left of a box of half-size `half` centered k px from the screen
-    center along the hour direction (negative k points away from it)."""
+def orbit_xy(k, half_w, half_h=None, dy=0.0):
+    """Top-left of a box centered k px from the screen center along the hour
+    direction (negative k points away from it), then dy px down the screen.
+    Content stays upright, so offsets inside the circle are screen-aligned."""
+    half_h = half_w if half_h is None else half_h
     toward, away = ("+", "-") if k >= 0 else ("-", "+")
-    x = f"({CX:.1f} {toward} {abs(k):.1f} * sin(rad({ANGLE})) - {half:.1f})"
-    y = f"({CX:.1f} {away} {abs(k):.1f} * cos(rad({ANGLE})) - {half:.1f})"
+    x = f"({CX:.1f} {toward} {abs(k):.1f} * sin(rad({ANGLE})) - {half_w:.1f})"
+    offset = dy - half_h
+    sign = "+" if offset >= 0 else "-"
+    y = (f"({CX:.1f} {away} {abs(k):.1f} * cos(rad({ANGLE}))"
+         f" {sign} {abs(offset):.1f})")
     return x, y
 
 
@@ -305,20 +311,22 @@ def ambient_fade(value, timing):
 
 
 # Interactive copies fade out with the color dial, ambient copies fade in
-# with the light one.
+# with the light one. Each pairs a face color with the ambient color that
+# replaces it, since a Variant can swap alpha but never a color.
 INTERACTIVE = (255, ambient_fade("0", COLOR_DIAL_FADE))
 AMBIENT = (0, ambient_fade("255", LIGHT_DIAL_FADE))
+PHASES = [(INTERACTIVE, TEXT_COLOR, MINOR_COLOR),
+          (AMBIENT, AMBIENT_TEXT, AMBIENT_MINOR)]
+STILL = (255, "")
 
 
-def icon_image(k, size, resource, tint, phase=(255, "")):
-    """Icon centered on the hand line. Icons stay upright, so no direction
-    flip is needed."""
+def icon_image(k, size, resource, tint, phase=STILL, dy=0.0):
     half = size / 2
-    x, y = orbit_xy(k, half)
+    x, y = orbit_xy(k, half, dy=dy)
     alpha, variant = phase
     tint_attr = f' tintColor="{tint}"' if tint else ""
     return (
-        f'            <PartImage x="{CX - half:.0f}" y="{CX - k - half:.0f}"'
+        f'            <PartImage x="{CX - half:.0f}" y="{CX - k - half + dy:.0f}"'
         f' width="{size:.0f}" height="{size:.0f}"'
         f' alpha="{alpha}"{tint_attr}>\n'
         f'{variant}'
@@ -329,8 +337,48 @@ def icon_image(k, size, resource, tint, phase=(255, "")):
     )
 
 
+def short_text(k, width, font_size, color, phase, dy):
+    """[COMPLICATION.TEXT] on one line. The Font content stays inline: any
+    whitespace around it renders as an empty first line and hides the text."""
+    height = font_size * 1.3
+    x, y = orbit_xy(k, width / 2, height / 2, dy)
+    alpha, variant = phase
+    return (
+        f'            <PartText x="{CX - width / 2:.0f}" y="{CX - k - height / 2 + dy:.0f}"'
+        f' width="{width:.0f}" height="{height:.0f}" alpha="{alpha}">\n'
+        f'{variant}'
+        f'              <Transform target="x" value="{x}" />\n'
+        f'              <Transform target="y" value="{y}" />\n'
+        f'              <Text align="CENTER" ellipsis="TRUE">'
+        f'<Font family="SYNC_TO_DEVICE" size="{font_size:.0f}" color="{color}">'
+        f'<Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template>'
+        f'</Font></Text>\n'
+        f'            </PartText>'
+    )
+
+
+def ring_arc(k, diameter, stroke, color, end_expr, phase=STILL):
+    """Arc around the circle, clockwise from 12 o'clock to end_expr."""
+    cx, cy = orbit_xy(k, 0)
+    alpha, variant = phase
+    return (
+        f'            <PartDraw x="0" y="0" width="{CANVAS}" height="{CANVAS}"'
+        f' alpha="{alpha}">\n'
+        f'{variant}'
+        f'              <Arc centerX="{CX:.1f}" centerY="{CX - k:.1f}"'
+        f' width="{diameter:.1f}" height="{diameter:.1f}"'
+        f' startAngle="0" endAngle="359.9">\n'
+        f'                <Transform target="centerX" value="{cx}" />\n'
+        f'                <Transform target="centerY" value="{cy}" />\n'
+        f'                <Transform target="endAngle" value="{end_expr}" />\n'
+        f'                <Stroke color="{color}" thickness="{stroke:.1f}" cap="ROUND" />\n'
+        f'              </Arc>\n'
+        f'            </PartDraw>'
+    )
+
+
 def hub(k, size, color, phase):
-    """Disc under the base icon, so the hand reads as starting from it."""
+    """Disc under the base circle, so the hand reads as starting from it."""
     half = size / 2
     x, y = orbit_xy(k, half)
     alpha, variant = phase
@@ -347,18 +395,64 @@ def hub(k, size, color, phase):
     )
 
 
-def icon_parts(complication_type, k, size):
-    """A monochrome icon is tinted with the face text color, which can be
-    black, so like the dial it crossfades to a white copy in ambient. A
-    full-color icon has no tint to swap and stays as it is."""
-    resource = f"[COMPLICATION.{complication_type}]"
+# Progress fraction per gauge type, clamped so a provider sending a value
+# past its range cannot wrap the ring.
+GAUGE_FRACTIONS = {
+    "RANGED_VALUE": (
+        "([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]"
+        " ? 0 : clamp(([COMPLICATION.RANGED_VALUE_VALUE] -"
+        " [COMPLICATION.RANGED_VALUE_MIN]) / ([COMPLICATION.RANGED_VALUE_MAX]"
+        " - [COMPLICATION.RANGED_VALUE_MIN]), 0, 1))"),
+    "GOAL_PROGRESS": (
+        "([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE] &lt;= 0 ? 0 :"
+        " clamp([COMPLICATION.GOAL_PROGRESS_VALUE] /"
+        " [COMPLICATION.GOAL_PROGRESS_TARGET_VALUE], 0, 1))"),
+}
+GAUGE_STROKE = 3 * SCALE
+GAUGE_GAP = 2 * SCALE
+# In preference order: the system gives a provider the first of these it
+# offers, so a battery or step count arrives as a gauge rather than text.
+SUPPORTED_TYPES = ("RANGED_VALUE", "GOAL_PROGRESS", "SHORT_TEXT",
+                   "MONOCHROMATIC_IMAGE", "SMALL_IMAGE")
+
+
+def icon_and_text(k, d, color, phase):
+    """Round-slot layout inside a circle of diameter d: icon above center,
+    one line of text below it, both kept inside the circle's chord."""
+    icon = 0.42 * d
+    font = 0.24 * d
+    return [
+        icon_image(k, icon, "[COMPLICATION.MONOCHROMATIC_IMAGE]", color, phase,
+                   dy=-0.17 * d),
+        short_text(k, 0.8 * d, font, color, phase, dy=0.22 * d),
+    ]
+
+
+def complication_parts(complication_type, k, size):
+    """Face-colored parts crossfade to ambient-colored copies, as the dial
+    does. A full-color icon and the hand-colored gauge fill have no face
+    color to swap and draw unchanged in both modes."""
+    if complication_type == "SMALL_IMAGE":
+        return [icon_image(k, size, "[COMPLICATION.SMALL_IMAGE]", None)]
     if complication_type == "MONOCHROMATIC_IMAGE":
-        return [icon_image(k, size, resource, TEXT_COLOR, INTERACTIVE),
-                icon_image(k, size, resource, AMBIENT_TEXT, AMBIENT)]
-    return [icon_image(k, size, resource, None)]
+        return [icon_image(k, size, "[COMPLICATION.MONOCHROMATIC_IMAGE]", text,
+                           phase) for phase, text, _ in PHASES]
+    parts = []
+    content = size
+    if complication_type in GAUGE_FRACTIONS:
+        ring = size - GAUGE_STROKE
+        fraction = GAUGE_FRACTIONS[complication_type]
+        parts += [ring_arc(k, ring, GAUGE_STROKE, minor, "359.9", phase)
+                  for phase, _, minor in PHASES]
+        parts.append(ring_arc(k, ring, GAUGE_STROKE, HAND_COLOR,
+                              f"(359.9 * {fraction})"))
+        content = size - 2 * (GAUGE_STROKE + GAUGE_GAP)
+    for phase, text, _ in PHASES:
+        parts += icon_and_text(k, content, text, phase)
+    return parts
 
 
-def icon_position(option_id, complication_type, k, size, with_hub):
+def complication_position(option_id, complication_type, k, size, with_hub):
     # The hub is face-colored while awake and black in ambient, where a
     # light face color would light the disc all night.
     backing = ([hub(k, size, FACE_COLOR, INTERACTIVE),
@@ -366,33 +460,33 @@ def icon_position(option_id, complication_type, k, size, with_hub):
     return "\n".join([
         f'          <ListOption id="{option_id}">',
         f'            <Group x="0" y="0" width="{CANVAS}" height="{CANVAS}"'
-        f' name="icon_{complication_type.lower()}_{option_id.lower()}">',
+        f' name="comp_{complication_type.lower()}_{option_id.lower()}">',
         *backing,
-        *icon_parts(complication_type, k, size),
+        *complication_parts(complication_type, k, size),
         '            </Group>',
         '          </ListOption>',
     ])
 
 
-def icon_complication(complication_type):
-    """The icon stays up in ambient and draws back with the dial: a
+def complication_type_layout(complication_type):
+    """The complication stays up in ambient and draws back with the dial: a
     canvas-sized group pivots on the screen center, so the same 5% scale
-    keeps the icon on the hand line. A ComplicationSlot cannot sit inside a
+    keeps it on the hand line. A ComplicationSlot cannot sit inside a
     configuration, so the position setting lives in here instead."""
     return "\n".join([
         f'      <Complication type="{complication_type}">',
         f'        <Group x="0" y="0" width="{CANVAS}" height="{CANVAS}"'
-        f' name="icon_{complication_type.lower()}"'
+        f' name="comp_{complication_type.lower()}"'
         f' pivotX="0.5" pivotY="0.5" scaleX="1" scaleY="1">',
         f'          <Variant mode="AMBIENT" target="scaleX"'
         f' value="{AMBIENT_SCALE}" {CORE_SCALE} />',
         f'          <Variant mode="AMBIENT" target="scaleY"'
         f' value="{AMBIENT_SCALE}" {CORE_SCALE} />',
         '          <ListConfiguration id="iconPosition">',
-        icon_position("tip", complication_type, ICON_K, ICON_SIZE,
-                      with_hub=False),
-        icon_position("base", complication_type, -ICON_K, BASE_SIZE,
-                      with_hub=True),
+        complication_position("tip", complication_type, ICON_K, ICON_SIZE,
+                              with_hub=False),
+        complication_position("base", complication_type, -ICON_K, BASE_SIZE,
+                              with_hub=True),
         '          </ListConfiguration>',
         '        </Group>',
         '      </Complication>',
@@ -423,16 +517,20 @@ def complication_slot():
     # One slot only: the editor hit-tests each slot's bounding RECT and the
     # last-declared containing rect wins, so a second orbiting slot at a
     # similar radius could never be selected for editing.
+    #
+    # Types are the ones that fit a small circle. LONG_TEXT does not fit;
+    # PHOTO_IMAGE needs a circular clip PartImage cannot do; WEIGHTED_ELEMENTS
+    # sends its segments as a space-separated list, which expressions cannot
+    # split.
     return "\n".join([
         f'    <ComplicationSlot slotId="0"'
-        f' supportedTypes="MONOCHROMATIC_IMAGE SMALL_IMAGE EMPTY"'
+        f' supportedTypes="{" ".join(SUPPORTED_TYPES)} EMPTY"'
         f' x="0" y="0" width="{CANVAS}" height="{CANVAS}">',
         # Covers both positions, the base circle reaching the bezel, and the
         # inner edge at its ambient scale, where it sits closer to the center.
         ring_bounds(AMBIENT_SCALE * min(ICON_INNER, ICON_K - BASE_SIZE / 2) - 2,
                     CX),
-        icon_complication("MONOCHROMATIC_IMAGE"),
-        icon_complication("SMALL_IMAGE"),
+        *[complication_type_layout(t) for t in SUPPORTED_TYPES],
         '    </ComplicationSlot>',
     ])
 
