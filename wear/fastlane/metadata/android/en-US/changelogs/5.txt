@@ -1,3 +1,5 @@
 In 24-hour mode the dial now reads 0 to 23. Midnight shows 0 rather than 24.
 
 Thanks to Eric Migicovsky for the suggestion.
+
+Fixed complications being cut off, such as the date showing as "t Oct 2".
