@@ -128,7 +128,14 @@ cp store/play/wear-*.png wear/fastlane/metadata/android/en-US/images/wearScreens
 ```
 
 ```bash
-cd wear && fastlane supply --aab wff/build/outputs/bundle/release/wff-release.aab --track production --metadata_path fastlane/metadata/android
+cd wear && fastlane supply --aab wff/build/outputs/bundle/release/wff-release.aab --track wear:production --metadata_path fastlane/metadata/android --json_key ~/.config/play/service-account.json --skip_upload_metadata true --skip_upload_images true --skip_upload_screenshots true
 ```
+
+> **The track is `wear:production`, not `production`.** Plain `production` is
+> the phones/tablets track, which rejects a watch-only bundle. Run with
+> `FASTLANE_SKIP_UPDATE_CHECK=1` too, or fastlane's update banner buries the
+> actual result. Confirm in the console: the Wear OS track should read
+> "Release X in review". The skip flags upload only the bundle and
+> `changelogs/<versionCode>.txt`; drop them to resync the listing as well.
 
 Bump `versionCode` in `wear/wff/build.gradle.kts` for every upload.
