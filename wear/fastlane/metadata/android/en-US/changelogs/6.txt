@@ -1,0 +1,5 @@
+Complications now sit in a small circle on the hand: just past its tip, or at the far side of the screen where the hand starts. Choose which under Complication. They are no longer cut off on smaller watches.
+
+Numerals and 24-hour time are now their own settings pages, and reset to Large and 12-hour once.
+
+In 24-hour mode the dial now reads 0 to 23. Midnight shows 0 rather than 24. Thanks to Eric Migicovsky for the suggestion.
