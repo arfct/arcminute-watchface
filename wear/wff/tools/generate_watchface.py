@@ -403,16 +403,26 @@ def complication_slot():
     #   gauge text TEXT_R_RV, same     -> 147..173
     #   icon       IMG_K +/- IMG_SIZE/2 -> 133..168
     inner = min(ARC_R - ARC_STROKE / 2, TEXT_R_ST - EVENT_FONT) - DIST - 8
-    outer = max(TEXT_R_RV, ARC_R + ARC_STROKE / 2,
-                DIST + IMG_K + IMG_SIZE / 2) - DIST + 8
-    mid = (inner + outer) / 2
+    # Out to the bezel rather than the measured extremes: TextCircular's glyph
+    # placement relative to its circle differs between runtimes (Wear OS 6
+    # centers glyphs on the circle, Wear OS 5 sat them inside it), and the
+    # gauge text is the outermost content, so a tight edge slices its tops.
+    outer = CX - 4
+    #
+    # The arc's width/height are its OUTER diameter; thickness grows inward.
+    # Sized on the centerline instead, the outer half of the ring is lost and
+    # text riding near the rim is sliced through its glyphs.
+    #
+    # endAngle stops short of 360: the runtime builds the clip as an arc path,
+    # and a 360-degree sweep wraps to zero, collapsing the ring to a sliver
+    # near 12 o'clock that clips everything outside it.
     return "\n".join([
         f'    <ComplicationSlot slotId="0"'
         f' supportedTypes="RANGED_VALUE SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE EMPTY"'
         f' x="0" y="0" width="{CANVAS}" height="{CANVAS}">',
         f'      <BoundingArc centerX="{CX:.1f}" centerY="{CX:.1f}"'
-        f' width="{2 * mid:.1f}" height="{2 * mid:.1f}"'
-        f' thickness="{outer - inner:.1f}" startAngle="0" endAngle="360"'
+        f' width="{2 * outer:.1f}" height="{2 * outer:.1f}"'
+        f' thickness="{outer - inner:.1f}" startAngle="0" endAngle="359.9"'
         f' outlinePadding="2" />',
         '      <Complication type="RANGED_VALUE">',
         event_gauge(),

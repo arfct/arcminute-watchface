@@ -2211,7 +2211,7 @@
     </BooleanOption>
     </BooleanConfiguration>
     <ComplicationSlot slotId="0" supportedTypes="RANGED_VALUE SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE EMPTY" x="0" y="0" width="450" height="450">
-      <BoundingArc centerX="225.0" centerY="225.0" width="301.2" height="301.2" thickness="61.0" startAngle="0" endAngle="360" outlinePadding="2" />
+      <BoundingArc centerX="225.0" centerY="225.0" width="442.0" height="442.0" thickness="100.9" startAngle="0" endAngle="359.9" outlinePadding="2" />
       <Complication type="RANGED_VALUE">
         <PartDraw x="0" y="0" width="450" height="450">
           <Arc centerX="0" centerY="0" width="1377.7" height="1377.7" startAngle="-4.96" endAngle="4.96">
