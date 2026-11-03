@@ -6,9 +6,12 @@ dial three screen-sizes wide whose center sits opposite the current hour
 angle, so the rim (numerals + ticks) sweeps through the visible screen, plus
 a hand from the dial center to the current-hour rim point.
 
-Targets Watch Face Format 4 (Wear OS 6, API 36), for the ambient transition
-attributes on Variant. Version 5 adds nothing this face uses and would cost
-every watch below Wear OS 7.
+Emits two documents. Format 4 (Wear OS 6, API 36) carries the ambient
+transition attributes on Variant. Format 3 (Wear OS 5.1, API 35) is the same
+face with those attributes removed, so ambient switches instantly; it is the
+only format-4 feature the face uses. Each ships in its own build flavor and
+Play serves a watch the highest one it can run. Version 5 adds nothing this
+face uses and would cost every watch below Wear OS 7.
 
 Edit THIS file and re-run it; never hand-edit watchface.xml.
 
@@ -17,6 +20,7 @@ Edit THIS file and re-run it; never hand-edit watchface.xml.
 
 import math
 import os
+import re
 
 # ---- Reference geometry: gabbro (260 px) constants scaled to a 450 canvas ----
 CANVAS = 450
@@ -824,13 +828,28 @@ def watchface():
 '''
 
 
+# The ambient transition attributes are the face's only format-4 feature.
+TRANSITION_ATTRS = re.compile(r' (startOffset|duration|interpolation)="[^"]*"')
+
+
+def format3(xml):
+    """The format-4 document without ambient transitions, for Wear OS 5.1."""
+    out = TRANSITION_ATTRS.sub("", xml)
+    assert "startOffset" not in out and "interpolation" not in out
+    return out
+
+
+def write(path, text):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w") as f:
+        f.write(text)
+    print(f"wrote {path}")
+
+
 if __name__ == "__main__":
-    res = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "src", "main", "res"))
-    out_path = os.path.join(res, "raw", "watchface.xml")
-    with open(out_path, "w") as f:
-        f.write(watchface())
-    print(f"wrote {out_path}")
-    strings_path = os.path.join(res, "values", "config_strings.xml")
-    with open(strings_path, "w") as f:
-        f.write(config_strings())
-    print(f"wrote {strings_path}")
+    src = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "src"))
+    xml = watchface()
+    write(os.path.join(src, "main", "res", "raw", "watchface.xml"), xml)
+    write(os.path.join(src, "format3", "res", "raw", "watchface.xml"), format3(xml))
+    write(os.path.join(src, "main", "res", "values", "config_strings.xml"),
+          config_strings())

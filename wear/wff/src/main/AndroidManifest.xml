@@ -8,12 +8,12 @@
         android:icon="@drawable/preview"
         android:hasCode="false">
 
-        <!-- Format 4 (Wear OS 6, API 36) for the ambient transition
-             attributes on Variant. minSdk must match this, or Play offers the
-             face to watches whose runtime cannot render it. -->
+        <!-- Set per build flavor (wff/build.gradle.kts): 3 for Wear OS 5.1,
+             4 for Wear OS 6. minSdk must match it, or Play offers the face to
+             watches whose runtime cannot render it. -->
         <property
             android:name="com.google.wear.watchface.format.version"
-            android:value="4" />
+            android:value="${wffVersion}" />
 
         <meta-data
             android:name="com.google.android.wearable.standalone"

@@ -17,12 +17,29 @@ android {
 
     defaultConfig {
         applicationId = "com.artifact.arcminute.wff"
-        // Tied to the Watch Face Format version in the manifest: format 4
-        // needs Wear OS 6.
-        minSdk = 36
         targetSdk = 36
-        versionCode = 6
         versionName = "1.3.0"
+    }
+
+    // One flavor per Watch Face Format version, released together. Play
+    // serves each watch the highest versionCode it can install, so format4
+    // must keep the higher code. minSdk is tied to the format: Play filters
+    // by it, and a watch whose runtime is older than the format cannot
+    // render the face. Bump both versionCodes for every upload.
+    flavorDimensions += "format"
+    productFlavors {
+        create("format3") {
+            dimension = "format"
+            minSdk = 35
+            versionCode = 7
+            manifestPlaceholders["wffVersion"] = "3"
+        }
+        create("format4") {
+            dimension = "format"
+            minSdk = 36
+            versionCode = 8
+            manifestPlaceholders["wffVersion"] = "4"
+        }
     }
 
     signingConfigs {

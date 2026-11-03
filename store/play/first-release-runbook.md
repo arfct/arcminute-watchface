@@ -128,8 +128,20 @@ cp store/play/wear-*.png wear/fastlane/metadata/android/en-US/images/wearScreens
 ```
 
 ```bash
-cd wear && fastlane supply --aab wff/build/outputs/bundle/release/wff-release.aab --track wear:production --metadata_path fastlane/metadata/android --json_key ~/.config/play/service-account.json --skip_upload_metadata true --skip_upload_images true --skip_upload_screenshots true
+cd wear && ./gradlew :wff:bundleRelease
+FASTLANE_SKIP_UPDATE_CHECK=1 fastlane supply \
+  --aab_paths wff/build/outputs/bundle/format3Release/wff-format3-release.aab,wff/build/outputs/bundle/format4Release/wff-format4-release.aab \
+  --track wear:production --metadata_path fastlane/metadata/android \
+  --package_name com.artifact.arcminute.wff --json_key ~/.config/play/service-account.json \
+  --skip_upload_metadata true --skip_upload_images true --skip_upload_screenshots true
 ```
+
+> **Every release carries two bundles**, one per build flavor: `format3`
+> (Watch Face Format 3, minSdk 35, Wear OS 5.1) and `format4` (format 4,
+> minSdk 36, Wear OS 6+, with the animated ambient transitions). Play gives
+> each watch the highest versionCode it can install, so `format4` must keep
+> the higher code. Each versionCode needs its own `changelogs/<code>.txt`,
+> and Play caps each at 500 characters.
 
 > **The track is `wear:production`, not `production`.** Plain `production` is
 > the phones/tablets track, which rejects a watch-only bundle. Run with
@@ -138,4 +150,4 @@ cd wear && fastlane supply --aab wff/build/outputs/bundle/release/wff-release.aa
 > "Release X in review". The skip flags upload only the bundle and
 > `changelogs/<versionCode>.txt`; drop them to resync the listing as well.
 
-Bump `versionCode` in `wear/wff/build.gradle.kts` for every upload.
+Bump both flavors' `versionCode` in `wear/wff/build.gradle.kts` for every upload.

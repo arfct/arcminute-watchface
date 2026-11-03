@@ -1,0 +1,7 @@
+Complications now sit in a small circle on the hand, past its tip or where it starts (set under Complication). No longer cut off on smaller watches.
+
+Numerals and 24-hour time have their own settings pages, and reset once to Large and 12-hour.
+
+In 24-hour mode the dial reads 0 to 23. Thanks to Eric Migicovsky for the suggestion.
+
+Now runs on Wear OS 5.1, including the original Pixel Watch. There, ambient switches straight over instead of easing in.
