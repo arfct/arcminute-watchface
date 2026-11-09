@@ -10,3 +10,7 @@ Two implementations:
 - [`wear/`](wear/) — Wear OS port in the declarative Watch Face Format (Wear OS 6+)
 
 See [AGENTS.md](AGENTS.md) for build and emulator instructions for both.
+
+## Catalogue
+
+The catalogue entry for this project lives in [`.artifact/arcminute.md`](.artifact/arcminute.md), with its icon and images beside it.
