@@ -2,7 +2,11 @@
 title: Arcminute
 date: 2025-08
 category: product
-tags: [pebble, wear-os, watchface]
+tags:
+  - pebble
+  - wear-os
+  - watchface
+  - time
 links:
   play: https://play.google.com/store/apps/details?id=com.artifact.arcminute.wff
   pebble: https://apps.rebble.io/en_US/application/68937d18f7ca35000951da1b
