@@ -19,7 +19,6 @@ media:
   - src: pebble-dial.png
     caption: The original Pebble dial, from its store listing
     alt: A black watch face showing the top of a clock with the numerals 10, 11, 12 and 1, white minute ticks along the rim and a red hand
-role: Design, Engineering
 formerly: [chronology]
 unconfirmed: [date]
 ---
