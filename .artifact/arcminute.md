@@ -27,8 +27,8 @@ formerly: [chronology]
 unconfirmed: [date]
 ---
 
-An hour hand, cropped to the current position on the clock's perimeter. Arcminute draws a dial wider than the screen and shows only the edge nearest the hour: one numeral, the minute marks around it, a single red hand. The rest of the clock stays off the display. On a screen this small, one moving fragment is enough.
+Arcminute is a watch face that shows one edge of a clock dial. It draws a dial wider than the screen and shows only the part nearest the hour hand: one numeral, the minute marks around it and a single red hand. The rest of the dial is off the display.
 
-It began as a Pebble watchface, listed on both the Rebble and RePebble stores under the name Chronology. Wear OS is the second implementation, on Google Play. It offers large numerals or a classic scale, and configurable colors.
+It began as a Pebble watch face, listed on the Rebble and RePebble stores under the name Chronology. The Wear OS version is on Google Play. It offers large numerals or a classic scale, and configurable colors.
 
 Pebble: C with a Clay config page. Wear OS: Watch Face Format, no code.
