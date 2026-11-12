@@ -7,6 +7,7 @@ tags:
   - wear-os
   - watchface
   - time
+url: https://play.google.com/store/apps/details?id=com.artifact.arcminute.wff
 links:
   play: https://play.google.com/store/apps/details?id=com.artifact.arcminute.wff
   pebble: https://apps.rebble.io/en_US/application/68937d18f7ca35000951da1b
