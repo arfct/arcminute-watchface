@@ -1,6 +1,7 @@
 ---
 title: Arcminute
 date: 2025-08
+status: released
 category: product
 tags:
   - pebble
@@ -25,7 +26,7 @@ media:
     caption: The Pebble version's store banner, which shows a wider section of the classic dial, from 10 to 1
     alt: A black watch face showing the top of a clock with the numerals 10, 11, 12 and 1, white minute ticks along the rim and a red hand
 formerly: [chronology]
-unconfirmed: [date]
+unconfirmed: [date, status]
 ---
 
 Arcminute keeps one hand, the hour hand, and enlarges the dial beneath it until most of the dial is off the watch. What stays on screen is the section around the current hour, with its numeral and the minute marks beside it, and at that scale the hand's place between two numerals is enough to read the minutes.
