@@ -2,7 +2,7 @@
 title: Arcminute
 date: 2025-08
 status: released
-category: product
+category: device
 tags:
   - pebble
   - wear-os
